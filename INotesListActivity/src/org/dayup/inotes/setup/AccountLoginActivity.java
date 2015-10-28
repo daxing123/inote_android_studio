@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import android.view.MenuItem;
 import org.dayup.common.Analytics;
 import org.dayup.common.Log;
 import org.dayup.inotes.R;
@@ -33,7 +34,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.actionbarsherlock.view.MenuItem;
 import com.fsck.k9.mail.AuthenticationFailedException;
 import com.fsck.k9.mail.MessagingException;
 

@@ -1,5 +1,6 @@
 package org.dayup.inotes;
 
+import android.preference.PreferenceActivity;
 import org.dayup.common.Analytics;
 import org.dayup.inotes.INotesPreferences.PK;
 
@@ -11,13 +12,12 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.KeyEvent;
 
-import com.actionbarsherlock.app.SherlockPreferenceActivity;
 
 /**
  * @author Nicky
  * 
  */
-public class INotesPreferencesSubSync extends SherlockPreferenceActivity {
+public class INotesPreferencesSubSync extends PreferenceActivity {
 
     private static final String TAG = INotesPreferencesSubSync.class.getSimpleName();
     private CheckBoxPreference wifiOnlyPreference;

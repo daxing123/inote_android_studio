@@ -1,5 +1,6 @@
 package org.dayup.inotes.setup;
 
+import android.app.Fragment;
 import org.dayup.inotes.INotesApplication;
 import org.dayup.inotes.R;
 import org.dayup.inotes.account.INotesAccountManager;
@@ -22,9 +23,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.actionbarsherlock.app.SherlockFragment;
 
-public class AccountSetupIncomingFragment extends SherlockFragment {
+public class AccountSetupIncomingFragment extends Fragment {
     private AccountSetupIncomingActivity mActivity;
     private INotesApplication application;
     private EditText mUsernameView, mPasswordView, mServerView, mPortView;

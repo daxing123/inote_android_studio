@@ -3,6 +3,9 @@ package org.dayup.inotes.setup;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.support.v7.app.ActionBar;
+import android.view.Menu;
+import android.view.MenuItem;
 import org.dayup.activities.BaseActivity;
 import org.dayup.common.Analytics;
 import org.dayup.common.Log;
@@ -24,10 +27,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
 
 public class AccountSelectActivity extends BaseActivity {
 
@@ -75,7 +74,7 @@ public class AccountSelectActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getSupportMenuInflater().inflate(R.menu.inotes_account_select_menu, menu);
+        getMenuInflater().inflate(R.menu.inotes_account_select_menu, menu);
         return true;
     }
 
@@ -187,7 +186,8 @@ public class AccountSelectActivity extends BaseActivity {
     }
 
     private void showDeleteConfirmDialog(final Account account) {
-        final INotesDialog dialog = new INotesDialog(this, iNotesApplication.getThemeType());
+        //final INotesDialog dialog = new INotesDialog(this, iNotesApplication.getThemeType());
+        final INotesDialog dialog = new INotesDialog(this);
         dialog.setTitle(R.string.dialog_title_remove_account);
         dialog.setMessage(R.string.dialog_remove_account_message);
         dialog.setPositiveButton(android.R.string.ok, new View.OnClickListener() {

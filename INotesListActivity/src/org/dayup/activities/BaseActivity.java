@@ -1,5 +1,15 @@
 package org.dayup.activities;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.Fragment;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.speech.RecognizerIntent;
+import android.support.v7.app.AppCompatActivity;
+import android.util.SparseArray;
 import org.dayup.inotes.INotesApplication;
 import org.dayup.inotes.R;
 import org.dayup.inotes.db.INotesDBHelper;
@@ -7,19 +17,7 @@ import org.dayup.inotes.utils.ThemeUtils;
 import org.dayup.inotes.utils.Utils;
 import org.dayup.inotes.utils.Utils20;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
-import android.speech.RecognizerIntent;
-import android.util.SparseArray;
-
-import com.actionbarsherlock.app.SherlockFragment;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-
-public class BaseActivity extends SherlockFragmentActivity {
+public class BaseActivity extends AppCompatActivity {
 
     private static final int BASE_ID = 1000000;
     protected INotesApplication iNotesApplication = null;
@@ -94,7 +92,7 @@ public class BaseActivity extends SherlockFragmentActivity {
         dialogs.clear();
     }
 
-    public void startVoiceRecognitionActivity(SherlockFragment fragment, int requestCode) {
+    public void startVoiceRecognitionActivity(Fragment fragment, int requestCode) {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);

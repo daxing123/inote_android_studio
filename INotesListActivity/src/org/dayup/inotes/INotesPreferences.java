@@ -1,11 +1,5 @@
 package org.dayup.inotes;
 
-import org.dayup.common.Analytics;
-import org.dayup.inotes.data.Account;
-import org.dayup.inotes.setup.AccountSelectActivity;
-import org.dayup.inotes.utils.ThemeUtils;
-import org.dayup.inotes.utils.Utils20;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -14,14 +8,18 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
+import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
+import android.view.MenuItem;
+import org.dayup.common.Analytics;
+import org.dayup.inotes.data.Account;
+import org.dayup.inotes.setup.AccountSelectActivity;
+import org.dayup.inotes.utils.ThemeUtils;
+import org.dayup.inotes.utils.Utils20;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockPreferenceActivity;
-import com.actionbarsherlock.view.MenuItem;
-
-public class INotesPreferences extends SherlockPreferenceActivity {
+public class INotesPreferences extends PreferenceActivity {
 
     public final static int SET_ACCOUNT = 0x007;
     private PreferenceScreen accountSetting;
@@ -194,7 +192,7 @@ public class INotesPreferences extends SherlockPreferenceActivity {
     }
 
     private void initActionBar() {
-        ActionBar bar = getSupportActionBar();
+        android.app.ActionBar bar = getActionBar();
         bar.setDisplayHomeAsUpEnabled(true);
     }
 

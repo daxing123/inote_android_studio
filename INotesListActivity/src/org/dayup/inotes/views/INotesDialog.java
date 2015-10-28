@@ -33,9 +33,18 @@ public class INotesDialog extends Dialog {
     private View btn_msg_divider;
     private Button confirm_btn, middle_btn, cancel_btn;
 
-    public INotesDialog(Context context, int theme) {
+    /*public INotesDialog(Context context, int theme) {
         super(context, theme == Themes.THEME_LIGHT ? R.style.INotesDialog_Light
                 : R.style.INotesDialog);
+        this.context = context;
+        setContentView(R.layout.inotes_dialog_layout);
+        this.setCanceledOnTouchOutside(true);
+        this.setCancelable(true);
+        initView();
+    }*/
+
+    public INotesDialog(Context context) {
+        super(context);
         this.context = context;
         setContentView(R.layout.inotes_dialog_layout);
         this.setCanceledOnTouchOutside(true);

@@ -3,6 +3,8 @@ package org.dayup.inotes;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.support.v7.app.ActionBar;
+import android.view.MenuItem;
 import org.dayup.activities.BaseActivity;
 import org.dayup.common.Analytics;
 import org.dayup.common.Log;
@@ -34,8 +36,6 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.view.MenuItem;
 
 public class INotesSearchResultActivity extends BaseActivity {
     private static final String TAG = INotesSearchResultActivity.class.getSimpleName();

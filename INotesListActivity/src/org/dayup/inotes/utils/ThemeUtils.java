@@ -16,9 +16,11 @@ public class ThemeUtils {
     /** Set the theme of the activity, according to the configuration. */
     public void onActivityCreateSetTheme(Activity activity) {
         if (application.isLightTheme()) {
-            activity.setTheme(R.style.Theme_INotes_Light_CustomActionBar);
+            //activity.setTheme(R.style.Theme_INotes_Light_CustomActionBar);
+            activity.setTheme(R.style.AppBaseTheme);
         } else if (application.isBlackTheme()) {
-            activity.setTheme(R.style.Theme_INotes_Dark_CustomActionBar);
+            //activity.setTheme(R.style.Theme_INotes_Dark_CustomActionBar);
+            activity.setTheme(R.style.AppBaseTheme);
 
         }
     }
@@ -70,7 +72,8 @@ public class ThemeUtils {
     public int getItemSelector() {
         switch (application.getThemeType()) {
         case Themes.THEME_BLACK:
-            return R.drawable.abs__list_selector_holo_dark;
+            //return R.drawable.abs__list_selector_holo_dark;
+            return R.drawable.item_background_light;
         case Themes.THEME_LIGHT:
         default:
             return R.drawable.item_background_light;
@@ -80,7 +83,8 @@ public class ThemeUtils {
     public int getItemSelectorPressed() {
         switch (application.getThemeType()) {
         case Themes.THEME_BLACK:
-            return R.drawable.abs__list_pressed_holo_dark;
+            //return R.drawable.abs__list_pressed_holo_dark;
+            return R.drawable.list_pressed_light;
         case Themes.THEME_LIGHT:
         default:
             return R.drawable.list_pressed_light;

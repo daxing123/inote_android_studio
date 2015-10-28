@@ -1,5 +1,7 @@
 package org.dayup.inotes.setup;
 
+import android.app.ActionBar;
+import android.view.MenuItem;
 import org.dayup.activities.BaseActivity;
 import org.dayup.common.Analytics;
 import org.dayup.inotes.R;
@@ -15,8 +17,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.view.MenuItem;
 import com.fsck.k9.mail.AuthenticationFailedException;
 import com.fsck.k9.mail.MessagingException;
 
@@ -32,7 +32,7 @@ public abstract class AccountSetupBaseActivity extends BaseActivity {
     }
 
     private void initActionBar() {
-        mBar = getSupportActionBar();
+        mBar = getActionBar();
         mBar.setHomeButtonEnabled(true);
         mBar.setDisplayHomeAsUpEnabled(true);
         mBar.setTitle(R.string.account_sigin_in);
@@ -104,7 +104,8 @@ public abstract class AccountSetupBaseActivity extends BaseActivity {
         if (activity.isFinishing()) {
             return;
         }
-        final INotesDialog dialog = new INotesDialog(activity, iNotesApplication.getThemeType());
+        //final INotesDialog dialog = new INotesDialog(activity, iNotesApplication.getThemeType());
+        final INotesDialog dialog = new INotesDialog(activity);
         dialog.setTitle(R.string.dialog_title_login_failed);
         if (result instanceof AuthenticationFailedException) {
             if (TextUtils.equals(result.getMessage(), "Unsupported protocol")) {

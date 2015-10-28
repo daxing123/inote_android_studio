@@ -52,7 +52,8 @@ public class AccountSetupAccountTypeActivity extends AccountSetupBaseActivity im
     }
 
     private void onGoogle() {
-        progressDialog = new INotesProgressDialog(this, iNotesApplication.getThemeType());
+        //progressDialog = new INotesProgressDialog(this, iNotesApplication.getThemeType());
+        progressDialog = new INotesProgressDialog(this);
         progressDialog.show();
         accountManager
                 .authorizeAccount(

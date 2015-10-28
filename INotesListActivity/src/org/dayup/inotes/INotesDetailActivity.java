@@ -1,9 +1,17 @@
 package org.dayup.inotes;
 
-import java.text.DateFormat;
-import java.util.Collections;
-import java.util.List;
-
+import android.app.Dialog;
+import android.content.Intent;
+import android.content.SharedPreferences.Editor;
+import android.content.res.Configuration;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.view.*;
+import android.widget.CheckBox;
+import android.widget.TextView;
+import android.widget.Toast;
 import org.dayup.activities.BaseActivity;
 import org.dayup.activities.DialogHandler;
 import org.dayup.common.Analytics;
@@ -25,25 +33,10 @@ import org.dayup.inotes.utils.Utils;
 import org.dayup.inotes.views.INotesDialog;
 import org.dayup.inotes.views.INotesDialog.INotesDialogListItemOnClickListener;
 import org.dayup.inotes.views.ResizeLayout;
-import org.dayup.inotes.views.ResizeLayout.OnResizeListener;
 
-import android.app.Dialog;
-import android.content.Intent;
-import android.content.SharedPreferences.Editor;
-import android.content.res.Configuration;
-import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.WindowManager;
-import android.widget.CheckBox;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
+import java.text.DateFormat;
+import java.util.Collections;
+import java.util.List;
 
 public class INotesDetailActivity extends BaseActivity implements INoteViewerController,
         INoteEditController {
@@ -59,7 +52,8 @@ public class INotesDetailActivity extends BaseActivity implements INoteViewerCon
     private long folderId;
     private DateFormat dateFormat;
 
-    private ActionBar actionBar;
+    //private ActionBar actionBar;
+    private Toolbar toolbar;
     private NoteEditController noteEditController;
     private NoteViewerController noteViewerController;
     private TextView timeText;
@@ -75,7 +69,8 @@ public class INotesDetailActivity extends BaseActivity implements INoteViewerCon
 
         setContentView(R.layout.activity_inotes_detail);
         init();
-        initActionBar();
+        //initActionBar();
+        initToolbar();
         initView();
         parseIntentData();
 
@@ -135,7 +130,7 @@ public class INotesDetailActivity extends BaseActivity implements INoteViewerCon
             switchToViewer(content);
         }
 
-        actionBar.setTitle(getCurrentFolderName());
+        toolbar.setTitle(getCurrentFolderName());
         setDateTimeText();
     }
 
@@ -187,10 +182,18 @@ public class INotesDetailActivity extends BaseActivity implements INoteViewerCon
         resizeLayout = (ResizeLayout) findViewById(R.id.detail_scroll_layout);
     }
 
-    private void initActionBar() {
+    /*private void initActionBar() {
         actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
+    }*/
+
+    private void initToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //toolbar.setTitle("iNotes");
+        setSupportActionBar(toolbar);//这句得在getSupport之前
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //ToolBar显示返回按钮
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.save); //ToolBar自定义返回按钮图标
     }
 
     private String getCurrentFolderName() {
@@ -212,7 +215,7 @@ public class INotesDetailActivity extends BaseActivity implements INoteViewerCon
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getSupportMenuInflater().inflate(R.menu.inotes_detail_activity, menu);
+        getMenuInflater().inflate(R.menu.inotes_detail_activity, menu);
         return true;
     }
 
@@ -396,7 +399,8 @@ public class INotesDetailActivity extends BaseActivity implements INoteViewerCon
     private void showDeleteConfirmDialog() {
         View view = LayoutInflater.from(this).inflate(R.layout.delete_confirm_dialog, null);
         final CheckBox checkBox = (CheckBox) view.findViewById(R.id.delete_confirm_checkbox);
-        final INotesDialog dialog = new INotesDialog(this, iNotesApplication.getThemeType());
+        //final INotesDialog dialog = new INotesDialog(this, iNotesApplication.getThemeType());
+        final INotesDialog dialog = new INotesDialog(this);
         dialog.setTitle(R.string.dialog_title_confirm_delete);
         dialog.setMessage(R.string.delete_confirm);
         dialog.setView(view);
@@ -440,8 +444,8 @@ public class INotesDetailActivity extends BaseActivity implements INoteViewerCon
         }
 
         private Dialog createDialog() {
-            INotesDialog dialog = new INotesDialog(INotesDetailActivity.this,
-                    iNotesApplication.getThemeType());
+            //INotesDialog dialog = new INotesDialog(INotesDetailActivity.this, iNotesApplication.getThemeType());
+            INotesDialog dialog = new INotesDialog(INotesDetailActivity.this);
             dialog.setTitle(R.string.dialog_title_move_to_folder);
             dialog.setSingleChoiceItems(folderName, selected,
                     new INotesDialogListItemOnClickListener() {
@@ -470,7 +474,7 @@ public class INotesDetailActivity extends BaseActivity implements INoteViewerCon
         }
 
         private void moveToList(Folder to) {
-            actionBar.setTitle(to.displayName);
+            toolbar.setTitle(to.displayName);
             folderId = to.id;
             accountManager.setDefaultFolderId(folderId);
         }

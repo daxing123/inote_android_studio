@@ -21,7 +21,7 @@ public class AccountSetupIncomingActivity extends AccountSetupBaseActivity imple
         super.onCreate(savedInstanceState);
         setContentView(R.layout.account_setup_incoming);
         initViews();
-        mFragment = (AccountSetupIncomingFragment) getSupportFragmentManager().findFragmentById(
+        mFragment = (AccountSetupIncomingFragment) getFragmentManager().findFragmentById(
                 R.id.setup_fragment);
 
     }

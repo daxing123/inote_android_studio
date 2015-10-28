@@ -1,5 +1,6 @@
 package org.dayup.inotes.setup;
 
+import android.support.v7.app.ActionBar;
 import org.dayup.activities.BaseActivity;
 import org.dayup.common.Analytics;
 import org.dayup.common.Log;
@@ -17,7 +18,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.actionbarsherlock.app.ActionBar;
 
 public class AccountLoginSuccessActivity extends BaseActivity {
 

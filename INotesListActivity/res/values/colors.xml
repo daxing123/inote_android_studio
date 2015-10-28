@@ -64,4 +64,10 @@
 	<color name="list_longpressed_light">#804b2500</color>
 	<color name="dialog_divider_light">#40684d25</color>
 	<color name="dialog_msg_color_light">#736357</color>
+
+
+    <color name="primary">#ededed</color>
+    <color name="primary_dark">#b2b2b2</color>
+    <color name="accent">#b2b2b2</color>
+
 </resources>

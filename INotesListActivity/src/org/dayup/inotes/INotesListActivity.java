@@ -1,9 +1,29 @@
 package org.dayup.inotes;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.TreeMap;
-
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.content.res.Configuration;
+import android.content.res.TypedArray;
+import android.graphics.Color;
+import android.graphics.Rect;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.preference.PreferenceManager;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
+import android.view.*;
+import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.*;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import org.dayup.activities.BaseActivity;
 import org.dayup.common.Analytics;
 import org.dayup.common.Log;
@@ -31,56 +51,21 @@ import org.dayup.inotes.utils.ShareUtils;
 import org.dayup.inotes.views.INotesDialog;
 import org.dayup.tasks.BackgroundTaskManager.BackgroundTaskStatusListener;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.content.res.Configuration;
-import android.content.res.TypedArray;
-import android.graphics.Color;
-import android.graphics.Rect;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.preference.PreferenceManager;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemLongClickListener;
-import android.widget.CheckBox;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListPopupWindow;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.internal.widget.IcsListPopupWindow;
-import com.actionbarsherlock.view.ActionMode;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.TreeMap;
 
 /**
  * @author Nicky
- * 
  */
 public class INotesListActivity extends BaseActivity implements SyncingRefreshUIListener,
         RefreshSyncedListener {
 
     private final String TAG = INotesListActivity.class.getSimpleName();
 
-    private ActionBar actionBar;
+    //    private ActionBar actionBar;
+    private android.support.v7.widget.Toolbar toolbar;
+
     private SpinnerSelectorAdapter actionBarAdapter;
     private ListView listView;
     private NoteListAdapter adapter;
@@ -92,10 +77,14 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
     private View mAccountSpinner = null;
     private ViewGroup mActionBarCustomView;
     private TextView mAccountSpinnerLine1View;
-    private AccountDropdownPopup mAccountDropdown;
+    //private AccountDropdownPopup mAccountDropdown;
 
     private SharedPreferences sp;
     private SyncManager notesSyncManager;
+
+    private DrawerLayout dl;
+    private ActionBarDrawerToggle actionBarDrawerToggle;
+    private FloatingActionButton fab;
 
     private final int HIDE_LAYOUT_DURATION = 5000;
 
@@ -226,8 +215,19 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
     };
 
     private void initViews() {
-        initActionBar();
+        //initActionBar();
+        initToolbar();
         initListView();
+        initOtherView();
+    }
+
+    private void initOtherView() {
+        fab = (FloatingActionButton) findViewById(R.id.bt);
+        fab.setOnClickListener(new OnClickListener() {
+            @Override public void onClick(View v) {
+                startDetailActivity(null);
+            }
+        });
     }
 
     private void initListView() {
@@ -261,7 +261,8 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         listView.setOnItemLongClickListener(new OnItemLongClickListener() {
 
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position,
+                    long id) {
                 Note note = adapter.getItem(position);
                 if (note == null) {
                     return false;
@@ -274,7 +275,36 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         });
     }
 
-    private void initActionBar() {
+    private void initToolbar() {
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("iNotes");
+        setSupportActionBar(toolbar);
+
+        dl = (DrawerLayout) findViewById(R.id.drawer_layout);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this,
+                dl, toolbar, R.string.app_name, R.string.app_name) {
+            //监听抽屉关闭事件
+            public void onDrawerClosed(View view) {
+
+            }
+
+            //监听抽屉打开事件
+            public void onDrawerOpened(View drawerView) {
+
+            }
+
+        };
+        dl.post(new Runnable() {
+            @Override
+            public void run() {
+                actionBarDrawerToggle.syncState();
+            }
+        });
+        dl.setDrawerListener(actionBarDrawerToggle);
+    }
+
+    /*private void initActionBar() {
         actionBar = getSupportActionBar();
         actionBar.setTitle(R.string.app_name);
         actionBar.setDisplayShowCustomEnabled(true);
@@ -290,14 +320,14 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         mAccountDropdown.setHorizontalOffset((int) getResources().getDimension(
                 R.dimen.select_list_spinner_offset_v));
         mAccountDropdown.setAdapter(actionBarAdapter);
-        mAccountSpinner.setOnClickListener(new View.OnClickListener() {
+        mAccountSpinner.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 showAccountDropdown();
             }
         });
 
-    }
+    }*/
 
     private void initSortByLayout() {
         sortByLayout = (LinearLayout) findViewById(R.id.sortby_layout);
@@ -403,12 +433,12 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         }
     }
 
-    private void showAccountDropdown() {
+    /*private void showAccountDropdown() {
         requarySpinnerSelectors();
         if (actionBarAdapter != null && actionBarAdapter.getCount() > 0) {
             mAccountDropdown.show();
         }
-    }
+    }*/
 
     private void requarySpinnerSelectors() {
         actionBarAdapter.setData(mHelper.getSelectors());
@@ -447,7 +477,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         super.onResume();
         // TODO 需要明确那些情况下重新刷新
         resetCurrentFolder();
-        requarySpinnerSelectors();
+//        requarySpinnerSelectors();
         requery();
 
         startSyncByResult();
@@ -456,9 +486,9 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        if (mAccountDropdown != null && mAccountDropdown.isShowing()) {
+        /*if (mAccountDropdown != null && mAccountDropdown.isShowing()) {
             mAccountDropdown.dismiss();
-        }
+        }*/
 
     }
 
@@ -494,7 +524,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getSupportMenuInflater().inflate(R.menu.inotes_list_activity, menu);
+        getMenuInflater().inflate(R.menu.inotes_list_activity, menu);
         syncItem = menu.findItem(R.id.menu_sync);
         return true;
     }
@@ -508,9 +538,9 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-        case R.id.menu_insert:
+        /*case R.id.menu_insert:
             startDetailActivity(null);
-            return true;
+            return true;*/
         case R.id.menu_sync:
             startSync(SyncMode.MANUAL);
             return true;
@@ -543,7 +573,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
     }
 
     // Based on Spinner.DropdownPopup
-    private class AccountDropdownPopup extends IcsListPopupWindow {
+    /*private class AccountDropdownPopup extends IcsListPopupWindow {
 
         public AccountDropdownPopup(Context context) {
             super(context);
@@ -585,9 +615,11 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
             // after...
             getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         }
-    }
+    }*/
 
-    /******************* Action Mode ********************/
+    /*******************
+     * Action Mode
+     ********************/
     private ActionMode mSelectionMode;
 
     /**
@@ -612,7 +644,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
 
     /**
      * Finish the "selection" action mode.
-     * 
+     * <p/>
      * Note this method finishes the contextual mode, but does *not* clear the
      * selection. If you want to do so use {@link #onDeselectAll()} instead.
      */
@@ -622,7 +654,9 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         }
     }
 
-    /** Update the "selection" action mode bar */
+    /**
+     * Update the "selection" action mode bar
+     */
     private void updateSelectionModeView() {
         mSelectionMode.invalidate();
     }
@@ -672,7 +706,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
             adapter.notifyDataSetChanged();
             listView.setChoiceMode(ListView.CHOICE_MODE_NONE);
 
-            MenuInflater inflater = getSupportMenuInflater();
+            MenuInflater inflater = getMenuInflater();
             inflater.inflate(R.menu.list_select_menu, menu);
 
             return true;
@@ -707,7 +741,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         @Override
         public void onDestroyActionMode(ActionMode mode) {
             TypedArray array = getTheme().obtainStyledAttributes(new int[] {
-                R.attr.actionBarItemBackground
+                    R.attr.actionBarItemBackground
             });
             listView.setSelector(array.getDrawable(0));
             array.recycle();
@@ -755,7 +789,8 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
             return;
         }
 
-        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(PK.DELETE_CONFIRM, true)) {
+        if (PreferenceManager.getDefaultSharedPreferences(this)
+                .getBoolean(PK.DELETE_CONFIRM, true)) {
             showBatchDeleteNotesDialog(selectItems);
         } else {
             for (Note note : selectItems.values()) {
@@ -769,12 +804,13 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         final TreeMap<Integer, Note> selectItemsClone = new TreeMap<Integer, Note>(selectItems);
         View view = LayoutInflater.from(this).inflate(R.layout.delete_confirm_dialog, null);
         final CheckBox checkBox = (CheckBox) view.findViewById(R.id.delete_confirm_checkbox);
-        final INotesDialog dialog = new INotesDialog(this, iNotesApplication.getThemeType());
+        //final INotesDialog dialog = new INotesDialog(this, iNotesApplication.getThemeType());
+        final INotesDialog dialog = new INotesDialog(this);
         dialog.setTitle(R.string.dialog_title_confirm_delete);
         dialog.setMessage(selectItemsClone.size() > 1 ? R.string.batch_delete_confirm
                 : R.string.delete_confirm);
         dialog.setView(view);
-        dialog.setPositiveButton(android.R.string.ok, new View.OnClickListener() {
+        dialog.setPositiveButton(android.R.string.ok, new OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -829,7 +865,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
                     updateStatus(SyncStatus.SYNCING);
                 }
             }
-        } else if ( !accountManager.isAccountFreezed()
+        } else if (!accountManager.isAccountFreezed()
                 && !accountManager.isLocalMode() && iNotesApplication.isNetWorkEnable()) {
             if (iNotesApplication.isWifiOnly() && !iNotesApplication.isWifiEnable()) {
                 Toast.makeText(this, getString(R.string.wifi_unabled), Toast.LENGTH_SHORT).show();
@@ -842,13 +878,15 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
     }
 
     private void showWifiSettingDialog() {
-        final INotesDialog setWIFIDialog = new INotesDialog(this, iNotesApplication.getThemeType());
+        //final INotesDialog setWIFIDialog = new INotesDialog(this, iNotesApplication.getThemeType());
+        final INotesDialog setWIFIDialog = new INotesDialog(this);
         setWIFIDialog.setTitle(R.string.wifi_remind_title);
         setWIFIDialog.setMessage(R.string.wifi_remind_message);
-        setWIFIDialog.setPositiveButton(R.string.wifi_remind_btn_ok, new View.OnClickListener() {
+        setWIFIDialog.setPositiveButton(R.string.wifi_remind_btn_ok, new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(INotesListActivity.this, INotesPreferencesSubSync.class);
+                Intent intent = new Intent(INotesListActivity.this,
+                        INotesPreferencesSubSync.class);
                 startActivity(intent);
                 setWIFIDialog.dismiss();
             }

@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="Theme.INotes" parent="Theme.Sherlock" />
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--ToolBar颜色-->
+        <item name="colorPrimary">@color/primary</item>
+        <!--状态栏颜色-->
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <!--输入框焦点、checkbox选中等颜色-->
+        <item name="colorAccent">@color/accent</item>
+        <!--Toolbar标题颜色-->
+        <item name="android:textColorPrimary">@color/primary_dark</item>
+        <!--窗口背景色-->
+        <!--<item name="android:windowBackground">@color/black</item>-->
+    </style>
 
-    <style name="Theme.INotes.Light" parent="Theme.INotes.Light.Default">
+
+    <!--<style name="Theme.INotes" parent="Theme.Sherlock" />-->
+
+    <!--<style name="Theme.INotes.Light" parent="Theme.INotes.Light.Default">
         <item name="android:actionBarItemBackground">@drawable/item_background_light</item>
     </style>
 
@@ -13,9 +27,9 @@
 
     <style name="Theme.INotes.Dark.NoBackground" parent="Theme.INotes.Dark.Default">
         <item name="android:windowBackground">@null</item>
-    </style>
+    </style>-->
     
-    <style name="Theme.INotes.Light.CustomActionBar" parent="Theme.INotes.Light">
+    <!--<style name="Theme.INotes.Light.CustomActionBar" parent="Theme.INotes.Light">
         <item name="actionBarStyle">@style/CustomActionBarLight21</item>
         <item name="android:actionBarStyle">@style/CustomActionBarLight21</item>
         <item name="android:homeAsUpIndicator">@drawable/actionbar_indicator</item>
@@ -32,12 +46,12 @@
         <item name="actionModeStyle">@style/Widget.Sherlock.Light.ActionMode.Inverse</item>
         <item name="actionModeCloseButtonStyle">@style/customCloseMode</item>
         <item name="actionModeCloseDrawable">@drawable/ic_cab_done</item>
-    </style>
+    </style>-->
 
-    <style name="Theme.INotes.Dark.CustomActionBar" parent="Theme.INotes.Dark.Default" >
-    </style>
+    <!--<style name="Theme.INotes.Dark.CustomActionBar" parent="Theme.INotes.Dark.Default" >
+    </style>-->
 
-    <style name="Theme.INotes.Light.Default" parent="Theme.Sherlock.Light">
+    <!--<style name="Theme.INotes.Light.Default" parent="Theme.Sherlock.Light">
         <item name="theme_actionbar_hint">@drawable/action_bar_hint</item>
         <item name="theme_bottombar_bg">@drawable/bottom_bar_bg</item>
 		<item name="theme_bottombar_top_divider">@android:color/transparent</item>
@@ -93,9 +107,9 @@
 		
 		<item name="theme_dialog_divider">@color/dialog_divider_light</item>
 		<item name="theme_dialog_msg_color">@color/dialog_msg_color_light</item>
-    </style>
+    </style>-->
 
-    <style name="Theme.INotes.Dark.Default" parent="Theme.Sherlock">
+    <!--<style name="Theme.INotes.Dark.Default" parent="Theme.Sherlock">
         <item name="theme_actionbar_hint">@android:color/transparent</item>
         <item name="theme_bottombar_bg">@android:color/transparent</item>
         <item name="theme_bottombar_top_divider">@drawable/list_divider_holo_dark</item>
@@ -141,5 +155,5 @@
 		
 		<item name="theme_dialog_divider">@drawable/list_divider_holo_dark</item>
 		<item name="theme_dialog_msg_color">@color/title_text_color_dark</item>
-    </style>
+    </style>-->
 </resources>
