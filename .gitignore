@@ -1,0 +1,96 @@
+**/.DS_Store
+*.pydevproject
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+
+# Android Studio
+.idea/
+.gradle
+gradle
+/*/local.properties
+/*/out
+/*/*/build
+build
+/*/*/production
+*.iml
+*.iws
+*.ipr
+*~
+*.swp
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# CDT-specific
+.cproject
+
+# PDT-specific
+.buildpath
+# built application files
+*.apk
+*.ap_
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+# generated files
+*/bin/**
+*/gen/**
+
+# Local configuration file (sdk path, etc)
+local.properties
+TickTick/bin/*
+
+TickTick/res/values/com_crashlytics_export_strings.xml
+*/proguard/**
+
+TickTick/assets/crashlytics-build.properties
+
+TickTick_CN/assets/crashlytics-build.properties
+
+TickTick_CN/res/values/com_crashlytics_export_strings.xml
+
+TickTick_IN/assets/crashlytics-build.properties
+
+TickTick_IN/res/values/com_crashlytics_export_strings.xml
+
+TickTick_CN/assets/crashlytics-build.properties
+
+TickTick_CN/res/values/com_crashlytics_export_strings.xml
+
+TickTick_IN/assets/crashlytics-build.properties
+
+TickTick_IN/res/values/com_crashlytics_export_strings.xml
+
+TickTick_lib/
+
+TickTick_IN/src/main/res/values/com_crashlytics_export_strings.xml
+
+TickTick_IN/src/main/assets/crashlytics-build.properties
+
+tickTick_CN/src/main/res/values/com_crashlytics_export_strings.xml
+
+tickTick_CN/src/main/assets/crashlytics-build.properties
+
+**/.DS_Store
+**/gradle.properties
+TickTick_IN/gradle.properties
+tickTick_CN/gradle.properties
+
+**/market.keystore.keystore
+gradle.properties

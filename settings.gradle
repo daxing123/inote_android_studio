@@ -1,0 +1,5 @@
+include ':com_actionbarsherlock'
+include ':commons_without_ad'
+include ':trunk'
+include ':scribe-java'
+include ':INotesListActivity'

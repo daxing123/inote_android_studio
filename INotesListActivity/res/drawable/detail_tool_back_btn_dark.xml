@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="true" android:drawable="@drawable/detail_tool_back_enabled_dark"/>
+	<item android:state_enabled="false" android:drawable="@drawable/detail_tool_back_enabled_false_dark"/>
+</selector>

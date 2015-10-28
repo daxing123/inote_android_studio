@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="@string/preferences_application" >
+        <PreferenceScreen
+            android:key="prefkey_account"
+            android:persistent="false"
+            android:summary="@string/email_needs_connecting"
+            android:title="@string/ui_account_label" />
+        
+        <PreferenceScreen android:title="@string/sync_options"
+		    android:summary="@string/sync_options_summary"
+		    android:key="prefkey_sync_setting" />
+
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/array_theme"
+            android:entryValues="@array/array_theme_values"
+            android:key="prefkey_theme"
+            android:title="@string/preferences_theme_title" />
+    </PreferenceCategory>
+
+    <!--
+    <PreferenceCategory
+        android:key="prefkey_sync_setting"
+        android:title="@string/sync_setting" >
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="prefkey_sync_manually"
+            android:persistent="true"
+            android:summary="@string/manually_sync_summary"
+            android:title="@string/manually_sync" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="prefkey_wifi_only"
+            android:persistent="true"
+            android:summary="@string/sync_wifi_only_summary"
+            android:title="@string/sync_wifi_only_title" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="prefkey_more_setting"
+        android:title="@string/more_settings" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="prefkey_delete_confirm"
+            android:summary="@string/option_delete_confirm_summary"
+            android:title="@string/option_delete_confirm_title" />
+    </PreferenceCategory>
+    -->
+    <PreferenceCategory android:title="@string/preferences_other" >
+        <PreferenceScreen
+            android:key="prefkey_share_app"
+            android:summary="@string/preferences_share_app_summary"
+            android:title="@string/preferences_share_app_title" />
+        <PreferenceScreen
+            android:key="prefkey_feed_back"
+            android:summary="@string/preferences_feed_back_summary"
+            android:title="@string/preferences_feed_back_title" >
+            <intent
+                android:action="android.intent.action.SENDTO"
+                android:data="mailto:support%2Binotes-0.1.0@appest.com" />
+        </PreferenceScreen>
+    </PreferenceCategory>
+
+</PreferenceScreen>

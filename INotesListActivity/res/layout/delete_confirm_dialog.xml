@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="8dip"
+    android:paddingRight="8dip"
+    android:paddingBottom="12dip" >
+
+    <CheckBox
+        android:id="@+id/delete_confirm_checkbox"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/don_t_show_again"
+        android:textAppearance="?g_listitem_SmallText"
+        android:button="?checkbox_holo" 
+        android:visibility="gone"/>
+
+</LinearLayout>

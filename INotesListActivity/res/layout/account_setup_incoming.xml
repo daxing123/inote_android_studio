@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent" android:layout_height="match_parent"
+	android:background="?g_main_bg"
+	android:fillViewport="true">
+
+	<LinearLayout android:layout_width="match_parent"
+		android:layout_height="wrap_content" android:orientation="vertical"
+		android:paddingTop="16dp" android:paddingLeft="16dp"
+		android:paddingRight="16dp">
+
+		<fragment 
+			android:name="org.dayup.inotes.setup.AccountSetupIncomingFragment"
+			android:id="@+id/setup_fragment"
+			android:layout_width="match_parent"
+			android:layout_height="0dip" android:layout_weight="1" />
+
+		<LinearLayout android:layout_width="match_parent"
+			android:layout_height="wrap_content" android:background="?actionBarItemBackground"
+			android:orientation="vertical" 
+			android:paddingTop="16dip">
+
+			<ImageView android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:scaleType="fitXY"
+				android:src="?g_listdivider" />
+
+			<LinearLayout android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:measureWithLargestChild="true" android:orientation="horizontal">
+
+				<Button android:id="@+id/account_authen_previous" style="?g_buttonBarButtonStyle"
+					android:layout_width="0dip" android:layout_height="wrap_content"
+					android:layout_gravity="left" android:layout_weight="1"
+					android:maxLines="2" android:text="@string/btn_previous" />
+
+				<ImageView android:layout_width="wrap_content"
+					android:layout_height="fill_parent" android:paddingBottom="12dp"
+					android:paddingTop="12dp" android:scaleType="fitXY" android:src="?g_listdivider" />
+
+				<Button android:id="@+id/account_authen_next" style="?g_buttonBarButtonStyle"
+					android:layout_width="0dip" android:layout_height="wrap_content"
+					android:layout_gravity="right" android:layout_weight="1"
+					android:maxLines="2" android:text="@string/account_setup_btn_next" />
+			</LinearLayout>
+		</LinearLayout>
+
+	</LinearLayout>
+</ScrollView>

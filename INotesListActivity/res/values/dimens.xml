@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+<dimen name="account_dropdown_dropdownwidth">274dip</dimen>
+<dimen name="select_list_spinner_offset_v">-13dip</dimen>
+<dimen name="divider_height">0px</dimen><!-- 各个Item颜色间距 -->
+<dimen name="gta_divider_height">1px</dimen>
+
+<dimen name="quickbar_text_min_width">160dip</dimen>
+
+<dimen name="action_bar_title_divider">2dip</dimen>
+</resources>

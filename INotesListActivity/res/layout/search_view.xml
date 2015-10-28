@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/quick_add_bottom_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:baselineAligned="false"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp">
+    <LinearLayout
+        android:id="@+id/search_plate"
+        android:layout_width="0dp"
+        android:layout_height="37dp"
+        android:layout_weight="1"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal"
+        android:background="@drawable/textfield_quickadd_view_holo_light">
+        <EditText
+            android:id="@+id/search_et"
+            android:layout_height="fill_parent"
+            android:textColor="?titleTextColor"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:minWidth="@dimen/quickbar_text_min_width"
+            android:layout_gravity="bottom"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:background="@null"
+            android:inputType="text"
+            android:hint="@string/search_hint"
+            android:imeOptions="actionDone" />
+        <ImageView
+            android:id="@+id/edit_clear_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="8dip"
+            android:paddingRight="8dip"
+            android:layout_gravity="center_vertical"
+            android:background="?actionBarItemBackground"
+            android:src="?ic_clear_search"
+            android:visibility="gone"
+            android:focusable="true" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/recogniz_area"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="37dp"
+        android:background="@drawable/textfield_quickadd_right_holo_light">
+        <ImageView
+            android:id="@+id/search_recogniz"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="16dip"
+            android:paddingRight="16dip"
+            android:src="?ic_voice_search"
+            android:background="?actionBarItemBackground"
+            android:focusable="true" />
+    </LinearLayout>
+</LinearLayout>

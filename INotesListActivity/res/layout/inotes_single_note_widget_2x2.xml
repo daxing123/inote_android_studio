@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_margin="3dip"
+    android:background="@drawable/theme_bg_light"
+    android:gravity="center" >
+
+    <FrameLayout
+        android:id="@+id/titlebar"
+        android:layout_width="fill_parent"
+        android:layout_height="24dp" >
+
+        <ImageView
+            android:id="@+id/single_widget_title_bg"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/single_widget_title"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="@string/widget_single_note_title_2x2" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/single_widget_body"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/titlebar" >
+
+        <ImageView
+            android:id="@+id/single_widget_body_bg"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/widget_text"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@null"
+            android:lineSpacingMultiplier="1.2"
+            android:paddingLeft="5dp"
+            android:text="@string/widget_single_note_body_2x2" >
+        </TextView>
+    </FrameLayout>
+
+</RelativeLayout>

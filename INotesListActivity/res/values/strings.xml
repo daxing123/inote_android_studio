@@ -1,0 +1,137 @@
+<resources>
+
+    <string name="support_email">mailto:datoandroid%2Binotes-VERSIONCODE@gmail.com</string>
+    <string name="app_name">iNotes</string>
+    <string name="menu_insert">Insert</string>
+    <string name="menu_sync">Sync</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_move_to">Move to</string>
+    <string name="menu_delete">Delete</string>
+    <string name="account">Account</string>
+    <string name="preferences_application">Application</string>
+    <string name="ui_account_label">Account</string>
+    <string name="email_needs_connecting">Tap to connect your Email account.</string>
+    <string name="switch_account">Switch account</string>
+    <string name="option_menu_add_account">Add account</string>
+    <string name="edit_login_username">Email</string>
+    <string name="edit_login_password">Password</string>
+    <string name="checkbox_show_passwd">Show password</string>
+    <string name="text_login_wait">Waiting…</string>
+    <string name="account_sigin_in">Account setup</string>
+    <string name="text_login_failed">Sign in failed</string>
+    <string name="ui_login_success_content">You can sync notes with your Email now.</string>
+    <string name="btn_done">Done</string>
+    <string name="sign_in_success">Setup successful</string>
+    <string name="accout_list_msg_empty">Add a account to sync notes with your Email now.</string>
+    <string name="preferences_local_mode">Local Mode</string>
+    <string name="local_mode">Local Mode</string>
+    <string name="folder_all">All</string>
+    <string name="network_unabled">No Network Connection</string>
+    <string name="wifi_unabled">You have set Wi-Fi sync only</string>
+    <string name="toast_token_timeout">Authorize failed, please authorize again.</string>
+    <string name="preferences_authorize_faild">Authorize Faild</string>
+    <string name="menu_btn_delete">Delete</string>
+    <string name="menu_btn_share">Share</string>
+    <string name="action_mode_select">%1$s selected</string>
+    <string name="bacth_share_notes">" notes"</string>
+    <string name="msg_can_t_share">Can\'t share</string>
+    <string name="no_note_share">No note to share</string>
+    <string name="preferences_other">Other</string>
+    <string name="preferences_feed_back_title">Feedback</string>
+    <string name="preferences_feed_back_summary">Send email to us.</string>
+    <string name="preferences_share_app_title">Share</string>
+    <string name="preferences_share_app_subject">INotes Share</string>
+    <string name="preferences_share_app_summary">Share this app with friends</string>
+    <string name="share_content">Hi! I\'d like to share a simple and powerful app to you, iNotes. INotes is a notepad design in mind for easy note-taking.
+  									You can download it from Google Play.</string>
+    <string name="detail_text_hint">Input your note here</string>
+    <string name="dialog_title_confirm_delete">Confirm delete</string>
+    <string name="don_t_show_again">Don\'t ask again.</string>
+    <string name="delete_confirm">Are you sure to delete it?</string>
+    <string name="dialog_title_move_to_folder">Move to folder</string>
+    <string name="dialog_title_remove_account">Remove Account</string>
+    <string name="toast_move_to_no_folder">No folder found to move</string>
+    <string name="batch_delete_confirm">Are you sure delete the selected items?</string>
+    <string name="toast_no_item_selected">No item have selected</string>
+    <string name="dialog_remove_account_message">Remove account will remove all cached notes of this account. Do you want to do it?</string>
+    <string name="detail_last_edit">Last edited</string>
+    <string name="list_empty_text">Don\'t have any notes.</string>
+    <string name="share_by_inotes_content">Shared by iNotes</string>
+    <string name="menu_discard">Discard</string>
+    <string name="toast_move_to_forbid">Try again, when note has synced.</string>
+    <string name="title_pay_for">Pay for our app</string>
+    <string name="btn_buy_key">Buy</string>
+    <string name="no_pay_content">Sorry! You don\'t have paid for our app. of course, you can buy it now.</string>
+    <string name="insert_sd_card">Please mount USB storage</string>
+    <string name="account_setup_manual_setup_btn">Manual setup</string>
+    <string name="account_setup_account_type_instructions">What type of account is this?</string>
+    <string name="account_setup_account_type_google_action">Google(Apps)</string>
+    <string name="account_setup_account_type_imap_action" translatable="false">IMAP</string>
+    <string name="account_setup_btn_next">Next</string>
+    <string name="account_authorizing">Authorizing</string>
+    <string name="btn_previous">Previous</string>
+    <string name="account_setup_username_label">Username</string>
+    <string name="account_setup_password_label">Password</string>
+    <string name="account_setup_imap_server_label">IMAP server</string>
+    <string name="account_setup_port_label">Port</string>
+    <string name="account_setup_security_label">Security type</string>
+    <string name="account_password_spaces_error">This password starts or ends with one or more
+        space characters. Many servers don\'t support passwords with spaces.</string>
+    <string name="search_hint">Search notes</string>
+    <string name="search_description">Notes</string>
+    <string name="g_voice_search_dialog_title">Install Voice Search</string>
+    <string name="g_voice_search_dialog_message">"You have to Install 'Voice Search' to use this feature."</string>
+    <string name="android_market_not_find">Android Market not find.</string>
+
+    <plurals name="search_results">
+        <item quantity="one">Search result for : \"%1$s\"</item>
+        <item quantity="other">Search results for : \"%1$s\"</item>
+    </plurals>
+
+    <string name="toast_note_not_exist">Note not exist</string>
+    <string name="menu_search">Search</string>
+    <string name="preferences_theme_title">Theme</string>
+    <string name="preferences_theme_summary">Light</string>
+
+    <string-array name="array_theme">
+        <item>Light</item>
+        <item>Dark</item>
+    </string-array>
+
+    <string name="sort_by">Sort by</string>
+    <string name="sort_create_time">Create</string>
+    <string name="sort_modify_time">Modify</string>
+    <string name="sort_a_z">Name</string>
+    
+    <string name="sync_options">Sync Options</string>
+    <string name="sync_options_summary">Manual sync, Wi-Fi only…</string>
+    <string name="sync_setting">Synchronization</string>
+    <string name="manually_sync">Manual Sync</string>
+    <string name="manually_sync_summary">Sync manually</string>
+    <string name="sync_wifi_only_title">Wi-Fi Sync Only</string>
+    <string name="sync_wifi_only_summary">Sync only when connected to Wi-Fi</string>
+    
+    <string name="wifi_remind_title">Wi-Fi Sync Only</string>
+    <string name="wifi_remind_message">You have set sync notes only via Wi-Fi connected. \nDisable this?</string>
+    <string name="wifi_remind_btn_ok">Yes</string>
+    <string name="wifi_remind_btn_cancle">No</string>
+    
+    <string name="dialog_title_login_failed">Setup Failed</string>
+    <string name="text_username_password_incorrect">Username or password is incorrect.</string>
+    <string name="text_connection_server_failed">Couldn\'t open connection to IMAP server. IMAP server, Port or Security type is incorrent.</string>
+    <string name="text_authorize_failed">Authorize failed, please try it again.</string>
+    <string name="dialog_button_need_help">Need Help</string>
+    <string name="text_security_type_incorrect">Unsupport security type.</string>
+    
+        <string name="account_setup_incoming_security_none_label">None</string>
+    <string name="account_setup_incoming_security_ssl_optional_label">SSL/TLS (if available)</string>
+    <string name="account_setup_incoming_security_ssl_label">SSL/TLS (always)</string>
+    <string name="account_setup_incoming_security_tls_optional_label">STARTTLS (if available)</string>
+    <string name="account_setup_incoming_security_tls_label">STARTTLS (always)</string>
+    
+    <!-- ******* widget ******* -->
+    <string name="widget_single_note_name_2x2">INotes (2×2)</string>
+    <string name="widget_single_note_title_2x2">Title</string>
+    <string name="widget_single_note_body_2x2">Empty</string>
+</resources>

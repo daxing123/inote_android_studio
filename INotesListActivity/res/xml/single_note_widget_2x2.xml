@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="100dp"
+    android:minHeight="100dip"
+    android:updatePeriodMillis="3600000"
+    android:configure="org.dayup.inotes.INotesSingleNotesWidgetConfiguration2x2"
+    android:initialLayout="@layout/inotes_single_note_widget_2x2"
+    android:resizeMode="horizontal|vertical"
+    android:previewImage="@drawable/inotes_icon"/>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="Theme.INotes" parent="Theme.Sherlock" />
+
+    <style name="Theme.INotes.Light" parent="Theme.INotes.Light.Default">
+        <item name="android:actionBarItemBackground">@drawable/item_background_light</item>
+    </style>
+
+    <style name="Theme.INotes.Light.NoBackground" parent="Theme.INotes.Light.Default">
+        <item name="android:windowBackground">@null</item>
+    </style>
+
+    <style name="Theme.INotes.Dark.NoBackground" parent="Theme.INotes.Dark.Default">
+        <item name="android:windowBackground">@null</item>
+    </style>
+    
+    <style name="Theme.INotes.Light.CustomActionBar" parent="Theme.INotes.Light">
+        <item name="actionBarStyle">@style/CustomActionBarLight21</item>
+        <item name="android:actionBarStyle">@style/CustomActionBarLight21</item>
+        <item name="android:homeAsUpIndicator">@drawable/actionbar_indicator</item>
+        <item name="homeAsUpIndicator">@drawable/actionbar_indicator</item>
+        
+        <item name="android:actionModeBackground">@drawable/actionmode_background_top_light</item>
+        <item name="android:actionModeSplitBackground">@drawable/actionmode_background_top_light</item>
+        <item name="android:actionModeCloseButtonStyle">@style/customCloseMode</item>
+        <item name="android:actionModeCloseDrawable">@drawable/ic_cab_done</item>
+        
+        <item name="actionOverflowButtonStyle">@style/Widget.Sherlock.ActionButton.Overflow</item>
+        <item name="actionModeBackground">@drawable/actionmode_background_top_light</item>
+        <item name="actionModeSplitBackground">@drawable/actionmode_background_top_light</item>
+        <item name="actionModeStyle">@style/Widget.Sherlock.Light.ActionMode.Inverse</item>
+        <item name="actionModeCloseButtonStyle">@style/customCloseMode</item>
+        <item name="actionModeCloseDrawable">@drawable/ic_cab_done</item>
+    </style>
+
+    <style name="Theme.INotes.Dark.CustomActionBar" parent="Theme.INotes.Dark.Default" >
+    </style>
+
+    <style name="Theme.INotes.Light.Default" parent="Theme.Sherlock.Light">
+        <item name="theme_actionbar_hint">@drawable/action_bar_hint</item>
+        <item name="theme_bottombar_bg">@drawable/bottom_bar_bg</item>
+		<item name="theme_bottombar_top_divider">@android:color/transparent</item>
+        <item name="theme_bottombar_centre_divider">@drawable/action_bar_hint</item>
+        
+        <item name="popupMenuStyle">@style/customListPopupWindow</item>
+        <item name="listPopupWindowStyle">@style/customListPopupWindow</item>
+        <item name="android:panelBackground">@drawable/c_menu_hardkey_panel_holo_light</item>
+        <item name="android:panelFullBackground">@drawable/item_background_light</item>
+        <item name="actionBarItemBackground">@drawable/item_background_light</item>
+        <item name="android:listViewStyle">@style/customListView</item>
+        <item name="dropDownListViewStyle">@style/customListView</item>
+        
+        <item name="android:windowBackground">@drawable/theme_bg_light</item>
+        <item name="g_main_bg">@null</item>
+        
+        <item name="g_edittext">@drawable/edit_text_holo_light</item>
+        <item name="g_hintTextColor">@color/hint_foreground_holo_light</item>
+        <item name="g_primaryTextColor">@color/primary_text_holo_light</item>
+        <item name="checkbox_holo">@drawable/checkbox_selector_holo_light</item>
+        <item name="g_listitem_SmallText">@style/g_listitem_SmallText_lt</item>
+        <item name="g_listdivider">@drawable/list_divider_holo_light</item>
+        <item name="g_buttonBarButtonStyle">@style/Button_Borderless_light</item>
+        <item name="gtlea_all_text">@color/gtlea_all_text_lt</item>
+        <item name="inotes_detail_bg">@drawable/task_detail_bg_light</item>
+        <item name="gtlea_divider_list">@color/gtlea_divider_list_lt</item>
+        <item name="g_listitem_LargeTextDone">@style/g_listitem_LargeTextDone_lt</item>
+        <item name="g_listitem_LargeText">@style/g_listitem_LargeText_lt</item>
+        <item name="radio_btn_holo">@style/Widget.Holo.Light.RadioButton</item>
+        <item name="list_section_divider">@drawable/list_section_divider_holo_light</item>
+        <item name="dialog_title_style">@style/dialog_title_light</item>
+        <item name="titleTextColor">@color/title_text_color_light</item>
+        <item name="li_divider_account_col">@style/li_divider_account_col_lt</item>
+        <item name="account_remove_icon">@drawable/account_delete_light</item>
+        <item name="spinner">@style/SpinnerLight</item>
+        <item name="refresh">@drawable/refresh_light</item>
+        <item name="title_btn_add">@drawable/title_btn_add_light</item>
+        <item name="ic_menu_trash">@drawable/ic_menu_trash_light</item>
+        <item name="ic_menu_share">@drawable/ic_menu_share_light</item>
+        <item name="ic_voice_search">@drawable/ic_voice_search_api_holo_light</item>
+        <item name="ic_clear_search">@drawable/ic_clear_search_api_holo_light</item>
+        
+        <item name="theme_detail_toolbar_bg">@android:color/transparent</item>
+        <item name="theme_ic_tool_back">@drawable/detail_tool_back_btn</item>
+		<item name="theme_ic_tool_forward">@drawable/detail_tool_forward_btn</item>
+		<item name="theme_ic_tool_paragraph">@drawable/detail_tool_paragraph</item>
+		<item name="theme_ic_tool_recogniz">@drawable/detail_tool_recogniz</item>
+		<item name="theme_ic_tool_time">@drawable/detail_tool_time</item>
+		<item name="theme_ic_tool_date">@drawable/detail_tool_date</item>
+		<item name="theme_ic_tool_contact">@drawable/detail_tool_contact</item>
+		<item name="theme_ic_tool_attachment_count">@color/detail_toolbar_att_count</item>
+		<item name="theme_ic_tool_keyboardhide">@drawable/detail_toolbar_keyboard_hide</item>
+		
+		<item name="theme_dialog_divider">@color/dialog_divider_light</item>
+		<item name="theme_dialog_msg_color">@color/dialog_msg_color_light</item>
+    </style>
+
+    <style name="Theme.INotes.Dark.Default" parent="Theme.Sherlock">
+        <item name="theme_actionbar_hint">@android:color/transparent</item>
+        <item name="theme_bottombar_bg">@android:color/transparent</item>
+        <item name="theme_bottombar_top_divider">@drawable/list_divider_holo_dark</item>
+        <item name="theme_bottombar_centre_divider">@drawable/list_divider_holo_dark</item>
+        
+        <item name="g_main_bg">@color/background_holo_dark</item>
+        <item name="g_edittext">@drawable/edit_text_holo_dark</item>
+        <item name="g_hintTextColor">@color/hint_foreground_holo_dark</item>
+        <item name="g_primaryTextColor">@color/primary_text_holo_dark</item>
+        <item name="checkbox_holo">@drawable/checkbox_selector_holo_dark</item>
+        <item name="g_listitem_SmallText">@style/g_listitem_SmallText_bl</item>
+        <item name="g_listdivider">@drawable/list_divider_holo_dark</item>
+        <item name="g_buttonBarButtonStyle">@style/Button_Borderless_dark</item>
+        <item name="gtlea_all_text">@color/gtlea_all_text_bl</item>
+        <item name="inotes_detail_bg">@drawable/task_detail_bg_dark</item>
+        <item name="gtlea_divider_list">@color/gtlea_divider_list_bl</item>
+        <item name="g_listitem_LargeTextDone">@style/g_listitem_LargeTextDone_bl</item>
+        <item name="g_listitem_LargeText">@style/g_listitem_LargeText_bl</item>
+        <item name="radio_btn_holo">@style/Widget.Holo.Dark.RadioButton</item>
+        <item name="list_section_divider">@drawable/list_section_divider_holo_dark</item>
+        <item name="dialog_title_style">@style/dialog_title_dark</item>
+        <item name="titleTextColor">@color/title_text_color_dark</item>
+        <item name="li_divider_account_col">@style/li_divider_account_col_bl</item>
+        <item name="account_remove_icon">@drawable/account_delete_dark</item>
+        <item name="spinner">@style/SpinnerDark</item>
+        <item name="refresh">@drawable/refresh_dark</item>
+        <item name="title_btn_add">@drawable/title_btn_add_dark</item>
+        <item name="ic_menu_trash">@drawable/ic_menu_trash_dark</item>
+        <item name="ic_menu_share">@drawable/ic_menu_share_holo_dark</item>
+        <item name="ic_voice_search">@drawable/ic_voice_holo_dark</item>
+        <item name="ic_clear_search">@drawable/ic_clear_edit_holo_dark</item>
+        
+        <item name="theme_detail_toolbar_bg">@color/background_holo_dark</item>
+        <item name="theme_ic_tool_back">@drawable/detail_tool_back_btn_dark</item>
+		<item name="theme_ic_tool_forward">@drawable/detail_tool_forward_btn_dark</item>
+		<item name="theme_ic_tool_paragraph">@drawable/detail_tool_paragraph_dark</item>
+		<item name="theme_ic_tool_recogniz">@drawable/detail_tool_recogniz_dark</item>
+		<item name="theme_ic_tool_time">@drawable/detail_tool_time_dark</item>
+		<item name="theme_ic_tool_date">@drawable/detail_tool_date_dark</item>
+		<item name="theme_ic_tool_contact">@drawable/detail_tool_contact_dark</item>
+		<item name="theme_ic_tool_attachment_count">@color/detail_toolbar_att_count_dark</item>
+		<item name="theme_ic_tool_keyboardhide">@drawable/detail_toolbar_keyboard_hide_dark</item>
+		
+		<item name="theme_dialog_divider">@drawable/list_divider_holo_dark</item>
+		<item name="theme_dialog_msg_color">@color/title_text_color_dark</item>
+    </style>
+</resources>

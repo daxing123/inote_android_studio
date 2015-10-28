@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<providers>
+
+    <!-- Gmail variants -->
+    <provider id="gmail" label="Gmail" domain="gmail.com" server="imap.gmail.com" security="ssl"/>
+    <provider id="googlemail" label="Google Mail" domain="googlemail.com" server="imap.googlemail.com" security="ssl"/>
+    <provider id="google" label="Google" domain="google.com" server="imap.gmail.com" security="ssl"/>
+    <provider id="android" label="Android" domain="android.com" server="imap.gmail.com" security="ssl"/>
+
+    <!-- USA -->
+    <!-- Note, AOL appears to support SSL on both sides, as well -->
+    <provider id="aol" label="AOL" domain="aol.com" server="imap.aol.com" security="ssl"/>
+
+    <!-- Note: Mac Mail.app sets IMAP to mail.mac.com, but it's the same server   -->
+    <provider id="mobileme" label="MobileMe" domain="me.com" server="imap.mail.me.com"  security="ssl"/>
+    <provider id="icloud" label="icloud" domain="icloud.com" server="imap.mail.me.com"  security="ssl"/>
+    <!-- Yahoo! Mail Variants -->
+    <provider id="yahoo" label="Yahoo" domain="yahoo.com" server="imap.mail.yahoo.com" security="ssl"/>
+    <provider id="yahoo" label="Yahoo" domain="yahoo.com.mx" server="imap.mail.yahoo.com" security="ssl"/>
+    <provider id="ymail" label="YMail" domain="ymail.com" server="imap.mail.yahoo.com" security="ssl"/>
+    <provider id="rocketmail" label="Rocketmail" domain="rocketmail.com" server="imap.mail.yahoo.com" security="ssl"/>
+    
+    <provider id="163" label="163" domain="163.com" server="imap.163.com" security="ssl"/>
+    <provider id="126" label="126" domain="126.com" server="imap.126.com" security="ssl"/>
+    <provider id="QQ" label="qq" domain="qq.com" server="imap.qq.com" security="ssl"/>
+    <provider id="QQ" label="qq" domain="vip.qq.com" server="imap.qq.com" security="ssl"/>
+</providers>

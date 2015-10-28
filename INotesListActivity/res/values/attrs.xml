@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <style name="taskSmallText">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="taskLargeText">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="g_listitem_SmallText" parent="taskSmallText">
+        <item name="android:textColor">@color/dim_foreground_holo_dark</item>
+    </style>
+    
+    <style name="g_listitem_SmallText_lt" parent="taskSmallText">
+        <item name="android:textColor">@color/g_listitem_SmallText_lt</item>
+    </style>
+
+    <style name="g_listitem_SmallText_bl" parent="taskSmallText">
+        <item name="android:textColor">@color/dim_foreground_holo_dark</item>
+    </style>
+
+    <style name="g_listitem_LargeText_bl" parent="taskLargeText">
+        <item name="android:textColor">@color/bright_foreground_holo_dark</item>
+    </style>
+    
+    <style name="g_listitem_LargeText_lt" parent="taskLargeText">
+        <item name="android:textColor">@color/g_listitem_LargeText_lt</item>
+    </style>
+    
+    <style name="g_listitem_LargeTextDone_bl" parent="taskLargeText">
+        <item name="android:textColor">@color/g_listitem_LargeTextDone_bl</item>
+    </style>
+    
+    <style name="g_listitem_LargeTextDone_lt" parent="taskLargeText">
+        <item name="android:textColor">@color/g_listitem_LargeTextDone_lt</item>
+    </style>
+    
+    <declare-styleable name="NoteHeader">
+        <attr format="integer|reference" name="lineColor" />
+    </declare-styleable>
+    <declare-styleable name="LinedTextView">
+        <attr format="integer|reference" name="lineColors" />
+    </declare-styleable>
+    
+    <attr format="reference" name="g_main_bg" />
+    <attr format="reference" name="g_edittext" />
+    <attr format="reference" name="g_hintTextColor" />
+    <attr format="reference" name="g_primaryTextColor" />
+    <attr format="reference" name="checkbox_holo" />
+    <attr format="reference" name="g_listitem_SmallText" />
+    <attr format="reference" name="g_listdivider" />
+    <attr fornat="reference" name="g_buttonBarButtonStyle"/>
+    <attr fornat="reference" name="gtlea_all_text"/>
+    <attr fornat="reference" name="inotes_detail_bg"/>
+    <attr fornat="reference" name="gtlea_divider_list"/>
+    <attr fornat="reference" name="g_listitem_LargeTextDone"/>
+    <attr fornat="reference" name="g_listitem_LargeText"/>
+    <attr fornat="reference" name="radio_btn_holo"/>
+    <attr fornat="reference" name="list_section_divider"/>
+    <attr fornat="reference" name="dialog_title_style"/>
+    <attr fornat="reference" name="titleTextColor"/>
+    <attr fornat="reference" name="li_divider_account_col"/>
+    <attr fornat="reference" name="account_remove_icon"/>
+    <attr fornat="reference" name="spinner"/>
+    <attr fornat="reference" name="refresh"/>
+    <attr fornat="reference" name="title_btn_add"/>
+    <attr fornat="reference" name="ic_menu_trash"/>
+    <attr fornat="reference" name="ic_menu_share"/>
+    <attr fornat="reference" name="ic_voice_search"/>    
+    <attr fornat="reference" name="ic_clear_search"/>
+    
+    <attr format="reference" name="theme_detail_toolbar_bg" />
+    <attr format="reference" name="theme_ic_tool_back"/>
+    <attr format="reference" name="theme_ic_tool_forward"/>
+    <attr format="reference" name="theme_ic_tool_paragraph"/>
+    <attr format="reference" name="theme_ic_tool_recogniz"/>
+    <attr format="reference" name="theme_ic_tool_time"/>
+    <attr format="reference" name="theme_ic_tool_date"/>
+    <attr format="reference" name="theme_ic_tool_contact"/>
+    <attr format="reference" name="theme_ic_tool_attachment_count" />
+    <attr format="reference" name="theme_ic_tool_keyboardhide" />
+    
+    <attr format="reference" name="theme_actionbar_hint" />
+    <attr format="reference" name="theme_bottombar_bg"/>
+    <attr format="reference" name="theme_bottombar_top_divider"/>
+    <attr format="reference" name="theme_bottombar_centre_divider"/>
+    <attr format="reference" name="theme_dialog_divider"/>
+    <attr format="reference" name="theme_dialog_msg_color" />
+</resources>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bright_foreground_disabled_holo_dark">#ff4c4c4c</color>
+    <color name="bright_foreground_disabled_holo_light">#ffb2b2b2</color>
+    <color name="bright_foreground_holo_light">#ff000000</color>
+    <color name="bright_foreground_holo_dark">#fff3f3f3</color>
+    <color name="dim_foreground_holo_dark">#bebebe</color>
+    <color name="dim_foreground_disabled_holo_dark">#80bebebe</color>
+    <color name="dim_foreground_holo_light">#323232</color>
+    <color name="dim_foreground_disabled_holo_light">#80323232</color>
+    
+    <color name="g_listitem_SmallText_bl">@color/dim_foreground_holo_dark</color>
+    <color name="g_listitem_SmallText_lt">@color/dim_foreground_holo_light</color>
+    <color name="g_listitem_SmallTextDone_lt">#CCCCCC</color>
+    <color name="g_listitem_SmallTextDone_bl">#6c6c6c</color>
+    
+	<color name="spinner_label">#80bebebe</color>
+	<color name="spinner_text">#ff000000</color>
+	
+	<color name="gtlea_divider_list_lt">#e0e0e0</color>
+    <color name="gtlea_divider_list_bl">#2e2e2e</color>
+    
+    <color name="g_listitem_LargeTextDone_bl">#6c6c6c</color>
+    <color name="g_listitem_LargeTextDone_lt">#B9A591</color>
+    <color name="g_listitem_LargeText_bl">@color/bright_foreground_holo_dark</color>
+    <color name="g_listitem_LargeText_lt">@color/bright_foreground_holo_light</color>
+	
+    <color name="list_section_label_text_light">#754c24</color>
+    <color name="list_section_label_text_dark">#80bebebe</color>
+    
+    <color name="ga_divider_account_bl">#2e2e2e</color>
+    <color name="ga_divider_account_lt">#e0e0e0</color>
+    
+    <color name="title_text_color_light">#000000</color>
+    <color name="title_text_color_dark">#FFFFFF</color>
+    
+	<color name="hint_foreground_holo">#808080</color>
+	
+	<color name="gtlea_all_text_lt">#000000</color>
+	<color name="detail_head_text_linecolor_bl">#5ac0c0c0</color>
+	<color name="hint_foreground_holo_dark">#BDBDBD</color>
+	<color name="hint_foreground_holo_light">#808080</color>
+	
+	<color name="holo_blue_light">#ff33b5e5</color>
+	 <color name="gteta_bg_bodytext_lt">#FFFFFFFF</color>
+    <color name="gteta_bg_bodytext_bl">#000000</color>
+	
+	<color name="bodytext_lines_lt">#E0E6E8</color>
+    <color name="bodytext_lines_bl">#2e2e2e</color>
+	
+	<color name="gtlea_all_text_bl">#d9d9d9</color>
+	
+	<color name="background_holo_dark">#ff000000</color>
+	<color name="background_holo_light">#fff3f3f3</color>
+	
+	<color name="listitem_divider_dark">#26ffffff</color>
+	
+	<color name="white">#FFFFFF</color>
+	
+	<color name="detail_toolbar_att_count">#A1A1A1</color>
+	<color name="detail_toolbar_att_count_dark">#FFFFFF</color>
+	
+	<color name="list_pressed_light">#4Ca3611a</color>
+	<color name="list_longpressed_light">#804b2500</color>
+	<color name="dialog_divider_light">#40684d25</color>
+	<color name="dialog_msg_color_light">#736357</color>
+</resources>

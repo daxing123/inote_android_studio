@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="inotes_setup_account_help_url">https://docs.google.com/document/d/1dxxKU7TL8x4KWm4nQ29aYZ9ro-_l5qj5lFCCiJNyn-Y/edit?usp=sharing</string>
+</resources>

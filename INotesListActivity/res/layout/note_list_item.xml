@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.dayup.inotes.views.NoteListItemView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/note_list_item"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:baselineAligned="false"
+    android:orientation="horizontal"
+    android:background="?actionBarItemBackground"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp" >
+
+    <LinearLayout
+        android:id="@+id/nli_text_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="52dip"
+        android:layout_toLeftOf="@+id/item_date"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:padding="2dip" >
+
+        <TextView
+            android:id="@+id/nli_notes_title"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:textSize="16sp"
+            android:paddingRight="2dp"
+            android:textAppearance="?g_listitem_LargeText" />
+        
+    </LinearLayout>
+
+    <TextView
+        android:id="@id/item_date"
+        android:layout_width="wrap_content"
+        android:layout_height="52dip"
+        android:gravity="center_vertical"
+        android:textAppearance="?g_listitem_SmallText"
+        android:textColor="?g_hintTextColor"
+        android:layout_alignParentRight="true" />
+
+</org.dayup.inotes.views.NoteListItemView>

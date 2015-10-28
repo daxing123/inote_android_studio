@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:background="?g_main_bg"
+    >
+    <TextView
+        android:text="@string/account_setup_account_type_instructions"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="?android:attr/textColorPrimary"
+          />
+    <Button
+        android:id="@+id/google"
+        android:text="@string/account_setup_account_type_google_action"
+        android:layout_height="wrap_content"
+        android:layout_width="150sp"
+        android:layout_marginTop="25dip"
+        android:minWidth="100sp"
+        android:layout_gravity="center_horizontal"
+        />
+    <Button
+        android:id="@+id/imap"
+        android:text="@string/account_setup_account_type_imap_action"
+        android:layout_height="wrap_content"
+        android:layout_width="150sp"
+        android:layout_marginTop="25dip"
+        android:minWidth="100sp"
+        android:layout_gravity="center_horizontal"
+        />
+</LinearLayout>

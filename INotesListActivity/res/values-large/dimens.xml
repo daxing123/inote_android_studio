@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Minimum width of the search view text entry area. -->
+    <dimen name="quickbar_text_min_width">192dip</dimen>
+</resources>

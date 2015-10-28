@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+	<PreferenceCategory android:title="@string/sync_setting"
+	    android:key="prefkey_sync_setting">
+		<CheckBoxPreference android:persistent="true"
+			android:title="@string/manually_sync" android:key="prefkey_sync_manually"
+			android:summary="@string/manually_sync_summary" android:defaultValue="false" />
+		<CheckBoxPreference android:persistent="true"
+			android:title="@string/sync_wifi_only_title" android:key="prefkey_wifi_only"
+			android:summary="@string/sync_wifi_only_summary" android:defaultValue="false" />
+	</PreferenceCategory>
+</PreferenceScreen>
