@@ -477,7 +477,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         super.onResume();
         // TODO 需要明确那些情况下重新刷新
         resetCurrentFolder();
-//        requarySpinnerSelectors();
+        //        requarySpinnerSelectors();
         requery();
 
         startSyncByResult();
@@ -561,7 +561,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
 
     private void startINotesPreferences() {
         Intent intent = new Intent(this, INotesPreferences.class);
-//        Intent intent = new Intent(this, INotesPreferencesActivity.class);
+        //        Intent intent = new Intent(this, INotesPreferencesActivity.class);
         startActivityForResult(intent, RequestCode.SET_PREFERENCE);
     }
 
@@ -708,6 +708,8 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
             adapter.notifyDataSetChanged();
             listView.setChoiceMode(ListView.CHOICE_MODE_NONE);
 
+            toolbar.setVisibility(View.GONE);
+
             MenuInflater inflater = getMenuInflater();
             inflater.inflate(R.menu.list_select_menu, menu);
 
@@ -751,6 +753,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
             onDeselectAll();
             listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
             requery();
+            toolbar.setVisibility(View.VISIBLE);
         }
 
     }
