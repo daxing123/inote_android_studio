@@ -1,6 +1,7 @@
 package org.dayup.inotes;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -16,6 +17,7 @@ import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.*;
 import android.view.View.OnClickListener;
@@ -32,7 +34,6 @@ import org.dayup.inotes.account.INotesAccountManager;
 import org.dayup.inotes.adapter.NoteListAdapter;
 import org.dayup.inotes.adapter.SpinnerSelectorAdapter;
 import org.dayup.inotes.adapter.SpinnerSelectorsHelper;
-import org.dayup.inotes.constants.Constants;
 import org.dayup.inotes.constants.Constants.RequestCode;
 import org.dayup.inotes.constants.Constants.ResultCode;
 import org.dayup.inotes.constants.Constants.SyncMode;
@@ -41,7 +42,6 @@ import org.dayup.inotes.data.Account;
 import org.dayup.inotes.data.Folder;
 import org.dayup.inotes.data.Note;
 import org.dayup.inotes.db.Field.Status;
-import org.dayup.inotes.key.KeyErrorDialogActivity;
 import org.dayup.inotes.sync.exception.AuthenticationErrorException;
 import org.dayup.inotes.sync.manager.NetworkException;
 import org.dayup.inotes.sync.manager.SyncManager;
@@ -805,39 +805,40 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
 
     }
 
+
     private void showBatchDeleteNotesDialog(final TreeMap<Integer, Note> selectItems) {
         final TreeMap<Integer, Note> selectItemsClone = new TreeMap<Integer, Note>(selectItems);
         View view = LayoutInflater.from(this).inflate(R.layout.delete_confirm_dialog, null);
         final CheckBox checkBox = (CheckBox) view.findViewById(R.id.delete_confirm_checkbox);
         //final INotesDialog dialog = new INotesDialog(this, iNotesApplication.getThemeType());
-        final INotesDialog dialog = new INotesDialog(this);
-        dialog.setTitle(R.string.dialog_title_confirm_delete);
-        dialog.setMessage(selectItemsClone.size() > 1 ? R.string.batch_delete_confirm
-                : R.string.delete_confirm);
-        dialog.setView(view);
-        dialog.setPositiveButton(android.R.string.ok, new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (checkBox.isChecked()) {
-                    Editor editor = PreferenceManager.getDefaultSharedPreferences(
-                            INotesListActivity.this).edit();
-                    editor.putBoolean(PK.DELETE_CONFIRM, !checkBox.isChecked()).commit();
-                }
-                for (Note note : selectItemsClone.values()) {
-                    Note.deleteNote(note, dbHelper);
-                }
-                requery();
-                for (Note note : selectItemsClone.values()) {
-                    if (note.hasSynced()) {
-                        startSync(SyncMode.LOCAL_CHANGED);
-                        break;
+        //final INotesDialog dialog = new INotesDialog(this);
+        final AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle(R.string.dialog_title_confirm_delete)
+                .setMessage(selectItemsClone.size() > 1 ? R.string.batch_delete_confirm
+                        : R.string.delete_confirm)
+                .setView(view)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override public void onClick(DialogInterface dialog, int which) {
+                        if (checkBox.isChecked()) {
+                            Editor editor = PreferenceManager.getDefaultSharedPreferences(
+                                    INotesListActivity.this).edit();
+                            editor.putBoolean(PK.DELETE_CONFIRM, !checkBox.isChecked()).commit();
+                        }
+                        for (Note note : selectItemsClone.values()) {
+                            Note.deleteNote(note, dbHelper);
+                        }
+                        requery();
+                        for (Note note : selectItemsClone.values()) {
+                            if (note.hasSynced()) {
+                                startSync(SyncMode.LOCAL_CHANGED);
+                                break;
+                            }
+                        }
+                        dialog.dismiss();
                     }
-                }
-                dialog.dismiss();
-            }
-        });
-        dialog.setNegativeButton(android.R.string.cancel, null);
+                })
+                .setNegativeButton(android.R.string.cancel, null)
+                .create();
         dialog.show();
     }
 

@@ -1,11 +1,13 @@
 package org.dayup.inotes;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.*;
@@ -69,7 +71,7 @@ public class INotesDetailActivity extends BaseActivity implements INoteViewerCon
 
         setContentView(R.layout.activity_inotes_detail);
         init();
-//        initActionBar();
+        //        initActionBar();
         initToolbar();
         initView();
         parseIntentData();
@@ -94,7 +96,8 @@ public class INotesDetailActivity extends BaseActivity implements INoteViewerCon
                 if (TextUtils.isEmpty(text)) {
                     noteString.append(subject);
                     noteString.append("\n");
-                } else if ((!TextUtils.isEmpty(text) && !text.toString().trim().startsWith(subject))) {
+                } else if ((!TextUtils.isEmpty(text) && !text.toString().trim()
+                        .startsWith(subject))) {
                     noteString.append(subject);
                     noteString.append("\n");
                 }
@@ -193,7 +196,8 @@ public class INotesDetailActivity extends BaseActivity implements INoteViewerCon
         //toolbar.setTitle("iNotes");
         setSupportActionBar(toolbar);//这句得在getSupport之前
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //ToolBar显示返回按钮
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_done_black_24dp); //ToolBar自定义返回按钮图标
+        getSupportActionBar()
+                .setHomeAsUpIndicator(R.drawable.ic_done_black_24dp); //ToolBar自定义返回按钮图标
     }
 
     private String getCurrentFolderName() {
@@ -298,7 +302,8 @@ public class INotesDetailActivity extends BaseActivity implements INoteViewerCon
     }
 
     private void deleteNote() {
-        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(PK.DELETE_CONFIRM, true)) {
+        if (PreferenceManager.getDefaultSharedPreferences(this)
+                .getBoolean(PK.DELETE_CONFIRM, true)) {
             showDeleteConfirmDialog();
         } else {
             note.deleted = Status.DELETED_YES;
@@ -400,26 +405,27 @@ public class INotesDetailActivity extends BaseActivity implements INoteViewerCon
         View view = LayoutInflater.from(this).inflate(R.layout.delete_confirm_dialog, null);
         final CheckBox checkBox = (CheckBox) view.findViewById(R.id.delete_confirm_checkbox);
         //final INotesDialog dialog = new INotesDialog(this, iNotesApplication.getThemeType());
-        final INotesDialog dialog = new INotesDialog(this);
-        dialog.setTitle(R.string.dialog_title_confirm_delete);
-        dialog.setMessage(R.string.delete_confirm);
-        dialog.setView(view);
-        dialog.setPositiveButton(android.R.string.ok, new View.OnClickListener() {
+        final AlertDialog dialog = new AlertDialog.Builder(this)
+                //final INotesDialog dialog = new INotesDialog(this);
+                .setTitle(R.string.dialog_title_confirm_delete)
+                .setMessage(R.string.delete_confirm)
+                .setView(view)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                if (checkBox.isChecked()) {
-                    Editor editor = PreferenceManager.getDefaultSharedPreferences(
-                            INotesDetailActivity.this).edit();
-                    editor.putBoolean(PK.DELETE_CONFIRM, !checkBox.isChecked()).commit();
-                }
-                note.deleted = Status.DELETED_YES;
-                needSave = true;
-                dialog.dismiss();
-                finish();
-            }
-        });
-        dialog.setNegativeButton(android.R.string.cancel, null);
+                    @Override public void onClick(DialogInterface dialog, int which) {
+                        if (checkBox.isChecked()) {
+                            Editor editor = PreferenceManager.getDefaultSharedPreferences(
+                                    INotesDetailActivity.this).edit();
+                            editor.putBoolean(PK.DELETE_CONFIRM, !checkBox.isChecked()).commit();
+                        }
+                        note.deleted = Status.DELETED_YES;
+                        needSave = true;
+                        dialog.dismiss();
+                        finish();
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, null)
+                .create();
         dialog.show();
     }
 

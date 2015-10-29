@@ -98,7 +98,7 @@
         <item name="android:minHeight">54dip</item>
         <item name="android:visibility">gone</item>
         <item name="android:background">?actionBarItemBackground</item>
-        <!--<item name="android:textColor">?titleTextColor</item>-->
+        <item name="android:textColor">?titleTextColor</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">14sp</item>
     </style>

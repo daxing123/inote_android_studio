@@ -107,7 +107,7 @@
         <item name="radio_btn_holo">@style/Widget.Holo.Light.RadioButton</item>
         <item name="list_section_divider">@drawable/list_section_divider_holo_light</item>
         <!--<item name="dialog_title_style">@style/dialog_title_light</item>-->
-        <!--<item name="titleTextColor">@color/title_text_color_light</item>-->
+        <item name="titleTextColor">@color/title_text_color_light</item>
         <item name="li_divider_account_col">@style/li_divider_account_col_lt</item>
         <item name="account_remove_icon">@drawable/account_delete_light</item>
         <!--<item name="spinner">@style/SpinnerLight</item>-->
