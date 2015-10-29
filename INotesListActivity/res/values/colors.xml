@@ -69,5 +69,6 @@
     <color name="primary">#ededed</color>
     <color name="primary_dark">#b2b2b2</color>
     <color name="accent">#b2b2b2</color>
+    <color name="text_black">#000000</color>
 
 </resources>

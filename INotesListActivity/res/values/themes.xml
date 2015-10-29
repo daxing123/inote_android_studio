@@ -7,17 +7,17 @@
         <!--状态栏颜色-->
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <!--输入框焦点、checkbox选中等颜色-->
-        <item name="colorAccent">@color/accent</item>
+        <item name="colorAccent">@color/text_black</item>
         <!--Toolbar标题颜色-->
-        <item name="android:textColorPrimary">@color/primary_dark</item>
+        <item name="android:textColorPrimary">@color/text_black</item>
         <!--窗口背景色-->
         <!--<item name="android:windowBackground">@color/black</item>-->
     </style>
 
 
-    <!--<style name="Theme.INotes" parent="Theme.Sherlock" />-->
+    <style name="Theme.INotes" parent="AppBaseTheme" />
 
-    <!--<style name="Theme.INotes.Light" parent="Theme.INotes.Light.Default">
+    <style name="Theme.INotes.Light" parent="Theme.INotes.Light.Default">
         <item name="android:actionBarItemBackground">@drawable/item_background_light</item>
     </style>
 
@@ -27,43 +27,43 @@
 
     <style name="Theme.INotes.Dark.NoBackground" parent="Theme.INotes.Dark.Default">
         <item name="android:windowBackground">@null</item>
-    </style>-->
+    </style>
     
-    <!--<style name="Theme.INotes.Light.CustomActionBar" parent="Theme.INotes.Light">
-        <item name="actionBarStyle">@style/CustomActionBarLight21</item>
-        <item name="android:actionBarStyle">@style/CustomActionBarLight21</item>
+    <style name="Theme.INotes.Light.CustomActionBar" parent="Theme.INotes.Light">
+        <!--<item name="actionBarStyle">@style/CustomActionBarLight21</item>-->
+        <!--<item name="android:actionBarStyle">@style/CustomActionBarLight21</item>-->
         <item name="android:homeAsUpIndicator">@drawable/actionbar_indicator</item>
         <item name="homeAsUpIndicator">@drawable/actionbar_indicator</item>
         
         <item name="android:actionModeBackground">@drawable/actionmode_background_top_light</item>
         <item name="android:actionModeSplitBackground">@drawable/actionmode_background_top_light</item>
-        <item name="android:actionModeCloseButtonStyle">@style/customCloseMode</item>
+        <!--<item name="android:actionModeCloseButtonStyle">@style/customCloseMode</item>-->
         <item name="android:actionModeCloseDrawable">@drawable/ic_cab_done</item>
         
-        <item name="actionOverflowButtonStyle">@style/Widget.Sherlock.ActionButton.Overflow</item>
+        <!--<item name="actionOverflowButtonStyle">@style/Widget.Sherlock.ActionButton.Overflow</item>-->
         <item name="actionModeBackground">@drawable/actionmode_background_top_light</item>
         <item name="actionModeSplitBackground">@drawable/actionmode_background_top_light</item>
-        <item name="actionModeStyle">@style/Widget.Sherlock.Light.ActionMode.Inverse</item>
-        <item name="actionModeCloseButtonStyle">@style/customCloseMode</item>
+        <!--<item name="actionModeStyle">@style/Widget.Sherlock.Light.ActionMode.Inverse</item>-->
+        <!--<item name="actionModeCloseButtonStyle">@style/customCloseMode</item>-->
         <item name="actionModeCloseDrawable">@drawable/ic_cab_done</item>
-    </style>-->
+    </style>
 
-    <!--<style name="Theme.INotes.Dark.CustomActionBar" parent="Theme.INotes.Dark.Default" >
-    </style>-->
+    <style name="Theme.INotes.Dark.CustomActionBar" parent="Theme.INotes.Dark.Default" >
+    </style>
 
-    <!--<style name="Theme.INotes.Light.Default" parent="Theme.Sherlock.Light">
+    <style name="Theme.INotes.Light.Default" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="theme_actionbar_hint">@drawable/action_bar_hint</item>
         <item name="theme_bottombar_bg">@drawable/bottom_bar_bg</item>
 		<item name="theme_bottombar_top_divider">@android:color/transparent</item>
         <item name="theme_bottombar_centre_divider">@drawable/action_bar_hint</item>
         
-        <item name="popupMenuStyle">@style/customListPopupWindow</item>
-        <item name="listPopupWindowStyle">@style/customListPopupWindow</item>
+        <!--<item name="popupMenuStyle">@style/customListPopupWindow</item>-->
+        <!--<item name="listPopupWindowStyle">@style/customListPopupWindow</item>-->
         <item name="android:panelBackground">@drawable/c_menu_hardkey_panel_holo_light</item>
         <item name="android:panelFullBackground">@drawable/item_background_light</item>
         <item name="actionBarItemBackground">@drawable/item_background_light</item>
-        <item name="android:listViewStyle">@style/customListView</item>
-        <item name="dropDownListViewStyle">@style/customListView</item>
+        <!--<item name="android:listViewStyle">@style/customListView</item>-->
+        <!--<item name="dropDownListViewStyle">@style/customListView</item>-->
         
         <item name="android:windowBackground">@drawable/theme_bg_light</item>
         <item name="g_main_bg">@null</item>
@@ -82,11 +82,11 @@
         <item name="g_listitem_LargeText">@style/g_listitem_LargeText_lt</item>
         <item name="radio_btn_holo">@style/Widget.Holo.Light.RadioButton</item>
         <item name="list_section_divider">@drawable/list_section_divider_holo_light</item>
-        <item name="dialog_title_style">@style/dialog_title_light</item>
-        <item name="titleTextColor">@color/title_text_color_light</item>
+        <!--<item name="dialog_title_style">@style/dialog_title_light</item>-->
+        <!--<item name="titleTextColor">@color/title_text_color_light</item>-->
         <item name="li_divider_account_col">@style/li_divider_account_col_lt</item>
         <item name="account_remove_icon">@drawable/account_delete_light</item>
-        <item name="spinner">@style/SpinnerLight</item>
+        <!--<item name="spinner">@style/SpinnerLight</item>-->
         <item name="refresh">@drawable/refresh_light</item>
         <item name="title_btn_add">@drawable/title_btn_add_light</item>
         <item name="ic_menu_trash">@drawable/ic_menu_trash_light</item>
@@ -107,14 +107,14 @@
 		
 		<item name="theme_dialog_divider">@color/dialog_divider_light</item>
 		<item name="theme_dialog_msg_color">@color/dialog_msg_color_light</item>
-    </style>-->
+    </style>
 
-    <!--<style name="Theme.INotes.Dark.Default" parent="Theme.Sherlock">
+    <style name="Theme.INotes.Dark.Default" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="theme_actionbar_hint">@android:color/transparent</item>
         <item name="theme_bottombar_bg">@android:color/transparent</item>
         <item name="theme_bottombar_top_divider">@drawable/list_divider_holo_dark</item>
         <item name="theme_bottombar_centre_divider">@drawable/list_divider_holo_dark</item>
-        
+
         <item name="g_main_bg">@color/background_holo_dark</item>
         <item name="g_edittext">@drawable/edit_text_holo_dark</item>
         <item name="g_hintTextColor">@color/hint_foreground_holo_dark</item>
@@ -130,18 +130,18 @@
         <item name="g_listitem_LargeText">@style/g_listitem_LargeText_bl</item>
         <item name="radio_btn_holo">@style/Widget.Holo.Dark.RadioButton</item>
         <item name="list_section_divider">@drawable/list_section_divider_holo_dark</item>
-        <item name="dialog_title_style">@style/dialog_title_dark</item>
-        <item name="titleTextColor">@color/title_text_color_dark</item>
+        <!--<item name="dialog_title_style">@style/dialog_title_dark</item>-->
+        <!--<item name="titleTextColor">@color/title_text_color_dark</item>-->
         <item name="li_divider_account_col">@style/li_divider_account_col_bl</item>
         <item name="account_remove_icon">@drawable/account_delete_dark</item>
-        <item name="spinner">@style/SpinnerDark</item>
+        <!--<item name="spinner">@style/SpinnerDark</item>-->
         <item name="refresh">@drawable/refresh_dark</item>
         <item name="title_btn_add">@drawable/title_btn_add_dark</item>
         <item name="ic_menu_trash">@drawable/ic_menu_trash_dark</item>
         <item name="ic_menu_share">@drawable/ic_menu_share_holo_dark</item>
         <item name="ic_voice_search">@drawable/ic_voice_holo_dark</item>
         <item name="ic_clear_search">@drawable/ic_clear_edit_holo_dark</item>
-        
+
         <item name="theme_detail_toolbar_bg">@color/background_holo_dark</item>
         <item name="theme_ic_tool_back">@drawable/detail_tool_back_btn_dark</item>
 		<item name="theme_ic_tool_forward">@drawable/detail_tool_forward_btn_dark</item>
@@ -152,8 +152,8 @@
 		<item name="theme_ic_tool_contact">@drawable/detail_tool_contact_dark</item>
 		<item name="theme_ic_tool_attachment_count">@color/detail_toolbar_att_count_dark</item>
 		<item name="theme_ic_tool_keyboardhide">@drawable/detail_toolbar_keyboard_hide_dark</item>
-		
+
 		<item name="theme_dialog_divider">@drawable/list_divider_holo_dark</item>
 		<item name="theme_dialog_msg_color">@color/title_text_color_dark</item>
-    </style>-->
+    </style>
 </resources>

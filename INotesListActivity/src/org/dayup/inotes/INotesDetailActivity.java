@@ -69,7 +69,7 @@ public class INotesDetailActivity extends BaseActivity implements INoteViewerCon
 
         setContentView(R.layout.activity_inotes_detail);
         init();
-        //initActionBar();
+//        initActionBar();
         initToolbar();
         initView();
         parseIntentData();
@@ -189,7 +189,7 @@ public class INotesDetailActivity extends BaseActivity implements INoteViewerCon
     }*/
 
     private void initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         //toolbar.setTitle("iNotes");
         setSupportActionBar(toolbar);//这句得在getSupport之前
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //ToolBar显示返回按钮

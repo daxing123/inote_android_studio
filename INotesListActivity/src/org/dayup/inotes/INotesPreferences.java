@@ -4,12 +4,9 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.ListPreference;
-import android.preference.Preference;
+import android.preference.*;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
-import android.preference.PreferenceActivity;
-import android.preference.PreferenceScreen;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.MenuItem;
@@ -19,7 +16,7 @@ import org.dayup.inotes.setup.AccountSelectActivity;
 import org.dayup.inotes.utils.ThemeUtils;
 import org.dayup.inotes.utils.Utils20;
 
-public class INotesPreferences extends PreferenceActivity {
+public class INotesPreferences extends PreferenceFragment {
 
     public final static int SET_ACCOUNT = 0x007;
     private PreferenceScreen accountSetting;
@@ -56,7 +53,7 @@ public class INotesPreferences extends PreferenceActivity {
                 new Intent(INotesPreferences.this, INotesPreferencesSubSync.class));
         initThemeSettingPreference();
 
-        initActionBar();
+        //initActionBar();
 
         // wifiOnlyPreference = (CheckBoxPreference)
         // findPreference(PK.SYNC_WIFI_ONLY);

@@ -112,14 +112,14 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         alpha_in = AnimationUtils.loadAnimation(this, R.anim.alpha_in);
         alpha_out = AnimationUtils.loadAnimation(this, R.anim.alpha_out);
 
-        if (Constants.TEST_MODE) {
+        /*if (Constants.TEST_MODE) {
             Log.d(TAG, "test mode");
         } else if (!iNotesApplication.hasMi()) {
             Intent it = new Intent(this, KeyErrorDialogActivity.class);
             it.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(it);
             finish();
-        }
+        }*/
 
         init();
         initViews();
