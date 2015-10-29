@@ -36,7 +36,6 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
-
 public class INotesSearchResultActivity extends BaseActivity {
     private static final String TAG = INotesSearchResultActivity.class.getSimpleName();
     private static final int REQUEST_CODE_VOICE_RECOGNITION_SEARCH = 30;
@@ -81,7 +80,7 @@ public class INotesSearchResultActivity extends BaseActivity {
     }
 
     private void initToolbar() {
-        
+
     }
 
     private void initActionBar() {
@@ -90,6 +89,7 @@ public class INotesSearchResultActivity extends BaseActivity {
         bar.setDisplayHomeAsUpEnabled(true);
         bar.setDisplayShowCustomEnabled(true);
         bar.setCustomView(R.layout.search_layout);
+
         mSearchLayoutView = (SearchLayoutView) bar.getCustomView();
         mSearchLayoutView.setRecognizClick(new OnClickListener() {
 

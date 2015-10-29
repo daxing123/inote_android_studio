@@ -193,7 +193,7 @@ public class INotesDetailActivity extends BaseActivity implements INoteViewerCon
         //toolbar.setTitle("iNotes");
         setSupportActionBar(toolbar);//这句得在getSupport之前
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //ToolBar显示返回按钮
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.save); //ToolBar自定义返回按钮图标
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_done_black_24dp); //ToolBar自定义返回按钮图标
     }
 
     private String getCurrentFolderName() {

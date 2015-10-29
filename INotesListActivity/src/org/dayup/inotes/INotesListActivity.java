@@ -552,6 +552,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
             return true;
         case R.id.menu_settings:
             startINotesPreferences();
+
             return true;
         default:
             return super.onOptionsItemSelected(item);
@@ -560,6 +561,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
 
     private void startINotesPreferences() {
         Intent intent = new Intent(this, INotesPreferences.class);
+//        Intent intent = new Intent(this, INotesPreferencesActivity.class);
         startActivityForResult(intent, RequestCode.SET_PREFERENCE);
     }
 
