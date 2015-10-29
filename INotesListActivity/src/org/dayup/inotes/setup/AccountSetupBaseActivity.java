@@ -1,6 +1,7 @@
 package org.dayup.inotes.setup;
 
 import android.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import org.dayup.activities.BaseActivity;
 import org.dayup.common.Analytics;
@@ -24,11 +25,20 @@ public abstract class AccountSetupBaseActivity extends BaseActivity {
 
     private final static String TAG = AccountSetupBaseActivity.class.getSimpleName();
     private ActionBar mBar;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initActionBar();
+        //initActionBar();
+        initToolbar();
+    }
+
+    private void initToolbar() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.account_sigin_in);
+        setSupportActionBar(toolbar);//这句得在getSupport之前
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //ToolBar显示返回按钮
     }
 
     private void initActionBar() {
@@ -39,7 +49,8 @@ public abstract class AccountSetupBaseActivity extends BaseActivity {
     }
 
     protected void setActionBarTitle(int titleRes) {
-        mBar.setTitle(titleRes);
+        //mBar.setTitle(titleRes);
+        toolbar.setTitle(titleRes);
     }
 
     @Override

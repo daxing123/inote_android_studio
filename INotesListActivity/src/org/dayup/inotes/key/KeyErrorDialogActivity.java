@@ -4,6 +4,7 @@
 package org.dayup.inotes.key;
 
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import org.dayup.activities.BaseActivity;
 import org.dayup.inotes.R;
 
@@ -35,8 +36,16 @@ public class KeyErrorDialogActivity extends BaseActivity {
             }
         });
 
-        initActionBar();
+        //initActionBar();
+        initToolbar();
 
+    }
+
+    private void initToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.title_pay_for);
+        setSupportActionBar(toolbar);//这句得在getSupport之前
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //ToolBar显示返回按钮
     }
 
     private void initActionBar() {

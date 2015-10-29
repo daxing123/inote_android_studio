@@ -1,6 +1,7 @@
 package org.dayup.inotes.setup;
 
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import org.dayup.activities.BaseActivity;
 import org.dayup.common.Analytics;
 import org.dayup.common.Log;
@@ -39,13 +40,22 @@ public class AccountLoginSuccessActivity extends BaseActivity {
                 doDone();
             }
         });
-        initActionBar();
+        //initActionBar();
+        initToolbar();
+    }
+
+    private void initToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.sign_in_success);
+        setSupportActionBar(toolbar);//这句得在getSupport之前
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //ToolBar显示返回按钮
     }
 
     private void initActionBar() {
         ActionBar bar = getSupportActionBar();
         bar.setHomeButtonEnabled(false);
         bar.setTitle(R.string.sign_in_success);
+
 
     }
 

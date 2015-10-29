@@ -62,7 +62,7 @@
     <attr fornat="reference" name="radio_btn_holo"/>
     <attr fornat="reference" name="list_section_divider"/>
     <attr fornat="reference" name="dialog_title_style"/>
-    <attr fornat="reference" name="titleTextColor"/>
+    <!--<attr fornat="reference" name="titleTextColor"/>-->
     <attr fornat="reference" name="li_divider_account_col"/>
     <attr fornat="reference" name="account_remove_icon"/>
     <attr fornat="reference" name="spinner"/>

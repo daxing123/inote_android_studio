@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import org.dayup.activities.BaseActivity;
@@ -43,9 +44,17 @@ public class AccountSelectActivity extends BaseActivity {
         accountManager = application.getAccountManager();
         preAccountId = accountManager.getAccountId();
         setContentView(R.layout.account_select_layout);
-        initActionBar();
+        //initActionBar();
+        initToolbar();
         initViews();
         requery();
+    }
+
+    private void initToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.switch_account);
+        setSupportActionBar(toolbar);//这句得在getSupport之前
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //ToolBar显示返回按钮
     }
 
     private void initActionBar() {

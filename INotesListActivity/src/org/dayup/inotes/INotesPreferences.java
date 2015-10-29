@@ -16,7 +16,7 @@ import org.dayup.inotes.setup.AccountSelectActivity;
 import org.dayup.inotes.utils.ThemeUtils;
 import org.dayup.inotes.utils.Utils20;
 
-public class INotesPreferences extends PreferenceFragment {
+public class INotesPreferences extends PreferenceActivity {
 
     public final static int SET_ACCOUNT = 0x007;
     private PreferenceScreen accountSetting;

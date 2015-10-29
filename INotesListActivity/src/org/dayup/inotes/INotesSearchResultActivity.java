@@ -77,6 +77,11 @@ public class INotesSearchResultActivity extends BaseActivity {
             }
         });
         initActionBar();
+        initToolbar();
+    }
+
+    private void initToolbar() {
+        
     }
 
     private void initActionBar() {

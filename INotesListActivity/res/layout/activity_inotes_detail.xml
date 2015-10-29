@@ -8,12 +8,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+    <View
+        android:id="@+id/toolbar_shadow"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:layout_height="5dp"
+        android:background="@drawable/toolbar_shadow"/>
+
     <RelativeLayout
         android:id="@+id/detail_layout"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="?g_main_bg"
-        android:layout_below="@+id/toolbar">
+        android:layout_below="@+id/toolbar_shadow">
 
         <LinearLayout
             android:id="@+id/detail_toolbar_layout"

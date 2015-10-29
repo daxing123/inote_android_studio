@@ -8,8 +8,8 @@
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <!--输入框焦点、checkbox选中等颜色-->
         <item name="colorAccent">@color/text_black</item>
-        <!--Toolbar标题颜色-->
-        <item name="android:textColorPrimary">@color/text_black</item>
+        <!--Toolbar图标颜色-->
+        <item name="colorControlNormal">@color/text_black</item>
         <!--窗口背景色-->
         <!--<item name="android:windowBackground">@color/black</item>-->
     </style>
