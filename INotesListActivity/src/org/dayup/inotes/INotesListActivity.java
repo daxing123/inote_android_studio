@@ -560,7 +560,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
     }
 
     private void startINotesPreferences() {
-        Intent intent = new Intent(this, INotesPreferences.class);
+        Intent intent = new Intent(this, INotesPreferencesActivity.class);
         //        Intent intent = new Intent(this, INotesPreferencesActivity.class);
         startActivityForResult(intent, RequestCode.SET_PREFERENCE);
     }

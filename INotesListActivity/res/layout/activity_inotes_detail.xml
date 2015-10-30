@@ -8,119 +8,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <RelativeLayout
-        android:id="@+id/detail_layout"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="?g_main_bg"
-        android:layout_below="@+id/toolbar">
+    <FrameLayout
+        android:id="@+id/shadow_container"
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/detail_toolbar_layout"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true">
+        <include
+            layout="@layout/inote_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
-            <include
-                android:id="@+id/edit_tool_bar"
-                layout="@layout/detail_tool_bar"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/time_layout"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/detail_toolbar_layout"
-            android:gravity="right|bottom"
-            android:paddingBottom="4dp"
-            android:paddingLeft="4dp"
-            android:paddingRight="8dp">
-
-            <TextView
-                android:id="@+id/time_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="start"
-                android:gravity="right"
-                android:minWidth="48dip"
-                android:singleLine="true"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="?g_hintTextColor"/>
-        </LinearLayout>
-
-        <org.dayup.inotes.views.ResizeLayout
-            android:id="@+id/detail_scroll_layout"
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/time_layout"
-            android:fadingEdge="none"
-            android:fillViewport="true">
-
-            <LinearLayout
-                android:id="@+id/note_detail_layout"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp">
-
-                <org.dayup.inotes.views.WatcherEditText
-                    android:id="@+id/note_editor_composite"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_marginBottom="4dip"
-                    android:background="@null"
-                    android:fadingEdge="none"
-                    android:gravity="top"
-                    android:hint="@string/detail_text_hint"
-                    android:inputType="text|textCapSentences|textMultiLine|textImeMultiLine"
-                    android:lineSpacingMultiplier="1.2"
-                    android:maxLength="65535"
-                    android:minHeight="80dip"
-                    android:paddingBottom="1dip"
-                    android:paddingLeft="4dip"
-                    android:paddingRight="4dip"
-                    android:paddingTop="4dip"
-                    android:scrollbars="vertical"
-                    android:textColor="?g_primaryTextColor"
-                    android:textColorHint="?g_hintTextColor"
-                    android:textSize="18sp"/>
-
-                <org.dayup.inotes.views.LocaterTextView
-                    android:id="@+id/note_detail"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:autoLink="all"
-                    android:background="#00000000"
-                    android:cursorVisible="false"
-                    android:editable="false"
-                    android:fadingEdge="none"
-                    android:focusable="false"
-                    android:gravity="top"
-                    android:hint="@string/detail_text_hint"
-                    android:inputType="none"
-                    android:lineSpacingMultiplier="1.2"
-                    android:linksClickable="false"
-                    android:minHeight="80dip"
-                    android:paddingBottom="1dip"
-                    android:paddingLeft="4dip"
-                    android:paddingRight="4dip"
-                    android:paddingTop="4dip"
-                    android:textColor="?g_primaryTextColor"
-                    android:textSize="18sp"/>
-            </LinearLayout>
-        </org.dayup.inotes.views.ResizeLayout>
-
-        <ImageView
-            android:id="@+id/detail_autolink_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@id/detail_toolbar_layout"
-            android:layout_alignParentRight="true"
-            android:background="?actionBarItemBackground"
-            android:padding="4dip"
-            android:visibility="gone"/>
-    </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@drawable/toolbar_shadow"/>
+    </FrameLayout>
 
 </RelativeLayout>

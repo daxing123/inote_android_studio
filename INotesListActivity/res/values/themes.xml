@@ -22,7 +22,6 @@
         <!--输入框焦点、checkbox选中等颜色-->
         <item name="colorAccent">@color/yellow_accent</item>
         <!--Toolbar图标颜色-->
-        <item name="colorControlNormal">@color/yellow_accent</item>
         <!--窗口背景色-->
         <!--<item name="android:windowBackground">@color/black</item>-->
     </style>
@@ -51,7 +50,6 @@
         <!--输入框焦点、checkbox选中等颜色-->
         <item name="colorAccent">@color/yellow_accent</item>
         <!--Toolbar图标颜色-->
-        <item name="colorControlNormal">@color/yellow_accent</item>
 
 
         <!--<item name="actionBarStyle">@style/CustomActionBarLight21</item>-->
