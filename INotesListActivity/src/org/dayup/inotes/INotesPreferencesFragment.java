@@ -41,10 +41,20 @@ public class INotesPreferencesFragment extends PreferenceFragment {
         public static final String SYNC_SETTING = "prefkey_sync_setting";
     }
 
+    public interface PrefItemOnClickListener {
+        void prefItemClick();
+    }
+
+    /*public PrefItemOnClickListener prefItemOnClickListener;
+
+    public void SetPrefItemOnClickListener(PrefItemOnClickListener prefItemOnClickListener) {
+        this.prefItemOnClickListener = prefItemOnClickListener;
+    }*/
+
     @Override public void onCreate(Bundle savedInstanceState) {
         application = (INotesApplication) getActivity().getApplicationContext();
-//        ThemeUtils themeUtils = new ThemeUtils(application);
-//        themeUtils.onActivityCreateSetTheme();
+        //        ThemeUtils themeUtils = new ThemeUtils(application);
+        //        themeUtils.onActivityCreateSetTheme();
 
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.inotes_preference);
@@ -53,9 +63,19 @@ public class INotesPreferencesFragment extends PreferenceFragment {
         accountSetting.setOnPreferenceClickListener(accountSettingClickListener);
         initAccountSettingPreference();
 
-        findPreference(PK.SYNC_SETTING).setIntent(
+        /*findPreference(PK.SYNC_SETTING).setIntent(
                 new Intent(getActivity(), INotesPreferencesSubSync.class));
-        initThemeSettingPreference();
+        initThemeSettingPreference();*/
+
+        findPreference(PK.SYNC_SETTING).setOnPreferenceClickListener(
+                new Preference.OnPreferenceClickListener() {
+                    @Override public boolean onPreferenceClick(Preference preference) {
+                        if (getActivity() instanceof PrefItemOnClickListener)
+                            ((PrefItemOnClickListener) getActivity()).prefItemClick();
+
+                        return false;
+                    }
+                });
 
         findPreference(PK.FEED_BACK).setOnPreferenceClickListener(
                 new Preference.OnPreferenceClickListener() {
@@ -167,7 +187,6 @@ public class INotesPreferencesFragment extends PreferenceFragment {
     @Override public void onPause() {
         super.onPause();
     }
-
 
     private void initAccountSettingPreference() {
         Account account = application.getAccountManager().getAccount();

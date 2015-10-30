@@ -7,22 +7,28 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import org.dayup.inotes.setup.AccountSelectActivity;
 
 /**
  * Created by myatejx on 15/10/29.
  */
-public class INotesPreferencesActivity extends AppCompatActivity {
+public class INotesPreferencesActivity extends AppCompatActivity implements
+        INotesPreferencesFragment.PrefItemOnClickListener {
 
     private Toolbar toolbar;
+    private INotesPreferencesFragment iNotesPreferencesFragment;
+    private INotesPreferencesSubSyncFragment iNotesPreferencesSubSyncFragment;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inote_preference_activity);
 
         initToolbar();
-        INotesPreferencesFragment iNotesPreferencesFragment = new INotesPreferencesFragment();
-        replaceFragment(R.id.pref_container, iNotesPreferencesFragment);
+        iNotesPreferencesFragment = new INotesPreferencesFragment();
+        getFragmentManager().beginTransaction()
+                .add(R.id.pref_container, iNotesPreferencesFragment)
+                .commit();
     }
 
     private void initToolbar() {
@@ -32,8 +38,34 @@ public class INotesPreferencesActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //ToolBar显示返回按钮
     }
 
-    private void replaceFragment(int viewId, Fragment fragment) {
-        getFragmentManager().beginTransaction().replace(viewId, fragment).commit();
+    @Override public void prefItemClick() {
+        iNotesPreferencesSubSyncFragment = new INotesPreferencesSubSyncFragment();
+        getFragmentManager().beginTransaction()
+                .hide(iNotesPreferencesFragment)
+                .add(R.id.pref_container, iNotesPreferencesSubSyncFragment)
+                .addToBackStack(null)
+                .commit();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case android.R.id.home:
+            onBackPressed();
+            return true;
+        default:
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+
+    //addToBackStack(null)不起作用时重写这个
+    @Override
+    public void onBackPressed() {
+        if (getFragmentManager().getBackStackEntryCount() > 0 ){
+            getFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
+        }
+    }
 }

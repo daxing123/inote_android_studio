@@ -1,4 +1,4 @@
-package org.dayup.inotes.views;
+package org.dayup.inotes;
 
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
@@ -44,13 +44,13 @@ public class INotesPreferencesSubSyncFragment extends PreferenceFragment {
 
     };
 
-    @Override
+    /*@Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
             getActivity().finish();
         }
         return super.onKeyDown(keyCode, event);
-    }
+    }*/
 
     @Override
     public void onStart() {
