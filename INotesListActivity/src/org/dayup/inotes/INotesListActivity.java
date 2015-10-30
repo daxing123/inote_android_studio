@@ -88,8 +88,9 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private FloatingActionButton fab;
 
-    private final int HIDE_LAYOUT_DURATION = 5000;
+    private MenuItem sort_create, sort_modify, sort_name;
 
+    private final int HIDE_LAYOUT_DURATION = 5000;
 
     public static class SortByTypes {
         public static final int CREATE_DOWN = 400;
@@ -407,6 +408,41 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         mSortAzClickView.setBackgroundResource(mThemeUtils.getItemSelector());
     }
 
+    private void setSortByShowType(int sortByType) {
+        switch (sortByType) {
+        case SortByTypes.CREATE_UP:
+            sort_create.setIcon(R.drawable.ic_sortby_creat_up1);
+            sort_modify.setIcon(R.drawable.ic_sortby_modify_down0);
+            sort_name.setIcon(R.drawable.ic_sortby_name_down0);
+            break;
+        case SortByTypes.CREATE_DOWN:
+            sort_create.setIcon(R.drawable.ic_sortby_creat_down1);
+            sort_modify.setIcon(R.drawable.ic_sortby_modify_down0);
+            sort_name.setIcon(R.drawable.ic_sortby_name_down0);
+            break;
+        case SortByTypes.MODIFY_UP:
+            sort_modify.setIcon(R.drawable.ic_sortby_modify_up1);
+            sort_name.setIcon(R.drawable.ic_sortby_name_down0);
+            sort_create.setIcon(R.drawable.ic_sortby_creat_down0);
+            break;
+        case SortByTypes.MODIFY_DOWN:
+            sort_modify.setIcon(R.drawable.ic_sortby_modify_down1);
+            sort_name.setIcon(R.drawable.ic_sortby_name_down0);
+            sort_create.setIcon(R.drawable.ic_sortby_creat_down0);
+            break;
+        case SortByTypes.A_Z_UP:
+            sort_name.setIcon(R.drawable.ic_sortby_name_up1);
+            sort_modify.setIcon(R.drawable.ic_sortby_modify_down0);
+            sort_create.setIcon(R.drawable.ic_sortby_creat_down0);
+            break;
+        case SortByTypes.A_Z_DOWN:
+            sort_name.setIcon(R.drawable.ic_sortby_name_down1);
+            sort_modify.setIcon(R.drawable.ic_sortby_modify_down0);
+            sort_create.setIcon(R.drawable.ic_sortby_creat_down0);
+            break;
+        }
+    }
+
     private void setSortShownBySortByType(int sortByType) {
         switch (sortByType) {
         case SortByTypes.CREATE_UP:
@@ -548,7 +584,9 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
             startSync(SyncMode.MANUAL);
             return true;
         case R.id.sort_by:
-            showSortByLayout();
+            //showSortByLayout();
+            startActionMode(new SortbyModeCallback());
+
             return true;
         case R.id.menu_search:
             onSearchRequested();
@@ -626,6 +664,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
      * Action Mode
      ********************/
     private ActionMode mSelectionMode;
+    private ActionMode mSortByMode;
 
     /**
      * @return true if the list is in the "selection" mode.
@@ -702,6 +741,70 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         }
     }
 
+    private class SortbyModeCallback implements ActionMode.Callback {
+
+        @Override public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            mSortByMode = mode;
+            toolbar.setVisibility(View.GONE);
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.sort_by_menu, menu);
+            sort_create = menu.findItem(R.id.sortby_create_menu);
+            sort_modify = menu.findItem(R.id.sortby_modify_menu);
+            sort_name = menu.findItem(R.id.sortby_name_menu);
+
+            return true;
+        }
+
+        @Override public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            mode.setTitle(R.string.sort_by);
+            sortByType = sp.getInt(PK.OPTION_SORT_BY, SortByTypes.MODIFY_DOWN);
+            setSortByShowType(sortByType);
+
+            return true;
+        }
+
+        @Override public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+
+            switch (item.getItemId()) {
+            case R.id.sortby_create_menu:
+                if (sortByType == SortByTypes.CREATE_DOWN) {
+                    sortByType = SortByTypes.CREATE_UP;
+                } else {
+                    sortByType = SortByTypes.CREATE_DOWN;
+                }
+                break;
+            case R.id.sortby_modify_menu:
+                if (sortByType == SortByTypes.MODIFY_DOWN) {
+                    sortByType = SortByTypes.MODIFY_UP;
+                } else {
+                    sortByType = SortByTypes.MODIFY_DOWN;
+                }
+                break;
+            case R.id.sortby_name_menu:
+                if (sortByType == SortByTypes.A_Z_DOWN) {
+                    sortByType = SortByTypes.A_Z_UP;
+                } else {
+                    sortByType = SortByTypes.A_Z_DOWN;
+                }
+                break;
+
+            }
+
+            setSortByShowType(sortByType);
+            sp.edit().putInt(PK.OPTION_SORT_BY, sortByType).commit();
+            requery();
+
+            mHandler.removeCallbacks(sortByHide);
+            mHandler.postDelayed(sortByHide, HIDE_LAYOUT_DURATION);
+
+            return true;
+        }
+
+        @Override public void onDestroyActionMode(ActionMode mode) {
+            toolbar.setVisibility(View.VISIBLE);
+        }
+    }
+
     private class SelectionModeCallback implements ActionMode.Callback {
 
         @Override
@@ -721,6 +824,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
 
         @Override
         public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            //listView.setSelector(new ColorDrawable(Color.TRANSPARENT));
             listView.setSelector(new ColorDrawable(Color.TRANSPARENT));
             int num = getSelectedCount();
             mode.setTitle(String.format(getString(R.string.action_mode_select), num));

@@ -3,9 +3,9 @@
 
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <ListView
         android:id="@android:id/list"
@@ -14,6 +14,8 @@
         android:layout_centerHorizontal="true"
         android:listSelector="?actionBarItemBackground"
         android:cacheColorHint="#00000000"
+        android:dividerHeight="0dp"
+        android:divider="@color/spinner_label"
         android:drawSelectorOnTop="true"
         android:scrollbars="none"
         android:layout_centerVertical="true"/>
@@ -23,7 +25,8 @@
         android:text="@string/list_empty_text"
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
-        android:gravity="center_horizontal"
+        android:gravity="center"
+        android:layout_gravity="center_vertical"
         android:textAppearance="?g_listitem_LargeTextDone"
         android:paddingTop="18dp"/>
 

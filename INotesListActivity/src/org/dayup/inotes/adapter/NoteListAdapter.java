@@ -3,6 +3,8 @@ package org.dayup.inotes.adapter;
 import java.util.List;
 import java.util.TreeMap;
 
+import android.graphics.Color;
+import android.util.SparseBooleanArray;
 import org.dayup.common.Log;
 import org.dayup.inotes.INotesListActivity.SortByTypes;
 import org.dayup.inotes.R;
@@ -20,7 +22,6 @@ import android.widget.TextView;
 
 /**
  * @author Nicky
- * 
  */
 public class NoteListAdapter extends BaseAdapter {
 
@@ -40,7 +41,9 @@ public class NoteListAdapter extends BaseAdapter {
         initDateAndTimeFormat(context);
     }
 
-    /************* Select mode **************/
+    /*************
+     * Select mode
+     **************/
     public boolean isSelectMode() {
         return isSelectMode;
     }
@@ -74,8 +77,10 @@ public class NoteListAdapter extends BaseAdapter {
     }
 
     private void initDateAndTimeFormat(Context context) {
-        timeFormat = android.text.format.DateFormat.is24HourFormat(context) ? DatePattern.HM_COLON_24
-                : DatePattern.HM_COLON_12;
+        timeFormat = android.text.format.DateFormat.is24HourFormat(context) ?
+                DatePattern.HM_COLON_24
+                :
+                DatePattern.HM_COLON_12;
     }
 
     public void setData(List<Note> notes, int sortBy) {
