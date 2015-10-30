@@ -1,6 +1,7 @@
 package org.dayup.inotes;
 
 import android.annotation.SuppressLint;
+import android.app.Notification;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -48,6 +49,7 @@ import org.dayup.inotes.sync.manager.SyncManager;
 import org.dayup.inotes.sync.manager.SyncManager.RefreshSyncedListener;
 import org.dayup.inotes.sync.manager.SyncManager.SyncingRefreshUIListener;
 import org.dayup.inotes.utils.ShareUtils;
+import org.dayup.inotes.utils.Utils;
 import org.dayup.inotes.views.INotesDialog;
 import org.dayup.tasks.BackgroundTaskManager.BackgroundTaskStatusListener;
 
@@ -87,6 +89,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
     private FloatingActionButton fab;
 
     private final int HIDE_LAYOUT_DURATION = 5000;
+
 
     public static class SortByTypes {
         public static final int CREATE_DOWN = 400;
@@ -729,11 +732,10 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
             TreeMap<Integer, Note> selectItems = adapter.getSelectItems();
             switch (item.getItemId()) {
             case R.id.delete:
-                batchDeleteNote(selectItems);
-                mode.finish();
+                batchDeleteNote(mode, selectItems);
                 break;
             case R.id.share:
-                BatchShareNote(selectItems);
+                BatchShareNote(mode, selectItems);
                 mode.finish();
             default:
                 break;
@@ -765,7 +767,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         }
     }
 
-    public void BatchShareNote(TreeMap<Integer, Note> selectItems) {
+    public void BatchShareNote(ActionMode mode, TreeMap<Integer, Note> selectItems) {
         StringBuffer sb = new StringBuffer();
         int count = 0;
         for (Integer position : selectItems.keySet()) {
@@ -784,29 +786,31 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         } else {
             Toast.makeText(this, R.string.no_note_share, Toast.LENGTH_SHORT).show();
         }
-
+        mode.finish();
     }
 
-    public void batchDeleteNote(final TreeMap<Integer, Note> selectItems) {
+    public void batchDeleteNote(ActionMode mode, final TreeMap<Integer, Note> selectItems) {
         if (selectItems.size() == 0) {
             Toast.makeText(INotesListActivity.this, R.string.toast_no_item_selected,
                     Toast.LENGTH_LONG).show();
+            mode.finish();
             return;
         }
 
         if (PreferenceManager.getDefaultSharedPreferences(this)
                 .getBoolean(PK.DELETE_CONFIRM, true)) {
-            showBatchDeleteNotesDialog(selectItems);
+            showBatchDeleteNotesDialog(mode, selectItems);
         } else {
             for (Note note : selectItems.values()) {
                 Note.deleteNote(note, dbHelper);
             }
+            mode.finish();
         }
 
     }
 
-
-    private void showBatchDeleteNotesDialog(final TreeMap<Integer, Note> selectItems) {
+    private void showBatchDeleteNotesDialog(final ActionMode mode,
+            final TreeMap<Integer, Note> selectItems) {
         final TreeMap<Integer, Note> selectItemsClone = new TreeMap<Integer, Note>(selectItems);
         View view = LayoutInflater.from(this).inflate(R.layout.delete_confirm_dialog, null);
         final CheckBox checkBox = (CheckBox) view.findViewById(R.id.delete_confirm_checkbox);
@@ -834,6 +838,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
                                 break;
                             }
                         }
+                        mode.finish();
                         dialog.dismiss();
                     }
                 })

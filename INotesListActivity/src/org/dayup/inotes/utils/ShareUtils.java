@@ -1,5 +1,6 @@
 package org.dayup.inotes.utils;
 
+import android.view.ActionMode;
 import org.dayup.inotes.R;
 
 import android.content.Context;
