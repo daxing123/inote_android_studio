@@ -246,11 +246,11 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         recyclerView = (RecyclerView) findViewById(R.id.recycleview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter = new MyAdapter(this, R.layout.rv_item_linear, noteslist));
-        recyclerView.addItemDecoration(new RvItemDecoration(20));
+        recyclerView.addItemDecoration(new RvItemDecoration(15));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         adapter.SetOnRvItemClickListener(new RvItemClickListener());
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(itemtouchCallback);
-        itemTouchHelper.attachToRecyclerView(recyclerView);
+        /*ItemTouchHelper itemTouchHelper = new ItemTouchHelper(itemtouchCallback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);*/
 
     }
 
@@ -329,7 +329,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         }
     };
 
-    private ItemTouchHelper.Callback itemtouchCallback = new ItemTouchHelper.SimpleCallback(
+    /*private ItemTouchHelper.Callback itemtouchCallback = new ItemTouchHelper.SimpleCallback(
             0, ItemTouchHelper.LEFT) {
         @Override public boolean onMove(RecyclerView recyclerView,
                 RecyclerView.ViewHolder viewHolder,
@@ -341,7 +341,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
             int position = viewHolder.getAdapterPosition();
             adapter.removeData(position);
         }
-    };
+    };*/
 
     private void changeLayout() {
         if (click == 0) {

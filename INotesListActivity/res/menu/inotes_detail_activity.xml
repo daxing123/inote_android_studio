@@ -8,6 +8,11 @@
         android:icon="@drawable/ic_share_black_24dp"
         android:title="@string/menu_share"/>
     <item
+        android:id="@+id/menu_discard"
+        app:showAsAction="withText"
+        android:icon="@android:drawable/ic_menu_close_clear_cancel"
+        android:title="@string/menu_discard"/>
+    <item
         android:id="@+id/menu_move_to"
         app:showAsAction="withText"
         android:icon="@drawable/ic_list_move_dark"
@@ -17,15 +22,11 @@
         app:showAsAction="withText"
         android:icon="?ic_menu_trash"
         android:title="@string/menu_delete"/>
-    <item
-        android:id="@+id/menu_discard"
-        app:showAsAction="withText"
-        android:icon="@android:drawable/ic_menu_close_clear_cancel"
-        android:title="@string/menu_discard"/>
-    <item
+
+    <!--<item
         android:id="@+id/menu_insert"
         app:showAsAction="withText"
         android:icon="?title_btn_add"
-        android:title="@string/menu_insert"/>
+        android:title="@string/menu_insert"/>-->
 
 </menu>

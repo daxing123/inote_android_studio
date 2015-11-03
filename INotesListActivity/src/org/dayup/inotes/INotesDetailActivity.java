@@ -58,7 +58,7 @@ public class INotesDetailActivity extends BaseActivity implements INoteViewerCon
     private Toolbar toolbar;
     private NoteEditController noteEditController;
     private NoteViewerController noteViewerController;
-    private TextView timeText;
+    //private TextView timeText;
     private ResizeLayout resizeLayout;
 
     private boolean needSave = false;
@@ -155,7 +155,7 @@ public class INotesDetailActivity extends BaseActivity implements INoteViewerCon
         sb.append(getString(R.string.detail_last_edit)).append(" ");
         sb.append(getDateText()).append(", ")
                 .append(DateUtils.formatTime(note.modifiedTime, DatePattern.HM_COLON_12));
-        timeText.setText(sb.toString());
+        //timeText.setText(sb.toString());
     }
 
     private String getDateText() {
@@ -178,7 +178,7 @@ public class INotesDetailActivity extends BaseActivity implements INoteViewerCon
 
     private void initView() {
         View layout = findViewById(R.id.detail_layout);
-        timeText = (TextView) findViewById(R.id.time_text);
+        //timeText = (TextView) findViewById(R.id.time_text);
         noteEditController = new NoteEditController(this, layout, this);
         noteViewerController = new NoteViewerController(layout, this);
         noteViewerController.setViewerLocaterListener(noteEditController);
@@ -196,8 +196,8 @@ public class INotesDetailActivity extends BaseActivity implements INoteViewerCon
         //toolbar.setTitle("iNotes");
         setSupportActionBar(toolbar);//这句得在getSupport之前
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //ToolBar显示返回按钮
-        getSupportActionBar()
-                .setHomeAsUpIndicator(R.drawable.ic_done_black_24dp); //ToolBar自定义返回按钮图标
+        /*getSupportActionBar()
+                .setHomeAsUpIndicator(R.drawable.ic_done_black_24dp); //ToolBar自定义返回按钮图标*/
     }
 
     private String getCurrentFolderName() {
@@ -230,9 +230,9 @@ public class INotesDetailActivity extends BaseActivity implements INoteViewerCon
         case android.R.id.home:
             finish();
             return true;
-        case R.id.menu_insert:
+        /*case R.id.menu_insert:
             insertNote();
-            return true;
+            return true;*/
         case R.id.menu_discard:
             needSave = false;
             finish();

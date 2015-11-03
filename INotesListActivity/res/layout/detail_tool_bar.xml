@@ -31,10 +31,10 @@
         style="@style/detail_toolbar_btn"
         android:src="?theme_ic_tool_time" />
     
-    <ImageButton
+    <!--<ImageButton
         android:id="@+id/detail_tool_recogniz"
         style="@style/detail_toolbar_btn"
-        android:src="?theme_ic_tool_recogniz" />
+        android:src="?theme_ic_tool_recogniz" />-->
     
     <ImageView
         android:id="@+id/detail_attach_count_layout"
