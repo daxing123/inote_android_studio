@@ -1,6 +1,8 @@
 package org.dayup.inotes.setup;
 
 import android.app.ActionBar;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import org.dayup.activities.BaseActivity;
@@ -31,22 +33,21 @@ public abstract class AccountSetupBaseActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //initActionBar();
-        initToolbar();
     }
 
-    private void initToolbar() {
+    protected void initToolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.account_sigin_in);
         setSupportActionBar(toolbar);//这句得在getSupport之前
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //ToolBar显示返回按钮
     }
 
-    private void initActionBar() {
+    /*private void initActionBar() {
         mBar = getActionBar();
         mBar.setHomeButtonEnabled(true);
         mBar.setDisplayHomeAsUpEnabled(true);
         mBar.setTitle(R.string.account_sigin_in);
-    }
+    }*/
 
     protected void setActionBarTitle(int titleRes) {
         //mBar.setTitle(titleRes);
@@ -116,7 +117,33 @@ public abstract class AccountSetupBaseActivity extends BaseActivity {
             return;
         }
         //final INotesDialog dialog = new INotesDialog(activity, iNotesApplication.getThemeType());
-        final INotesDialog dialog = new INotesDialog(activity);
+        /*final INotesDialog dialog1 = new INotesDialog(activity);
+        dialog1.setTitle(R.string.dialog_title_login_failed);
+        if (result instanceof AuthenticationFailedException) {
+            if (TextUtils.equals(result.getMessage(), "Unsupported protocol")) {
+                dialog1.setMessage(R.string.text_security_type_incorrect);
+            } else {
+                dialog1.setMessage(R.string.text_username_password_incorrect);
+            }
+        } else if (result instanceof MessagingException) {
+            dialog1.setMessage(R.string.text_connection_server_failed);
+        } else {
+            dialog1.setMessage(R.string.text_authorize_failed);
+        }
+        dialog1.setPositiveButton(R.string.dialog_button_need_help, new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(getString(R.string.inotes_setup_account_help_url)));
+                activity.startActivity(intent);
+                dialog1.dismiss();
+            }
+        });
+        dialog1.setNegativeButton(android.R.string.cancel, null);
+        dialog1.show();*/
+
+        final AlertDialog.Builder dialog = new AlertDialog.Builder(activity);
         dialog.setTitle(R.string.dialog_title_login_failed);
         if (result instanceof AuthenticationFailedException) {
             if (TextUtils.equals(result.getMessage(), "Unsupported protocol")) {
@@ -129,17 +156,17 @@ public abstract class AccountSetupBaseActivity extends BaseActivity {
         } else {
             dialog.setMessage(R.string.text_authorize_failed);
         }
-        dialog.setPositiveButton(R.string.dialog_button_need_help, new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(getString(R.string.inotes_setup_account_help_url)));
-                activity.startActivity(intent);
-                dialog.dismiss();
-            }
-        });
+        dialog.setPositiveButton(R.string.dialog_button_need_help,
+                new DialogInterface.OnClickListener() {
+                    @Override public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(getString(R.string.inotes_setup_account_help_url)));
+                        activity.startActivity(intent);
+                        dialog.dismiss();
+                    }
+                });
         dialog.setNegativeButton(android.R.string.cancel, null);
+        dialog.create();
         dialog.show();
     }
 }

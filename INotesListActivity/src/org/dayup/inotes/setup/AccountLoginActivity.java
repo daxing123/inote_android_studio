@@ -51,7 +51,8 @@ public class AccountLoginActivity extends AccountSetupBaseActivity implements Te
         super.onCreate(savedInstanceState);
 
         accountManager = iNotesApplication.getAccountManager();
-        setContentView(R.layout.account_login_layout);
+        setContentView(R.layout.account_login_layout_toolbar_shadow);
+        initToolbar();
         init();
         setActionBarTitle(R.string.account_sigin_in);
     }

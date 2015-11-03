@@ -451,9 +451,9 @@ public class INotesDetailActivity extends BaseActivity implements INoteViewerCon
 
         private Dialog createDialog() {
             //INotesDialog dialog = new INotesDialog(INotesDetailActivity.this, iNotesApplication.getThemeType());
-            INotesDialog dialog = new INotesDialog(INotesDetailActivity.this);
-            dialog.setTitle(R.string.dialog_title_move_to_folder);
-            dialog.setSingleChoiceItems(folderName, selected,
+            INotesDialog dialog1 = new INotesDialog(INotesDetailActivity.this);
+            dialog1.setTitle(R.string.dialog_title_move_to_folder);
+            dialog1.setSingleChoiceItems(folderName, selected,
                     new INotesDialogListItemOnClickListener() {
 
                         @Override
@@ -476,7 +476,8 @@ public class INotesDetailActivity extends BaseActivity implements INoteViewerCon
                         }
 
                     });
-            return dialog;
+            return dialog1;
+
         }
 
         private void moveToList(Folder to) {

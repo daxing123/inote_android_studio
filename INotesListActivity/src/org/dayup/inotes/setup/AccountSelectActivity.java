@@ -43,7 +43,7 @@ public class AccountSelectActivity extends BaseActivity {
         application = (INotesApplication) getApplication();
         accountManager = application.getAccountManager();
         preAccountId = accountManager.getAccountId();
-        setContentView(R.layout.account_select_layout);
+        setContentView(R.layout.account_select_layout_toolbar_shadow);
         //initActionBar();
         initToolbar();
         initViews();

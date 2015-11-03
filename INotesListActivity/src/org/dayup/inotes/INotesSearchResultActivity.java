@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import org.dayup.activities.BaseActivity;
 import org.dayup.common.Analytics;
@@ -48,10 +49,12 @@ public class INotesSearchResultActivity extends BaseActivity {
     private SearchLayoutView mSearchLayoutView;
     private NoteListAdapter adapter;
 
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.search_list);
+        setContentView(R.layout.search_list_toolbar_shadow);
         initViews();
         parseIntent();
     }
@@ -75,12 +78,39 @@ public class INotesSearchResultActivity extends BaseActivity {
                 }
             }
         });
-        initActionBar();
+        //initActionBar();
         initToolbar();
     }
 
     private void initToolbar() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //toolbar.setTitle("iNotes");
+        setSupportActionBar(toolbar);//这句得在getSupport之前
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //ToolBar显示返回按钮
 
+        mSearchLayoutView = (SearchLayoutView) findViewById(R.id.g_search_view);
+        mSearchLayoutView.setRecognizClick(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if (AudioUtils.checkRecAvailable(INotesSearchResultActivity.this)) {
+                    startVoiceRecognitionActivity(null, REQUEST_CODE_VOICE_RECOGNITION_SEARCH);
+                } else {
+                    voiceSearchMarketDialog.show();
+                }
+            }
+        });
+        mSearchLayoutView.setTitleOnEditorActionListener(new OnEditorActionListener() {
+
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                doSearch(mSearchLayoutView.getTitleText());
+                ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE))
+                        .hideSoftInputFromWindow(mSearchLayoutView.getTitleEdit().getWindowToken(),
+                                0);
+                return true;
+            }
+        });
     }
 
     private void initActionBar() {

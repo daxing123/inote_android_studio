@@ -1,5 +1,6 @@
 package org.dayup.inotes.setup;
 
+import android.support.v7.app.AlertDialog;
 import org.dayup.common.Analytics;
 import org.dayup.common.Log;
 import org.dayup.inotes.R;
@@ -24,7 +25,8 @@ public class AccountSetupAccountTypeActivity extends AccountSetupBaseActivity im
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.account_setup_account_type);
+        setContentView(R.layout.account_setup_account_type_toolbar_shadow);
+        initToolbar();
         accountManager = iNotesApplication.getAccountManager();
         initView();
     }
@@ -53,7 +55,13 @@ public class AccountSetupAccountTypeActivity extends AccountSetupBaseActivity im
 
     private void onGoogle() {
         //progressDialog = new INotesProgressDialog(this, iNotesApplication.getThemeType());
-        progressDialog = new INotesProgressDialog(this);
+        /*progressDialog = new INotesProgressDialog(this);
+        progressDialog.show();*/
+
+        progressDialog=new ProgressDialog(this);
+        //progressDialog.setTitle(R.string.account_authorizing);
+        //progressDialog.setMessage(getString(R.string.text_login_wait));
+        progressDialog.setMessage(getString(R.string.account_authorizing));
         progressDialog.show();
         accountManager
                 .authorizeAccount(

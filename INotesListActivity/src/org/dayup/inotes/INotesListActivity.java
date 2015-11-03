@@ -127,7 +127,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
 
         init();
         initViews();
-        initSortByLayout();
+        //initSortByLayout();
         initEnvironment();
     }
 
@@ -333,7 +333,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
 
     }*/
 
-    private void initSortByLayout() {
+    /*private void initSortByLayout() {
         sortByLayout = (LinearLayout) findViewById(R.id.sortby_layout);
         sortByLayout.setOnClickListener(null);
 
@@ -406,7 +406,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         mSortCreatClickView.setBackgroundResource(mThemeUtils.getItemSelector());
         mSortModifyClickView.setBackgroundResource(mThemeUtils.getItemSelector());
         mSortAzClickView.setBackgroundResource(mThemeUtils.getItemSelector());
-    }
+    }*/
 
     private void setSortByShowType(int sortByType) {
         switch (sortByType) {
@@ -443,7 +443,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         }
     }
 
-    private void setSortShownBySortByType(int sortByType) {
+    /*private void setSortShownBySortByType(int sortByType) {
         switch (sortByType) {
         case SortByTypes.CREATE_UP:
             mSortCreatIcon.setImageResource(R.drawable.ic_sortby_creat_up);
@@ -470,7 +470,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
             mSortAzClickView.setBackgroundResource(mThemeUtils.getItemSelectorPressed());
             break;
         }
-    }
+    }*/
 
     /*private void showAccountDropdown() {
         requarySpinnerSelectors();
@@ -794,8 +794,8 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
             sp.edit().putInt(PK.OPTION_SORT_BY, sortByType).commit();
             requery();
 
-            mHandler.removeCallbacks(sortByHide);
-            mHandler.postDelayed(sortByHide, HIDE_LAYOUT_DURATION);
+            /*mHandler.removeCallbacks(sortByHide);
+            mHandler.postDelayed(sortByHide, HIDE_LAYOUT_DURATION);*/
 
             return true;
         }
@@ -943,7 +943,6 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
                             }
                         }
                         mode.finish();
-                        dialog.dismiss();
                     }
                 })
                 .setNegativeButton(android.R.string.cancel, null)
@@ -994,7 +993,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
 
     private void showWifiSettingDialog() {
         //final INotesDialog setWIFIDialog = new INotesDialog(this, iNotesApplication.getThemeType());
-        final INotesDialog setWIFIDialog = new INotesDialog(this);
+        /*final INotesDialog setWIFIDialog = new INotesDialog(this);
         setWIFIDialog.setTitle(R.string.wifi_remind_title);
         setWIFIDialog.setMessage(R.string.wifi_remind_message);
         setWIFIDialog.setPositiveButton(R.string.wifi_remind_btn_ok, new OnClickListener() {
@@ -1007,7 +1006,20 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
             }
         });
         setWIFIDialog.setNegativeButton(R.string.wifi_remind_btn_cancle, null);
-        setWIFIDialog.show();
+        setWIFIDialog.show();*/
+
+        new AlertDialog.Builder(this)
+                .setMessage(R.string.wifi_remind_message)
+                .setPositiveButton(R.string.wifi_remind_btn_ok,
+                        new DialogInterface.OnClickListener() {
+                            @Override public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(INotesListActivity.this,
+                                        INotesPreferencesSubSync.class);
+                                startActivity(intent);
+                            }
+                        })
+                .setNegativeButton(R.string.wifi_remind_btn_cancle, null)
+                .show();
     }
 
     @Override
@@ -1076,7 +1088,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         }
     }
 
-    @Override
+    /*@Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
             if (sortByLayout.getVisibility() == View.VISIBLE) {
@@ -1087,9 +1099,9 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
             }
         }
         return super.onKeyDown(keyCode, event);
-    }
+    }*/
 
-    @Override
+    /*@Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if (ev.getAction() == MotionEvent.ACTION_DOWN) {
             if (sortByLayout.getVisibility() == View.VISIBLE) {
@@ -1102,16 +1114,16 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
             }
         }
         return super.dispatchTouchEvent(ev);
-    }
+    }*/
 
-    private void getViewRectRelativeToSelf(View v, Rect r) {
+    /*private void getViewRectRelativeToSelf(View v, Rect r) {
         int[] loc = new int[2];
         v.getLocationOnScreen(loc);
         int left = loc[0];
         int top = loc[1];
 
         r.set(left, top, left + v.getMeasuredWidth(), top + v.getMeasuredHeight());
-    }
+    }*/
 
     @Override
     protected void onStart() {

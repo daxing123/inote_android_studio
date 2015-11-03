@@ -1,5 +1,6 @@
 package org.dayup.inotes.setup;
 
+import android.support.v7.widget.Toolbar;
 import org.dayup.common.Analytics;
 import org.dayup.inotes.R;
 
@@ -19,7 +20,8 @@ public class AccountSetupIncomingActivity extends AccountSetupBaseActivity imple
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.account_setup_incoming);
+        setContentView(R.layout.account_setup_incoming_toolbar_shadow);
+        initToolbar();
         initViews();
         mFragment = (AccountSetupIncomingFragment) getFragmentManager().findFragmentById(
                 R.id.setup_fragment);
@@ -47,7 +49,6 @@ public class AccountSetupIncomingActivity extends AccountSetupBaseActivity imple
 
     private void doNext() {
         mFragment.onNext();
-
     }
 
     private void doPrevious() {
@@ -72,7 +73,7 @@ public class AccountSetupIncomingActivity extends AccountSetupBaseActivity imple
         try {
             Analytics.startFlurry(this);
         } catch (Exception e) {
-            Log.d("AccountSetupIncomingActivity", e.toString());
+            //Log.d("AccountSetupIncomingActivity", e.toString());
         }
     }
 

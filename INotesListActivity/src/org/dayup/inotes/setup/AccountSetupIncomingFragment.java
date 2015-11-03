@@ -156,8 +156,9 @@ public class AccountSetupIncomingFragment extends Fragment {
 
     public void plainAuthorize() {
         progressDialog = new ProgressDialog(mActivity);
-        progressDialog.setTitle(R.string.account_authorizing);
-        progressDialog.setMessage(getString(R.string.text_login_wait));
+        //progressDialog.setTitle(R.string.account_authorizing);
+        //progressDialog.setMessage(getString(R.string.text_login_wait));
+        progressDialog.setMessage(getString(R.string.account_authorizing));
         progressDialog.show();
         Account account = new Account();
         account.email = mUsernameView.getText().toString();
