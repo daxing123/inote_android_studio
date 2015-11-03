@@ -3,32 +3,19 @@
 
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!--ToolBar颜色-->
-        <item name="colorPrimary">@color/yellow_primary</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
         <!--状态栏颜色-->
-        <item name="colorPrimaryDark">@color/yellow_primary_dark</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <!--输入框焦点、checkbox选中等颜色-->
-        <item name="colorAccent">@color/yellow_accent</item>
+        <item name="colorAccent">@color/colorAccent</item>
         <!--Toolbar图标颜色-->
         <item name="android:textColorSecondary">@color/text_black</item>
         <!--窗口背景色-->
         <!--<item name="android:windowBackground">@color/black</item>-->
     </style>
 
-    <style name="YellowTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!--ToolBar颜色-->
-        <item name="colorPrimary">@color/yellow_primary</item>
-        <!--状态栏颜色-->
-        <item name="colorPrimaryDark">@color/yellow_primary_dark</item>
-        <!--输入框焦点、checkbox选中等颜色-->
-        <item name="colorAccent">@color/yellow_accent</item>
-        <!--Toolbar图标颜色-->
-        <!--窗口背景色-->
-        <!--<item name="android:windowBackground">@color/black</item>-->
-    </style>
 
-
-
-    <style name="Theme.INotes" parent="AppBaseTheme" />
+    <style name="Theme.INotes" parent="AppBaseTheme"/>
 
     <style name="Theme.INotes.Light" parent="Theme.INotes.Light.Default">
         <item name="android:actionBarItemBackground">@drawable/item_background_light</item>
@@ -41,27 +28,27 @@
     <style name="Theme.INotes.Dark.NoBackground" parent="Theme.INotes.Dark.Default">
         <item name="android:windowBackground">@null</item>
     </style>
-    
+
     <style name="Theme.INotes.Light.CustomActionBar" parent="Theme.INotes.Light">
         <!--ToolBar颜色-->
-        <item name="colorPrimary">@color/yellow_primary</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
         <!--状态栏颜色-->
-        <item name="colorPrimaryDark">@color/yellow_primary_dark</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <!--输入框焦点、checkbox选中等颜色-->
-        <item name="colorAccent">@color/yellow_accent</item>
-        <!--Toolbar图标颜色-->
+        <item name="colorAccent">@color/colorAccent</item>
 
 
         <!--<item name="actionBarStyle">@style/CustomActionBarLight21</item>-->
         <!--<item name="android:actionBarStyle">@style/CustomActionBarLight21</item>-->
         <item name="android:homeAsUpIndicator">@drawable/actionbar_indicator</item>
         <item name="homeAsUpIndicator">@drawable/actionbar_indicator</item>
-        
+
         <item name="android:actionModeBackground">@drawable/actionmode_background_top_light</item>
-        <item name="android:actionModeSplitBackground">@drawable/actionmode_background_top_light</item>
+        <item name="android:actionModeSplitBackground">@drawable/actionmode_background_top_light
+        </item>
         <!--<item name="android:actionModeCloseButtonStyle">@style/customCloseMode</item>-->
         <item name="android:actionModeCloseDrawable">@drawable/ic_cab_done</item>
-        
+
         <!--<item name="actionOverflowButtonStyle">@style/Widget.Sherlock.ActionButton.Overflow</item>-->
         <item name="actionModeBackground">@drawable/actionmode_background_top_light</item>
         <item name="actionModeSplitBackground">@drawable/actionmode_background_top_light</item>
@@ -70,15 +57,15 @@
         <item name="actionModeCloseDrawable">@drawable/ic_cab_done</item>
     </style>
 
-    <style name="Theme.INotes.Dark.CustomActionBar" parent="Theme.INotes.Dark.Default" >
+    <style name="Theme.INotes.Dark.CustomActionBar" parent="Theme.INotes.Dark.Default">
     </style>
 
     <style name="Theme.INotes.Light.Default" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="theme_actionbar_hint">@drawable/action_bar_hint</item>
         <item name="theme_bottombar_bg">@drawable/bottom_bar_bg</item>
-		<item name="theme_bottombar_top_divider">@android:color/transparent</item>
+        <item name="theme_bottombar_top_divider">@android:color/transparent</item>
         <item name="theme_bottombar_centre_divider">@drawable/action_bar_hint</item>
-        
+
         <!--<item name="popupMenuStyle">@style/customListPopupWindow</item>-->
         <!--<item name="listPopupWindowStyle">@style/customListPopupWindow</item>-->
         <item name="android:panelBackground">@drawable/c_menu_hardkey_panel_holo_light</item>
@@ -86,10 +73,10 @@
         <item name="actionBarItemBackground">@drawable/item_background_light</item>
         <!--<item name="android:listViewStyle">@style/customListView</item>-->
         <!--<item name="dropDownListViewStyle">@style/customListView</item>-->
-        
+
         <item name="android:windowBackground">@drawable/theme_bg_light</item>
         <item name="g_main_bg">@null</item>
-        
+
         <item name="g_edittext">@drawable/edit_text_holo_light</item>
         <item name="g_hintTextColor">@color/hint_foreground_holo_light</item>
         <item name="g_primaryTextColor">@color/primary_text_holo_light</item>
@@ -115,20 +102,20 @@
         <item name="ic_menu_share">@drawable/ic_menu_share_light</item>
         <item name="ic_voice_search">@drawable/ic_voice_search_api_holo_light</item>
         <item name="ic_clear_search">@drawable/ic_clear_search_api_holo_light</item>
-        
+
         <item name="theme_detail_toolbar_bg">@android:color/transparent</item>
         <item name="theme_ic_tool_back">@drawable/detail_tool_back_btn</item>
-		<item name="theme_ic_tool_forward">@drawable/detail_tool_forward_btn</item>
-		<item name="theme_ic_tool_paragraph">@drawable/detail_tool_paragraph</item>
-		<item name="theme_ic_tool_recogniz">@drawable/detail_tool_recogniz</item>
-		<item name="theme_ic_tool_time">@drawable/detail_tool_time</item>
-		<item name="theme_ic_tool_date">@drawable/detail_tool_date</item>
-		<item name="theme_ic_tool_contact">@drawable/detail_tool_contact</item>
-		<item name="theme_ic_tool_attachment_count">@color/detail_toolbar_att_count</item>
-		<item name="theme_ic_tool_keyboardhide">@drawable/detail_toolbar_keyboard_hide</item>
-		
-		<item name="theme_dialog_divider">@color/dialog_divider_light</item>
-		<item name="theme_dialog_msg_color">@color/dialog_msg_color_light</item>
+        <item name="theme_ic_tool_forward">@drawable/detail_tool_forward_btn</item>
+        <item name="theme_ic_tool_paragraph">@drawable/detail_tool_paragraph</item>
+        <item name="theme_ic_tool_recogniz">@drawable/detail_tool_recogniz</item>
+        <item name="theme_ic_tool_time">@drawable/detail_tool_time</item>
+        <item name="theme_ic_tool_date">@drawable/detail_tool_date</item>
+        <item name="theme_ic_tool_contact">@drawable/detail_tool_contact</item>
+        <item name="theme_ic_tool_attachment_count">@color/detail_toolbar_att_count</item>
+        <item name="theme_ic_tool_keyboardhide">@drawable/detail_toolbar_keyboard_hide</item>
+
+        <item name="theme_dialog_divider">@color/dialog_divider_light</item>
+        <item name="theme_dialog_msg_color">@color/dialog_msg_color_light</item>
     </style>
 
     <style name="Theme.INotes.Dark.Default" parent="Theme.AppCompat.Light.NoActionBar">
@@ -166,16 +153,16 @@
 
         <item name="theme_detail_toolbar_bg">@color/background_holo_dark</item>
         <item name="theme_ic_tool_back">@drawable/detail_tool_back_btn_dark</item>
-		<item name="theme_ic_tool_forward">@drawable/detail_tool_forward_btn_dark</item>
-		<item name="theme_ic_tool_paragraph">@drawable/detail_tool_paragraph_dark</item>
-		<item name="theme_ic_tool_recogniz">@drawable/detail_tool_recogniz_dark</item>
-		<item name="theme_ic_tool_time">@drawable/detail_tool_time_dark</item>
-		<item name="theme_ic_tool_date">@drawable/detail_tool_date_dark</item>
-		<item name="theme_ic_tool_contact">@drawable/detail_tool_contact_dark</item>
-		<item name="theme_ic_tool_attachment_count">@color/detail_toolbar_att_count_dark</item>
-		<item name="theme_ic_tool_keyboardhide">@drawable/detail_toolbar_keyboard_hide_dark</item>
+        <item name="theme_ic_tool_forward">@drawable/detail_tool_forward_btn_dark</item>
+        <item name="theme_ic_tool_paragraph">@drawable/detail_tool_paragraph_dark</item>
+        <item name="theme_ic_tool_recogniz">@drawable/detail_tool_recogniz_dark</item>
+        <item name="theme_ic_tool_time">@drawable/detail_tool_time_dark</item>
+        <item name="theme_ic_tool_date">@drawable/detail_tool_date_dark</item>
+        <item name="theme_ic_tool_contact">@drawable/detail_tool_contact_dark</item>
+        <item name="theme_ic_tool_attachment_count">@color/detail_toolbar_att_count_dark</item>
+        <item name="theme_ic_tool_keyboardhide">@drawable/detail_toolbar_keyboard_hide_dark</item>
 
-		<item name="theme_dialog_divider">@drawable/list_divider_holo_dark</item>
-		<item name="theme_dialog_msg_color">@color/title_text_color_dark</item>
+        <item name="theme_dialog_divider">@drawable/list_divider_holo_dark</item>
+        <item name="theme_dialog_msg_color">@color/title_text_color_dark</item>
     </style>
 </resources>

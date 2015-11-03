@@ -1,7 +1,6 @@
 package org.dayup.inotes;
 
 import android.annotation.SuppressLint;
-import android.app.Notification;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,7 +8,6 @@ import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,7 +17,10 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.*;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.SparseBooleanArray;
 import android.view.*;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
@@ -49,8 +50,6 @@ import org.dayup.inotes.sync.manager.SyncManager;
 import org.dayup.inotes.sync.manager.SyncManager.RefreshSyncedListener;
 import org.dayup.inotes.sync.manager.SyncManager.SyncingRefreshUIListener;
 import org.dayup.inotes.utils.ShareUtils;
-import org.dayup.inotes.utils.Utils;
-import org.dayup.inotes.views.INotesDialog;
 import org.dayup.tasks.BackgroundTaskManager.BackgroundTaskStatusListener;
 
 import java.util.ArrayList;
@@ -70,7 +69,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
 
     private SpinnerSelectorAdapter actionBarAdapter;
     private ListView listView;
-    private NoteListAdapter adapter;
+    //private NoteListAdapter adapter;
     private ArrayList<Note> noteslist = new ArrayList<Note>();
     private Folder currentFolder;
     private SpinnerSelectorsHelper mHelper;
@@ -89,6 +88,14 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
     private FloatingActionButton fab;
 
     private MenuItem sort_create, sort_modify, sort_name;
+
+    private RecyclerView recyclerView;
+    //private ArrayList<Note> data;
+    private MyAdapter adapter;
+    private int click = 0;
+    private ActionMode actionMode;
+    private boolean isInActionMode = false;
+
 
     private final int HIDE_LAYOUT_DURATION = 5000;
 
@@ -221,7 +228,8 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
     private void initViews() {
         //initActionBar();
         initToolbar();
-        initListView();
+        //initListView();
+        initRecycleView();
         initOtherView();
     }
 
@@ -234,7 +242,124 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         });
     }
 
-    private void initListView() {
+    private void initRecycleView(){
+        recyclerView = (RecyclerView) findViewById(R.id.recycleview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter = new MyAdapter(this, R.layout.rv_item_linear, noteslist));
+        recyclerView.addItemDecoration(new RvItemDecoration(20));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        adapter.SetOnRvItemClickListener(new RvItemClickListener());
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(itemtouchCallback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+
+    }
+
+
+    class RvItemClickListener implements MyAdapter.OnRvItemClickListener {
+        @Override public void onItemClick(int position) {
+            Note note = adapter.getItem(position);
+            if (note == null) {
+                return;
+            }
+
+            if (!isInActionMode()) {
+                startDetailActivity(note);
+            } else {
+                adapter.toggleSelected(position);
+            }
+
+        }
+
+        @Override public void onItemLongClick(int position) {
+
+            if (!isInActionMode()) {
+                actionMode = startActionMode(mActionMode);
+                adapter.toggleSelected(position);
+            }
+        }
+    }
+
+    private boolean isInActionMode() {
+        return isInActionMode;
+    }
+
+    private ActionMode.Callback mActionMode = new ActionMode.Callback() {
+
+        @Override public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            getMenuInflater().inflate(R.menu.list_select_menu, menu);
+            toolbar.setVisibility(View.GONE);
+            isInActionMode = true;
+
+            return true;
+        }
+
+        @Override public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+
+            return false;
+        }
+
+        @Override public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+            switch (item.getItemId()) {
+            case R.id.delete:
+                SparseBooleanArray selectedIds = adapter.getSelectedItemIds();
+                for (int i = (selectedIds.size() - 1); i >= 0; i--) {
+                    if (selectedIds.valueAt(i)) {
+                        adapter.removeData(selectedIds.keyAt(i));
+                    }
+                }
+                isInActionMode = false;
+                actionMode.finish();
+
+                return true;
+
+            case R.id.share:
+
+
+                return true;
+            default:
+                return false;
+            }
+        }
+
+        @Override public void onDestroyActionMode(ActionMode mode) {
+            toolbar.setVisibility(View.VISIBLE);
+            adapter.removeSelection();
+            isInActionMode = false;
+
+        }
+    };
+
+    private ItemTouchHelper.Callback itemtouchCallback = new ItemTouchHelper.SimpleCallback(
+            0, ItemTouchHelper.LEFT) {
+        @Override public boolean onMove(RecyclerView recyclerView,
+                RecyclerView.ViewHolder viewHolder,
+                RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+            int position = viewHolder.getAdapterPosition();
+            adapter.removeData(position);
+        }
+    };
+
+    private void changeLayout() {
+        if (click == 0) {
+            recyclerView.setLayoutManager(
+                    new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+            recyclerView.setAdapter(adapter = new MyAdapter(this, R.layout.rv_item_grid, noteslist));
+            click = 1;
+        } else {
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            recyclerView.setAdapter(adapter = new MyAdapter(this, R.layout.rv_item_linear, noteslist));
+            click = 0;
+        }
+        adapter.SetOnRvItemClickListener(new RvItemClickListener());
+    }
+
+
+
+    /*private void initListView() {
         TextView emptyView = (TextView) findViewById(R.id.list_empty_view);
         listView = (ListView) findViewById(android.R.id.list);
         listView.setEmptyView(emptyView);
@@ -278,7 +403,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
             }
         });
     }
-
+*/
     private void initToolbar() {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -583,6 +708,11 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         case R.id.menu_sync:
             startSync(SyncMode.MANUAL);
             return true;
+
+        case R.id.menu_toggle_view:
+            changeLayout();
+
+            return true;
         case R.id.sort_by:
             //showSortByLayout();
             startActionMode(new SortbyModeCallback());
@@ -663,28 +793,30 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
     /*******************
      * Action Mode
      ********************/
-    private ActionMode mSelectionMode;
+    //private ActionMode mSelectionMode;
     private ActionMode mSortByMode;
 
     /**
      * @return true if the list is in the "selection" mode.
      */
+/*
     public boolean isInSelectionMode() {
         return mSelectionMode != null;
     }
+*/
 
     /**
      * Show/hide the "selection" action mode, according to the number of
      * selected messages and the visibility of the fragment. Also update the
      * content (title and menus) if necessary.
      */
-    public void updateSelectionMode() {
+    /*public void updateSelectionMode() {
         if (isInSelectionMode()) {
             updateSelectionModeView();
         } else {
             startActionMode(new SelectionModeCallback());
         }
-    }
+    }*/
 
     /**
      * Finish the "selection" action mode.
@@ -692,23 +824,25 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
      * Note this method finishes the contextual mode, but does *not* clear the
      * selection. If you want to do so use {@link #onDeselectAll()} instead.
      */
-    public void finishSelectionMode() {
+    /*public void finishSelectionMode() {
         if (isInSelectionMode()) {
             mSelectionMode.finish();
         }
-    }
+    }*/
 
     /**
      * Update the "selection" action mode bar
      */
+/*
     private void updateSelectionModeView() {
         mSelectionMode.invalidate();
     }
+*/
 
     /**
      * @return the number of messages that are currently selected.
      */
-    private int getSelectedCount() {
+    /*private int getSelectedCount() {
         return adapter.getSelectItems().size();
     }
 
@@ -716,7 +850,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
     protected void onDestroy() {
         finishSelectionMode();
         super.onDestroy();
-    }
+    }*/
 
     @Override
     public void onPause() {
@@ -805,7 +939,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         }
     }
 
-    private class SelectionModeCallback implements ActionMode.Callback {
+    /*private class SelectionModeCallback implements ActionMode.Callback {
 
         @Override
         public boolean onCreateActionMode(ActionMode mode, Menu menu) {
@@ -862,14 +996,14 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
             toolbar.setVisibility(View.VISIBLE);
         }
 
-    }
+    }*/
 
-    private void onDeselectAll() {
+    /*private void onDeselectAll() {
         adapter.clearSelection();
         if (isInSelectionMode()) {
             finishSelectionMode();
         }
-    }
+    }*/
 
     public void BatchShareNote(ActionMode mode, TreeMap<Integer, Note> selectItems) {
         StringBuffer sb = new StringBuffer();

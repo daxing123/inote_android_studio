@@ -13,6 +13,11 @@
         app:showAsAction="withText"
         android:title="@string/menu_insert"/>-->
     <item
+        android:id="@+id/menu_toggle_view"
+        android:icon="@drawable/ic_menu_sort"
+        app:showAsAction="ifRoom"
+        android:title="@string/toggle_view"/>
+    <item
         android:id="@+id/sort_by"
         android:icon="@drawable/ic_menu_sort"
         app:showAsAction="withText"

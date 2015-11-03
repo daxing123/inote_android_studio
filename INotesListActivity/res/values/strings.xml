@@ -99,6 +99,7 @@
         <item>Dark</item>
     </string-array>
 
+    <string name="toggle_view">Toggle View</string>
     <string name="sort_by">Sort by</string>
     <string name="sort_create_time">Create</string>
     <string name="sort_modify_time">Modify</string>
