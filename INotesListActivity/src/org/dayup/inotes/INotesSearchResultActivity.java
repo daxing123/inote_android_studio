@@ -89,7 +89,7 @@ public class INotesSearchResultActivity extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //ToolBar显示返回按钮
 
         mSearchLayoutView = (SearchLayoutView) findViewById(R.id.g_search_view);
-        mSearchLayoutView.setRecognizClick(new OnClickListener() {
+        /*mSearchLayoutView.setRecognizClick(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -99,52 +99,20 @@ public class INotesSearchResultActivity extends BaseActivity {
                     voiceSearchMarketDialog.show();
                 }
             }
-        });
+        });*/
         mSearchLayoutView.setTitleOnEditorActionListener(new OnEditorActionListener() {
 
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                Toast.makeText(INotesSearchResultActivity.this, "fdfdf", Toast.LENGTH_LONG).show();
                 doSearch(mSearchLayoutView.getTitleText());
                 ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE))
-                        .hideSoftInputFromWindow(mSearchLayoutView.getTitleEdit().getWindowToken(),
-                                0);
+                        .hideSoftInputFromWindow(mSearchLayoutView.getTitleEdit().getWindowToken(), 0);
                 return true;
             }
         });
     }
 
-    private void initActionBar() {
-        ActionBar bar = getSupportActionBar();
-        bar.setHomeButtonEnabled(true);
-        bar.setDisplayHomeAsUpEnabled(true);
-        bar.setDisplayShowCustomEnabled(true);
-        bar.setCustomView(R.layout.search_layout);
-
-        mSearchLayoutView = (SearchLayoutView) bar.getCustomView();
-        mSearchLayoutView.setRecognizClick(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (AudioUtils.checkRecAvailable(INotesSearchResultActivity.this)) {
-                    startVoiceRecognitionActivity(null, REQUEST_CODE_VOICE_RECOGNITION_SEARCH);
-                } else {
-                    voiceSearchMarketDialog.show();
-                }
-            }
-        });
-        mSearchLayoutView.setTitleOnEditorActionListener(new OnEditorActionListener() {
-
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                doSearch(mSearchLayoutView.getTitleText());
-                ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE))
-                        .hideSoftInputFromWindow(mSearchLayoutView.getTitleEdit().getWindowToken(),
-                                0);
-                return true;
-            }
-        });
-
-    }
 
     private void parseIntent() {
         String queryAction = getIntent().getAction();
@@ -164,7 +132,6 @@ public class INotesSearchResultActivity extends BaseActivity {
             }
             finish();
         }
-
     }
 
     private void doSearch(String titleText) {
@@ -200,7 +167,6 @@ public class INotesSearchResultActivity extends BaseActivity {
         default:
             return super.onOptionsItemSelected(item);
         }
-
     }
 
     @Override

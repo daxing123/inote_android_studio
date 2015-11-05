@@ -42,6 +42,7 @@ public class SearchLayoutView extends LinearLayout {
         });
         searchClear = (ImageView) findViewById(R.id.edit_clear_btn);
         searchClear.setVisibility(View.GONE);
+
         searchRecogniz = (ImageView) findViewById(R.id.search_recogniz);
         searchPlate = findViewById(R.id.search_plate);
         searchArea = findViewById(R.id.recogniz_area);

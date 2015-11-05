@@ -14,10 +14,12 @@ import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.*;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.SparseBooleanArray;
@@ -134,7 +136,10 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
     private void init() {
         accountManager = iNotesApplication.getAccountManager();
         mHelper = new SpinnerSelectorsHelper(iNotesApplication);
+
         resetCurrentFolder();
+        //        Toast.makeText(INotesListActivity.this, currentFolder.displayName, Toast.LENGTH_SHORT).show();
+        //        Toast.makeText(INotesListActivity.this, String.valueOf(currentFolder.id), Toast.LENGTH_SHORT).show();
     }
 
     private void initEnvironment() {
@@ -400,6 +405,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
 
         actionBarAdapter = new SpinnerSelectorAdapter(this);
         spinner.setAdapter(actionBarAdapter);
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override public void onItemSelected(AdapterView<?> parent, View view, int position,
                     long id) {
@@ -418,7 +424,6 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         });
 
         requarySpinnerSelectors();
-
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -595,11 +600,55 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
 
     private MenuItem syncItem;
 
+    class onQueryTextListener implements SearchView.OnQueryTextListener {
+
+        @Override
+        public boolean onQueryTextSubmit(String query) {
+
+            return false;
+        }
+
+        @Override
+        public boolean onQueryTextChange(String newText) {
+            /*if (et_sv.getText().toString().equals("")) {
+                note_array.clear();
+                note_adapter.reflesh(note_array);
+            } else {
+                search(et_sv.getText().toString());
+            }*/
+
+            return true;
+        }
+
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.inotes_list_activity, menu);
         syncItem = menu.findItem(R.id.menu_sync);
-        return true;
+        MenuItem searchItem = menu.findItem(R.id.menu_search);//在菜单中找到对应控件的item
+        SearchView sv = (SearchView) MenuItemCompat.getActionView(searchItem);
+        sv.setOnQueryTextListener(new onQueryTextListener());
+
+        //监听该item的展开、合拢动作
+        MenuItemCompat
+                .setOnActionExpandListener(searchItem, new MenuItemCompat.OnActionExpandListener() {
+                    @Override
+                    public boolean onMenuItemActionExpand(MenuItem item) {
+                        fab.setVisibility(View.GONE);//隐藏按钮且不占位置
+                        return true;
+                    }
+
+                    @Override
+                    public boolean onMenuItemActionCollapse(MenuItem item) {
+
+                        fab.setVisibility(View.VISIBLE);//恢复按钮显示
+
+                        return true;
+                    }
+                });
+
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -628,7 +677,9 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
 
             return true;
         case R.id.menu_search:
-            onSearchRequested();
+            //onSearchRequested();
+            startINotesSearchResultActivity();
+
             return true;
         case R.id.menu_settings:
             startINotesPreferences();
@@ -637,6 +688,11 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         default:
             return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void startINotesSearchResultActivity() {
+        Intent intent = new Intent(this, INotesSearchResultActivity.class);
+        startActivity(intent);
     }
 
     private void startINotesPreferences() {
@@ -791,64 +847,64 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         }
     }
 
-    /*private class SelectionModeCallback implements ActionMode.Callback {
+/*private class SelectionModeCallback implements ActionMode.Callback {
 
-        @Override
-        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-            mSelectionMode = mode;
-            adapter.setSelectMode(true);
-            adapter.notifyDataSetChanged();
-            listView.setChoiceMode(ListView.CHOICE_MODE_NONE);
+    @Override
+    public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+        mSelectionMode = mode;
+        adapter.setSelectMode(true);
+        adapter.notifyDataSetChanged();
+        listView.setChoiceMode(ListView.CHOICE_MODE_NONE);
 
-            toolbar.setVisibility(View.GONE);
+        toolbar.setVisibility(View.GONE);
 
-            MenuInflater inflater = getMenuInflater();
-            inflater.inflate(R.menu.list_select_menu, menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.list_select_menu, menu);
 
-            return true;
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+        //listView.setSelector(new ColorDrawable(Color.TRANSPARENT));
+        listView.setSelector(new ColorDrawable(Color.TRANSPARENT));
+        int num = getSelectedCount();
+        mode.setTitle(String.format(getString(R.string.action_mode_select), num));
+        return true;
+    }
+
+    @Override
+    public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+        TreeMap<Integer, Note> selectItems = adapter.getSelectItems();
+        switch (item.getItemId()) {
+        case R.id.delete:
+            batchDeleteNote(mode, selectItems);
+            break;
+        case R.id.share:
+            BatchShareNote(mode, selectItems);
+            mode.finish();
+        default:
+            break;
         }
 
-        @Override
-        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-            //listView.setSelector(new ColorDrawable(Color.TRANSPARENT));
-            listView.setSelector(new ColorDrawable(Color.TRANSPARENT));
-            int num = getSelectedCount();
-            mode.setTitle(String.format(getString(R.string.action_mode_select), num));
-            return true;
-        }
+        return true;
+    }
 
-        @Override
-        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-            TreeMap<Integer, Note> selectItems = adapter.getSelectItems();
-            switch (item.getItemId()) {
-            case R.id.delete:
-                batchDeleteNote(mode, selectItems);
-                break;
-            case R.id.share:
-                BatchShareNote(mode, selectItems);
-                mode.finish();
-            default:
-                break;
-            }
+    @Override
+    public void onDestroyActionMode(ActionMode mode) {
+        TypedArray array = getTheme().obtainStyledAttributes(new int[] {
+                R.attr.actionBarItemBackground
+        });
+        listView.setSelector(array.getDrawable(0));
+        array.recycle();
+        mSelectionMode = null;
+        onDeselectAll();
+        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        requery();
+        toolbar.setVisibility(View.VISIBLE);
+    }
 
-            return true;
-        }
-
-        @Override
-        public void onDestroyActionMode(ActionMode mode) {
-            TypedArray array = getTheme().obtainStyledAttributes(new int[] {
-                    R.attr.actionBarItemBackground
-            });
-            listView.setSelector(array.getDrawable(0));
-            array.recycle();
-            mSelectionMode = null;
-            onDeselectAll();
-            listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-            requery();
-            toolbar.setVisibility(View.VISIBLE);
-        }
-
-    }*/
+}*/
 
     /*private void onDeselectAll() {
         adapter.clearSelection();

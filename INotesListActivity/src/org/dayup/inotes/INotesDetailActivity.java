@@ -410,7 +410,6 @@ public class INotesDetailActivity extends BaseActivity implements INoteViewerCon
                 //final INotesDialog dialog = new INotesDialog(this);
                 .setTitle(R.string.dialog_title_confirm_delete)
                 .setMessage(R.string.delete_confirm)
-                .setView(view)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 
                     @Override public void onClick(DialogInterface dialog, int which) {
@@ -451,7 +450,7 @@ public class INotesDetailActivity extends BaseActivity implements INoteViewerCon
         }
 
         private Dialog createDialog() {
-            
+
             final AlertDialog dialog2 = new AlertDialog.Builder(INotesDetailActivity.this)
                     .setTitle(R.string.dialog_title_move_to_folder)
                     .setSingleChoiceItems(folderName, selected,

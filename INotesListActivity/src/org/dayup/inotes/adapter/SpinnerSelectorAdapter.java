@@ -2,6 +2,7 @@ package org.dayup.inotes.adapter;
 
 import java.util.ArrayList;
 
+import android.app.LauncherActivity;
 import org.dayup.inotes.INotesApplication;
 import org.dayup.inotes.R;
 import org.dayup.inotes.utils.ThemeUtils;
@@ -16,7 +17,7 @@ import android.widget.TextView;
 
 /**
  * @author Nicky
- * 
+ *
  */
 public class SpinnerSelectorAdapter extends BaseAdapter {
 
@@ -104,6 +105,7 @@ public class SpinnerSelectorAdapter extends BaseAdapter {
         return createViewFromResource(position, convertView, parent);
     }
 
+
     private View createViewFromResource(int position, View convertView, ViewGroup parent) {
         if (position < 0 || position >= mData.size()) {
             return null;
@@ -124,6 +126,7 @@ public class SpinnerSelectorAdapter extends BaseAdapter {
             listName.setTextColor(itemTextColor);
             listName.setText(item.displayName);
         }
+
         return convertView;
     }
 
