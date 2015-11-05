@@ -63,13 +63,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         RefreshSyncedListener {
 
     private final String TAG = INotesListActivity.class.getSimpleName();
-
-    //    private ActionBar actionBar;
-    private android.support.v7.widget.Toolbar toolbar;
-
     private SpinnerSelectorAdapter actionBarAdapter;
-    private ListView listView;
-    //private NoteListAdapter adapter;
     private ArrayList<Note> noteslist = new ArrayList<Note>();
     private Folder currentFolder;
     private SpinnerSelectorsHelper mHelper;
@@ -86,16 +80,16 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
     private DrawerLayout dl;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private FloatingActionButton fab;
+    private android.support.v7.widget.Toolbar toolbar;
+    private Spinner spinner;
 
     private MenuItem sort_create, sort_modify, sort_name;
 
     private RecyclerView recyclerView;
-    //private ArrayList<Note> data;
     private MyAdapter adapter;
     private int click = 0;
     private ActionMode actionMode;
     private boolean isInActionMode = false;
-
 
     private final int HIDE_LAYOUT_DURATION = 5000;
 
@@ -134,7 +128,6 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
 
         init();
         initViews();
-        //initSortByLayout();
         initEnvironment();
     }
 
@@ -226,9 +219,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
     };
 
     private void initViews() {
-        //initActionBar();
         initToolbar();
-        //initListView();
         initRecycleView();
         initOtherView();
     }
@@ -242,7 +233,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         });
     }
 
-    private void initRecycleView(){
+    private void initRecycleView() {
         recyclerView = (RecyclerView) findViewById(R.id.recycleview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter = new MyAdapter(this, R.layout.rv_item_linear, noteslist));
@@ -253,7 +244,6 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         itemTouchHelper.attachToRecyclerView(recyclerView);*/
 
     }
-
 
     class RvItemClickListener implements MyAdapter.OnRvItemClickListener {
         @Override public void onItemClick(int position) {
@@ -314,7 +304,6 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
 
             case R.id.share:
 
-
                 return true;
             default:
                 return false;
@@ -347,17 +336,17 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         if (click == 0) {
             recyclerView.setLayoutManager(
                     new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-            recyclerView.setAdapter(adapter = new MyAdapter(this, R.layout.rv_item_grid, noteslist));
+            recyclerView
+                    .setAdapter(adapter = new MyAdapter(this, R.layout.rv_item_grid, noteslist));
             click = 1;
         } else {
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            recyclerView.setAdapter(adapter = new MyAdapter(this, R.layout.rv_item_linear, noteslist));
+            recyclerView
+                    .setAdapter(adapter = new MyAdapter(this, R.layout.rv_item_linear, noteslist));
             click = 0;
         }
         adapter.SetOnRvItemClickListener(new RvItemClickListener());
     }
-
-
 
     /*private void initListView() {
         TextView emptyView = (TextView) findViewById(R.id.list_empty_view);
@@ -406,11 +395,16 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
 */
     private void initToolbar() {
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("iNotes");
-        setSupportActionBar(toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar_with_spinner);
+        spinner = (Spinner) findViewById(R.id.spinner);
+        actionBarAdapter = new SpinnerSelectorAdapter(this);
 
-        dl = (DrawerLayout) findViewById(R.id.drawer_layout);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+
+
+        /*dl = (DrawerLayout) findViewById(R.id.drawer_layout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,
                 dl, toolbar, R.string.app_name, R.string.app_name) {
             //监听抽屉关闭事件
@@ -430,109 +424,33 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
                 actionBarDrawerToggle.syncState();
             }
         });
-        dl.setDrawerListener(actionBarDrawerToggle);
+        dl.setDrawerListener(actionBarDrawerToggle);*/
     }
+    /*
+      private void initActionBar() {
+            actionBar = getSupportActionBar();
+            actionBar.setTitle(R.string.app_name);
+            actionBar.setDisplayShowCustomEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(false);
+            actionBar.setCustomView(R.layout.action_bar_spinner);
+            mActionBarCustomView = (ViewGroup) actionBar.getCustomView();
+            mAccountSpinner = mActionBarCustomView.findViewById(R.id.folder_account_spinner);
+            mAccountSpinnerLine1View = (TextView) mActionBarCustomView
+                    .findViewById(R.id.spinner_line_1);
 
-    /*private void initActionBar() {
-        actionBar = getSupportActionBar();
-        actionBar.setTitle(R.string.app_name);
-        actionBar.setDisplayShowCustomEnabled(true);
-        actionBar.setDisplayShowTitleEnabled(false);
-        actionBar.setCustomView(R.layout.action_bar_spinner);
-        mActionBarCustomView = (ViewGroup) actionBar.getCustomView();
-        mAccountSpinner = mActionBarCustomView.findViewById(R.id.folder_account_spinner);
-        mAccountSpinnerLine1View = (TextView) mActionBarCustomView
-                .findViewById(R.id.spinner_line_1);
-
-        actionBarAdapter = new SpinnerSelectorAdapter(this);
-        mAccountDropdown = new AccountDropdownPopup(this);
-        mAccountDropdown.setHorizontalOffset((int) getResources().getDimension(
-                R.dimen.select_list_spinner_offset_v));
-        mAccountDropdown.setAdapter(actionBarAdapter);
-        mAccountSpinner.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showAccountDropdown();
-            }
-        });
-
-    }*/
-
-    /*private void initSortByLayout() {
-        sortByLayout = (LinearLayout) findViewById(R.id.sortby_layout);
-        sortByLayout.setOnClickListener(null);
-
-        mSortCreatClickView = findViewById(R.id.sortby_creat_layout);
-        mSortModifyClickView = findViewById(R.id.sortby_modify_layout);
-        mSortAzClickView = findViewById(R.id.sortby_az_layout);
-
-        mSortCreatIcon = (ImageView) findViewById(R.id.sortby_creat);
-        mSortModifyIcon = (ImageView) findViewById(R.id.sortby_modify);
-        mSortAzIcon = (ImageView) findViewById(R.id.sortby_az);
-
-        mSortCreatClickView.setOnClickListener(new SortBtnOnClickListener());
-        mSortModifyClickView.setOnClickListener(new SortBtnOnClickListener());
-        mSortAzClickView.setOnClickListener(new SortBtnOnClickListener());
-
-        sortByType = sp.getInt(PK.OPTION_SORT_BY, SortByTypes.MODIFY_DOWN);
-        setSortShownBySortByType(sortByType);
-    }
-
-    class SortBtnOnClickListener implements OnClickListener {
-
-        @Override
-        public void onClick(View v) {
-            clearSortRightIcon();
-            if (v == mSortCreatClickView) {
-                if (sortByType == SortByTypes.CREATE_DOWN) {
-                    sortByType = SortByTypes.CREATE_UP;
-                } else {
-                    sortByType = SortByTypes.CREATE_DOWN;
+            mAccountDropdown = new AccountDropdownPopup(this);
+            mAccountDropdown.setHorizontalOffset((int) getResources().getDimension(
+                    R.dimen.select_list_spinner_offset_v));
+            mAccountDropdown.setAdapter(actionBarAdapter);
+            mAccountSpinner.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showAccountDropdown();
                 }
-            } else if (v == mSortModifyClickView) {
-                if (sortByType == SortByTypes.MODIFY_DOWN) {
-                    sortByType = SortByTypes.MODIFY_UP;
-                } else {
-                    sortByType = SortByTypes.MODIFY_DOWN;
-                }
-            } else if (v == mSortAzClickView) {
-                if (sortByType == SortByTypes.A_Z_DOWN) {
-                    sortByType = SortByTypes.A_Z_UP;
-                } else {
-                    sortByType = SortByTypes.A_Z_DOWN;
-                }
-            }
-            setSortShownBySortByType(sortByType);
-            sp.edit().putInt(PK.OPTION_SORT_BY, sortByType).commit();
-            requery();
-            mHandler.removeCallbacks(sortByHide);
-            mHandler.postDelayed(sortByHide, HIDE_LAYOUT_DURATION);
+            });
+
         }
-
-    }
-
-    private void showSortByLayout() {
-        sortByLayout.startAnimation(alpha_in);
-        sortByLayout.setVisibility(View.VISIBLE);
-        mHandler.postDelayed(sortByHide, HIDE_LAYOUT_DURATION);
-    }
-
-    private Runnable sortByHide = new Runnable() {
-
-        @Override
-        public void run() {
-            sortByLayout.startAnimation(alpha_out);
-            sortByLayout.setVisibility(View.GONE);
-        }
-
-    };
-
-    private void clearSortRightIcon() {
-        mSortCreatClickView.setBackgroundResource(mThemeUtils.getItemSelector());
-        mSortModifyClickView.setBackgroundResource(mThemeUtils.getItemSelector());
-        mSortAzClickView.setBackgroundResource(mThemeUtils.getItemSelector());
-    }*/
-
+    */
     private void setSortByShowType(int sortByType) {
         switch (sortByType) {
         case SortByTypes.CREATE_UP:
@@ -568,41 +486,12 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         }
     }
 
-    /*private void setSortShownBySortByType(int sortByType) {
-        switch (sortByType) {
-        case SortByTypes.CREATE_UP:
-            mSortCreatIcon.setImageResource(R.drawable.ic_sortby_creat_up);
-            mSortCreatClickView.setBackgroundResource(mThemeUtils.getItemSelectorPressed());
-            break;
-        case SortByTypes.CREATE_DOWN:
-            mSortCreatIcon.setImageResource(R.drawable.ic_sortby_creat_down);
-            mSortCreatClickView.setBackgroundResource(mThemeUtils.getItemSelectorPressed());
-            break;
-        case SortByTypes.MODIFY_UP:
-            mSortModifyIcon.setImageResource(R.drawable.ic_sortby_modify_up);
-            mSortModifyClickView.setBackgroundResource(mThemeUtils.getItemSelectorPressed());
-            break;
-        case SortByTypes.MODIFY_DOWN:
-            mSortModifyIcon.setImageResource(R.drawable.ic_sortby_modify_down);
-            mSortModifyClickView.setBackgroundResource(mThemeUtils.getItemSelectorPressed());
-            break;
-        case SortByTypes.A_Z_UP:
-            mSortAzIcon.setImageResource(R.drawable.ic_sortby_name_up);
-            mSortAzClickView.setBackgroundResource(mThemeUtils.getItemSelectorPressed());
-            break;
-        case SortByTypes.A_Z_DOWN:
-            mSortAzIcon.setImageResource(R.drawable.ic_sortby_name_down);
-            mSortAzClickView.setBackgroundResource(mThemeUtils.getItemSelectorPressed());
-            break;
-        }
-    }*/
-
-    /*private void showAccountDropdown() {
+    private void showAccountDropdown() {
         requarySpinnerSelectors();
         if (actionBarAdapter != null && actionBarAdapter.getCount() > 0) {
-            mAccountDropdown.show();
+            //mAccountDropdown.show();
         }
-    }*/
+    }
 
     private void requarySpinnerSelectors() {
         actionBarAdapter.setData(mHelper.getSelectors());
@@ -793,64 +682,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
     /*******************
      * Action Mode
      ********************/
-    //private ActionMode mSelectionMode;
     private ActionMode mSortByMode;
-
-    /**
-     * @return true if the list is in the "selection" mode.
-     */
-/*
-    public boolean isInSelectionMode() {
-        return mSelectionMode != null;
-    }
-*/
-
-    /**
-     * Show/hide the "selection" action mode, according to the number of
-     * selected messages and the visibility of the fragment. Also update the
-     * content (title and menus) if necessary.
-     */
-    /*public void updateSelectionMode() {
-        if (isInSelectionMode()) {
-            updateSelectionModeView();
-        } else {
-            startActionMode(new SelectionModeCallback());
-        }
-    }*/
-
-    /**
-     * Finish the "selection" action mode.
-     * <p/>
-     * Note this method finishes the contextual mode, but does *not* clear the
-     * selection. If you want to do so use {@link #onDeselectAll()} instead.
-     */
-    /*public void finishSelectionMode() {
-        if (isInSelectionMode()) {
-            mSelectionMode.finish();
-        }
-    }*/
-
-    /**
-     * Update the "selection" action mode bar
-     */
-/*
-    private void updateSelectionModeView() {
-        mSelectionMode.invalidate();
-    }
-*/
-
-    /**
-     * @return the number of messages that are currently selected.
-     */
-    /*private int getSelectedCount() {
-        return adapter.getSelectItems().size();
-    }
-
-    @Override
-    protected void onDestroy() {
-        finishSelectionMode();
-        super.onDestroy();
-    }*/
 
     @Override
     public void onPause() {
@@ -1126,21 +958,6 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
     }
 
     private void showWifiSettingDialog() {
-        //final INotesDialog setWIFIDialog = new INotesDialog(this, iNotesApplication.getThemeType());
-        /*final INotesDialog setWIFIDialog = new INotesDialog(this);
-        setWIFIDialog.setTitle(R.string.wifi_remind_title);
-        setWIFIDialog.setMessage(R.string.wifi_remind_message);
-        setWIFIDialog.setPositiveButton(R.string.wifi_remind_btn_ok, new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(INotesListActivity.this,
-                        INotesPreferencesSubSync.class);
-                startActivity(intent);
-                setWIFIDialog.dismiss();
-            }
-        });
-        setWIFIDialog.setNegativeButton(R.string.wifi_remind_btn_cancle, null);
-        setWIFIDialog.show();*/
 
         new AlertDialog.Builder(this)
                 .setMessage(R.string.wifi_remind_message)

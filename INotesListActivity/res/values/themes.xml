@@ -9,7 +9,7 @@
         <!--输入框焦点、checkbox选中等颜色-->
         <item name="colorAccent">@color/colorAccent</item>
         <!--Toolbar图标颜色-->
-        <item name="android:textColorSecondary">@color/text_black</item>
+        <item name="android:textColorSecondary">@color/white</item>
         <!--窗口背景色-->
         <!--<item name="android:windowBackground">@color/black</item>-->
     </style>
@@ -76,7 +76,6 @@
 
         <item name="android:windowBackground">@drawable/theme_bg_light</item>
         <item name="g_main_bg">@null</item>
-
         <item name="g_edittext">@drawable/edit_text_holo_light</item>
         <item name="g_hintTextColor">@color/hint_foreground_holo_light</item>
         <item name="g_primaryTextColor">@color/primary_text_holo_light</item>
@@ -140,7 +139,7 @@
         <item name="radio_btn_holo">@style/Widget.Holo.Dark.RadioButton</item>
         <item name="list_section_divider">@drawable/list_section_divider_holo_dark</item>
         <!--<item name="dialog_title_style">@style/dialog_title_dark</item>-->
-        <!--<item name="titleTextColor">@color/title_text_color_dark</item>-->
+        <item name="titleTextColor">@color/title_text_color_dark</item>
         <item name="li_divider_account_col">@style/li_divider_account_col_bl</item>
         <item name="account_remove_icon">@drawable/account_delete_dark</item>
         <!--<item name="spinner">@style/SpinnerDark</item>-->
