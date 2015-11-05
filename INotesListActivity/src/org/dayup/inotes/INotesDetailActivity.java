@@ -11,6 +11,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.*;
+import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -193,7 +194,7 @@ public class INotesDetailActivity extends BaseActivity implements INoteViewerCon
 
     private void initToolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //toolbar.setTitle("iNotes");
+        toolbar.setTitle(getCurrentFolderName());
         setSupportActionBar(toolbar);//这句得在getSupport之前
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //ToolBar显示返回按钮
         /*getSupportActionBar()
@@ -450,34 +451,34 @@ public class INotesDetailActivity extends BaseActivity implements INoteViewerCon
         }
 
         private Dialog createDialog() {
-            //INotesDialog dialog = new INotesDialog(INotesDetailActivity.this, iNotesApplication.getThemeType());
-            INotesDialog dialog1 = new INotesDialog(INotesDetailActivity.this);
-            dialog1.setTitle(R.string.dialog_title_move_to_folder);
-            dialog1.setSingleChoiceItems(folderName, selected,
-                    new INotesDialogListItemOnClickListener() {
-
-                        @Override
-                        public void onClick(Dialog dialog, int position) {
-                            if (folderId == folderIds[position]) {
-                                return;
-                            }
-                            Folder to = Folder.getFolderWithDisplaynameById(folderIds[position],
-                                    iNotesApplication.getCurrentAccountId(), dbHelper);
-                            if (to == null) {
-                                Toast.makeText(INotesDetailActivity.this,
-                                        "Fail: Can not be moved to a non-existing folder!",
-                                        Toast.LENGTH_LONG).show();
-                                return;
-                            }
-                            moveToList(to);
-                            needSave = true;
-                            hasMoveTo = true;
-                            dialog.dismiss();
-                        }
-
-                    });
-            return dialog1;
-
+            
+            final AlertDialog dialog2 = new AlertDialog.Builder(INotesDetailActivity.this)
+                    .setTitle(R.string.dialog_title_move_to_folder)
+                    .setSingleChoiceItems(folderName, selected,
+                            new DialogInterface.OnClickListener() {
+                                @Override public void onClick(DialogInterface dialog, int which) {
+                                    if (folderId == folderIds[which]) {
+                                        return;
+                                    }
+                                    Folder to = Folder
+                                            .getFolderWithDisplaynameById(folderIds[which],
+                                                    iNotesApplication.getCurrentAccountId(),
+                                                    dbHelper);
+                                    if (to == null) {
+                                        Toast.makeText(INotesDetailActivity.this,
+                                                "Fail: Can not be moved to a non-existing folder!",
+                                                Toast.LENGTH_LONG).show();
+                                        return;
+                                    }
+                                    moveToList(to);
+                                    needSave = true;
+                                    hasMoveTo = true;
+                                    dialog.dismiss();
+                                }
+                            })
+                    .create();
+            dialog2.show();
+            return dialog2;
         }
 
         private void moveToList(Folder to) {

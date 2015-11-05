@@ -142,7 +142,9 @@
         <item name="titleTextColor">@color/title_text_color_dark</item>
         <item name="li_divider_account_col">@style/li_divider_account_col_bl</item>
         <item name="account_remove_icon">@drawable/account_delete_dark</item>
-        <!--<item name="spinner">@style/SpinnerDark</item>-->
+<!--
+        <item name="spinner">@style/SpinnerDark</item>
+-->
         <item name="refresh">@drawable/refresh_dark</item>
         <item name="title_btn_add">@drawable/title_btn_add_dark</item>
         <item name="ic_menu_trash">@drawable/ic_menu_trash_dark</item>

@@ -397,7 +397,28 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
 
         toolbar = (Toolbar) findViewById(R.id.toolbar_with_spinner);
         spinner = (Spinner) findViewById(R.id.spinner);
+
         actionBarAdapter = new SpinnerSelectorAdapter(this);
+        spinner.setAdapter(actionBarAdapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override public void onItemSelected(AdapterView<?> parent, View view, int position,
+                    long id) {
+                if (actionBarAdapter.isFolder(position)) {
+                    long folderId = actionBarAdapter.getItemId(position);
+                    switchToFolder(folderId);
+                } else if (actionBarAdapter.isAccount(position)) {
+                    long accountId = actionBarAdapter.getItemId(position);
+                    switchToAccount(accountId);
+                }
+            }
+
+            @Override public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        requarySpinnerSelectors();
+
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -426,31 +447,30 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         });
         dl.setDrawerListener(actionBarDrawerToggle);*/
     }
-    /*
-      private void initActionBar() {
-            actionBar = getSupportActionBar();
-            actionBar.setTitle(R.string.app_name);
-            actionBar.setDisplayShowCustomEnabled(true);
-            actionBar.setDisplayShowTitleEnabled(false);
-            actionBar.setCustomView(R.layout.action_bar_spinner);
-            mActionBarCustomView = (ViewGroup) actionBar.getCustomView();
-            mAccountSpinner = mActionBarCustomView.findViewById(R.id.folder_account_spinner);
-            mAccountSpinnerLine1View = (TextView) mActionBarCustomView
-                    .findViewById(R.id.spinner_line_1);
 
-            mAccountDropdown = new AccountDropdownPopup(this);
-            mAccountDropdown.setHorizontalOffset((int) getResources().getDimension(
-                    R.dimen.select_list_spinner_offset_v));
-            mAccountDropdown.setAdapter(actionBarAdapter);
-            mAccountSpinner.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    showAccountDropdown();
-                }
-            });
+    /*private void initActionBar() {
+          actionBar = getSupportActionBar();
+          actionBar.setTitle(R.string.app_name);
+          actionBar.setDisplayShowCustomEnabled(true);
+          actionBar.setDisplayShowTitleEnabled(false);
+          actionBar.setCustomView(R.layout.action_bar_spinner);
+          mActionBarCustomView = (ViewGroup) actionBar.getCustomView();
+          mAccountSpinner = mActionBarCustomView.findViewById(R.id.folder_account_spinner);
+          mAccountSpinnerLine1View = (TextView) mActionBarCustomView
+                  .findViewById(R.id.spinner_line_1);
 
-        }
-    */
+          mAccountDropdown = new AccountDropdownPopup(this);
+          mAccountDropdown.setHorizontalOffset((int) getResources().getDimension(
+                  R.dimen.select_list_spinner_offset_v));
+          mAccountDropdown.setAdapter(actionBarAdapter);
+          mAccountSpinner.setOnClickListener(new OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                  showAccountDropdown();
+              }
+          });
+
+      }*/
     private void setSortByShowType(int sortByType) {
         switch (sortByType) {
         case SortByTypes.CREATE_UP:
@@ -495,7 +515,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
 
     private void requarySpinnerSelectors() {
         actionBarAdapter.setData(mHelper.getSelectors());
-        mAccountSpinnerLine1View.setText(currentFolder.displayName);
+        //        mAccountSpinnerLine1View.setText(currentFolder.displayName);
     }
 
     private void switchToAccount(long accountId) {
