@@ -105,10 +105,6 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
     }
 
     private int sortByType = SortByTypes.MODIFY_DOWN;
-    private LinearLayout sortByLayout;
-    private View mSortCreatClickView, mSortModifyClickView, mSortAzClickView;
-    private ImageView mSortCreatIcon, mSortModifyIcon, mSortAzIcon;
-    private Animation alpha_in, alpha_out;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -116,8 +112,6 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         setContentView(R.layout.activity_inotes_list);
 
         sp = PreferenceManager.getDefaultSharedPreferences(this);
-        alpha_in = AnimationUtils.loadAnimation(this, R.anim.alpha_in);
-        alpha_out = AnimationUtils.loadAnimation(this, R.anim.alpha_out);
 
         /*if (Constants.TEST_MODE) {
             Log.d(TAG, "test mode");
@@ -138,6 +132,9 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         mHelper = new SpinnerSelectorsHelper(iNotesApplication);
 
         resetCurrentFolder();
+        Log.d("xxx",
+                "-----------------------" + currentFolder.displayName + "-----------------------");
+
         //        Toast.makeText(INotesListActivity.this, currentFolder.displayName, Toast.LENGTH_SHORT).show();
         //        Toast.makeText(INotesListActivity.this, String.valueOf(currentFolder.id), Toast.LENGTH_SHORT).show();
     }
@@ -627,7 +624,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         syncItem = menu.findItem(R.id.menu_sync);
         MenuItem searchItem = menu.findItem(R.id.menu_search);//在菜单中找到对应控件的item
         SearchView sv = (SearchView) MenuItemCompat.getActionView(searchItem);
-//        sv.setOnQueryTextListener(new onQueryTextListener());
+        //        sv.setOnQueryTextListener(new onQueryTextListener());
 
         //监听该item的展开、合拢动作
         MenuItemCompat
