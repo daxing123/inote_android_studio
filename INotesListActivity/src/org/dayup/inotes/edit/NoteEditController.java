@@ -37,7 +37,7 @@ public class NoteEditController implements AutoLinkEditListener, LocaterTextView
     private String timeFormat = DatePattern.HM_COLON_12;
     private ImageButton undoBtn;
     private ImageButton redoBtn;
-    //private TextView timeText;
+    private TextView timeText;
 
     public NoteEditController(Context context, View mainView,
             INoteEditController iNoteEditController) {
@@ -50,7 +50,7 @@ public class NoteEditController implements AutoLinkEditListener, LocaterTextView
         noteEditView = (WatcherEditText) mainView.findViewById(R.id.note_editor_composite);
         toolbar = mainView.findViewById(R.id.edit_tool_bar);
         initToolBar(toolbar);
-        //timeText = (TextView) mainView.findViewById(R.id.time_text);
+        timeText = (TextView) mainView.findViewById(R.id.time_text);
         autoLinkIV = (ImageView) mainView.findViewById(R.id.detail_autolink_btn);
 
         noteEditView.setAutoLinkListener(this);
@@ -81,7 +81,7 @@ public class NoteEditController implements AutoLinkEditListener, LocaterTextView
     public void show(CharSequence content) {
         noteEditView.setVisibility(View.VISIBLE);
         toolbar.setVisibility(View.VISIBLE);
-        //timeText.setVisibility(View.GONE);
+        timeText.setVisibility(View.GONE);
 
         noteEditView.showAndSetText(content);
         int textLength = noteEditView.getText().length();
@@ -100,7 +100,7 @@ public class NoteEditController implements AutoLinkEditListener, LocaterTextView
     public void hide() {
         noteEditView.setVisibility(View.GONE);
         toolbar.setVisibility(View.GONE);
-        //timeText.setVisibility(View.VISIBLE);
+        timeText.setVisibility(View.VISIBLE);
         hideAutoLinkBtn();
     }
 
@@ -178,7 +178,7 @@ public class NoteEditController implements AutoLinkEditListener, LocaterTextView
         ImageButton paragraphBtn = (ImageButton) toolbar.findViewById(R.id.detail_tool_paragraph);
         ImageButton dateBtn = (ImageButton) toolbar.findViewById(R.id.detail_tool_date);
         ImageButton timeBtn = (ImageButton) toolbar.findViewById(R.id.detail_tool_time);
-        //ImageButton recognizBtn = (ImageButton) toolbar.findViewById(R.id.detail_tool_recogniz);
+        ImageButton recognizBtn = (ImageButton) toolbar.findViewById(R.id.detail_tool_recogniz);
 
         undoBtn = (ImageButton) toolbar.findViewById(R.id.detail_tool_back);
         redoBtn = (ImageButton) toolbar.findViewById(R.id.detail_tool_forward);
@@ -186,11 +186,11 @@ public class NoteEditController implements AutoLinkEditListener, LocaterTextView
         paragraphBtn.setOnClickListener(new AddParagraphListener(noteEditView));
         dateBtn.setOnClickListener(new AddDateListener(context, noteEditView));
         timeBtn.setOnClickListener(new AddTimeListener(timeFormat, noteEditView));
-        /*if (AudioUtils.checkRecAvailable(context)) {
+        if (AudioUtils.checkRecAvailable(context)) {
             recognizBtn.setOnClickListener(new SoundRecogniz(iNoteEditController));
         } else {
             recognizBtn.setVisibility(View.GONE);
-        }*/
+        }
         undoBtn.setOnClickListener(new OnClickListener() {
 
             @Override

@@ -18,7 +18,7 @@
             layout="@layout/detail_tool_bar"/>
     </LinearLayout>
 
-    <!--<LinearLayout
+    <LinearLayout
         android:id="@+id/time_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
             android:singleLine="true"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="?g_hintTextColor"/>
-    </LinearLayout>-->
+    </LinearLayout>
 
     <org.dayup.inotes.views.ResizeLayout
         android:id="@+id/detail_scroll_layout"
