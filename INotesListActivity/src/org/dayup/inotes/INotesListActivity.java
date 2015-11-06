@@ -294,20 +294,19 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         }
 
         @Override public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+
+            TreeMap<Integer, Note> selectedIds = adapter.getSelectedItemIds();
+
             switch (item.getItemId()) {
             case R.id.delete:
-                SparseBooleanArray selectedIds = adapter.getSelectedItemIds();
-                for (int i = (selectedIds.size() - 1); i >= 0; i--) {
-                    if (selectedIds.valueAt(i)) {
-                        adapter.removeData(selectedIds.keyAt(i));
-                    }
-                }
-                isInActionMode = false;
-                actionMode.finish();
+                batchDeleteNote(mode, selectedIds);
+                /*isInActionMode = false;
+                actionMode.finish();*/
 
                 return true;
 
             case R.id.share:
+                BatchShareNote(mode, selectedIds);
 
                 return true;
             default:
@@ -628,7 +627,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         syncItem = menu.findItem(R.id.menu_sync);
         MenuItem searchItem = menu.findItem(R.id.menu_search);//在菜单中找到对应控件的item
         SearchView sv = (SearchView) MenuItemCompat.getActionView(searchItem);
-        sv.setOnQueryTextListener(new onQueryTextListener());
+//        sv.setOnQueryTextListener(new onQueryTextListener());
 
         //监听该item的展开、合拢动作
         MenuItemCompat
@@ -932,6 +931,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         } else {
             Toast.makeText(this, R.string.no_note_share, Toast.LENGTH_SHORT).show();
         }
+        isInActionMode = false;
         mode.finish();
     }
 
@@ -952,6 +952,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
             }
             mode.finish();
         }
+        isInActionMode = false;
 
     }
 
@@ -966,7 +967,6 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
                 .setTitle(R.string.dialog_title_confirm_delete)
                 .setMessage(selectItemsClone.size() > 1 ? R.string.batch_delete_confirm
                         : R.string.delete_confirm)
-                .setView(view)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override public void onClick(DialogInterface dialog, int which) {
                         if (checkBox.isChecked()) {

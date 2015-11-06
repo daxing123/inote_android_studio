@@ -8,11 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import org.dayup.common.Log;
 import org.dayup.inotes.data.Note;
 import org.dayup.inotes.utils.DateUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeMap;
 
 /**
  * Created by myatejx on 15/11/2.
@@ -26,7 +28,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     private int sortBy;
     private boolean flingState = false;
 
-    private SparseBooleanArray selectedItemIds;
+    //private SparseBooleanArray selectedItemIds;
+    private TreeMap<Integer, Note> selectedItemIds;
+
     private LayoutInflater inflater;
 
     public MyAdapter(Context context, int layout, ArrayList<Note> notes) {
@@ -34,7 +38,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         this.layout = layout;
         this.notes = notes;
         inflater = LayoutInflater.from(this.context);
-        this.selectedItemIds = new SparseBooleanArray();
+        //this.selectedItemIds = new SparseBooleanArray();
+        this.selectedItemIds = new TreeMap<>();
         initDateAndTimeFormat(context);
     }
 
@@ -58,15 +63,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         return myViewHolder;
     }
 
-
-
-
     @Override public void onBindViewHolder(MyViewHolder holder, final int position) {
 
         final Note item = getItem(position);
 
         long lastTime = 0;
-        if (sortBy == INotesListActivity.SortByTypes.CREATE_DOWN || sortBy == INotesListActivity.SortByTypes.CREATE_UP) {
+        if (sortBy == INotesListActivity.SortByTypes.CREATE_DOWN
+                || sortBy == INotesListActivity.SortByTypes.CREATE_UP) {
             lastTime = item.createdTime;
         } else {
             lastTime = item.modifiedTime;
@@ -92,7 +95,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         }
 
         holder.itemView.setBackgroundResource(
-                selectedItemIds.get(position) ? R.drawable.item_press_in_actionmode :
+                selectedItemIds.get(position) != null ? R.drawable.item_press_in_actionmode :
                         R.drawable.item_press);
     }
 
@@ -120,21 +123,21 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     //切换选择状态
     public void toggleSelected(int position) {
-        selectView(position, !selectedItemIds.get(position));
+
+        if (selectedItemIds.get(position) != null) {
+            selectedItemIds.remove(position);
+        } else {
+            selectedItemIds.put(position, notes.get(position));
+        }
+        notifyDataSetChanged();
     }
 
-    //
-    public void selectView(int position, boolean value) {
-        if (value)
-            selectedItemIds.put(position, value);
-        else
-            selectedItemIds.delete(position);
-        notifyDataSetChanged();//对rv来说这个还有用么？
-    }
 
     //移除选中项记录，简单的说就是退出选中状态
     public void removeSelection() {
-        selectedItemIds = new SparseBooleanArray();//用空对象给自己赋值，相当于消除了之前所选
+        //selectedItemIds = new SparseBooleanArray();//用空对象给自己赋值，相当于消除了之前所选
+        selectedItemIds = new TreeMap<>();
+
         notifyDataSetChanged();
     }
 
@@ -144,7 +147,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     //
-    public SparseBooleanArray getSelectedItemIds() {
+    /*public SparseBooleanArray getSelectedItemIds() {
+        return selectedItemIds;
+    }*/
+    public TreeMap<Integer, Note> getSelectedItemIds() {
         return selectedItemIds;
     }
 
@@ -176,7 +182,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     ///----------------------------
 
-
     public int getCount() {
         return notes == null ? 0 : notes.size();
     }
@@ -202,7 +207,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     ///-----------------------------
-
 
     private CharSequence extractNoteTitle(String content) {
         if (TextUtils.isEmpty(content)) {
