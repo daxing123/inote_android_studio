@@ -15,21 +15,18 @@
     </style>
 
 
-    <style name="Theme.INotes" parent="AppBaseTheme"/>
-
-    <style name="Theme.INotes.Light" parent="Theme.INotes.Light.Default">
-        <item name="android:actionBarItemBackground">@drawable/item_background_light</item>
-    </style>
-
-    <style name="Theme.INotes.Light.NoBackground" parent="Theme.INotes.Light.Default">
+    <!--<style name="Theme.INotes.Light.NoBackground" parent="Theme.INotes.Light.Default">
         <item name="android:windowBackground">@null</item>
     </style>
 
     <style name="Theme.INotes.Dark.NoBackground" parent="Theme.INotes.Dark.Default">
         <item name="android:windowBackground">@null</item>
+    </style>-->
+
+    <style name="Theme.INotes.Dark.CustomActionBar" parent="Theme.INotes.Dark.Default">
     </style>
 
-    <style name="Theme.INotes.Light.CustomActionBar" parent="Theme.INotes.Light">
+    <style name="Theme.INotes.Light.CustomActionBar" parent="Theme.INotes.Light.Default">
         <!--ToolBar颜色-->
         <item name="colorPrimary">@color/colorPrimary</item>
         <!--状态栏颜色-->
@@ -37,28 +34,11 @@
         <!--输入框焦点、checkbox选中等颜色-->
         <item name="colorAccent">@color/colorAccent</item>
 
+        <item name="actionModeBackground">@color/colorAccent</item>
 
-        <!--<item name="actionBarStyle">@style/CustomActionBarLight21</item>-->
-        <!--<item name="android:actionBarStyle">@style/CustomActionBarLight21</item>-->
-        <item name="android:homeAsUpIndicator">@drawable/actionbar_indicator</item>
-        <item name="homeAsUpIndicator">@drawable/actionbar_indicator</item>
 
-        <item name="android:actionModeBackground">@drawable/actionmode_background_top_light</item>
-        <item name="android:actionModeSplitBackground">@drawable/actionmode_background_top_light
-        </item>
-        <!--<item name="android:actionModeCloseButtonStyle">@style/customCloseMode</item>-->
-        <item name="android:actionModeCloseDrawable">@drawable/ic_cab_done</item>
-
-        <!--<item name="actionOverflowButtonStyle">@style/Widget.Sherlock.ActionButton.Overflow</item>-->
-        <item name="actionModeBackground">@drawable/actionmode_background_top_light</item>
-        <item name="actionModeSplitBackground">@drawable/actionmode_background_top_light</item>
-        <!--<item name="actionModeStyle">@style/Widget.Sherlock.Light.ActionMode.Inverse</item>-->
-        <!--<item name="actionModeCloseButtonStyle">@style/customCloseMode</item>-->
-        <item name="actionModeCloseDrawable">@drawable/ic_cab_done</item>
     </style>
 
-    <style name="Theme.INotes.Dark.CustomActionBar" parent="Theme.INotes.Dark.Default">
-    </style>
 
     <style name="Theme.INotes.Light.Default" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="theme_actionbar_hint">@drawable/action_bar_hint</item>
@@ -91,7 +71,7 @@
         <item name="radio_btn_holo">@style/Widget.Holo.Light.RadioButton</item>
         <item name="list_section_divider">@drawable/list_section_divider_holo_light</item>
         <!--<item name="dialog_title_style">@style/dialog_title_light</item>-->
-        <item name="titleTextColor">@color/title_text_color_light</item>
+        <item name="titleTextColor">@color/white</item>
         <item name="li_divider_account_col">@style/li_divider_account_col_lt</item>
         <item name="account_remove_icon">@drawable/account_delete_light</item>
         <!--<item name="spinner">@style/SpinnerLight</item>-->
@@ -142,9 +122,7 @@
         <item name="titleTextColor">@color/title_text_color_dark</item>
         <item name="li_divider_account_col">@style/li_divider_account_col_bl</item>
         <item name="account_remove_icon">@drawable/account_delete_dark</item>
-<!--
-        <item name="spinner">@style/SpinnerDark</item>
--->
+        <!--<item name="spinner">@style/SpinnerDark</item>-->
         <item name="refresh">@drawable/refresh_dark</item>
         <item name="title_btn_add">@drawable/title_btn_add_dark</item>
         <item name="ic_menu_trash">@drawable/ic_menu_trash_dark</item>

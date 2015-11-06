@@ -64,8 +64,8 @@ public class INotesPreferencesFragment extends PreferenceFragment {
         initAccountSettingPreference();
 
         /*findPreference(PK.SYNC_SETTING).setIntent(
-                new Intent(getActivity(), INotesPreferencesSubSync.class));
-        initThemeSettingPreference();*/
+                new Intent(getActivity(), INotesPreferencesSubSync.class));*/
+        initThemeSettingPreference();
 
         findPreference(PK.SYNC_SETTING).setOnPreferenceClickListener(
                 new Preference.OnPreferenceClickListener() {

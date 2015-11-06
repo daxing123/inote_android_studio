@@ -62,6 +62,8 @@ public class NoteEditController implements AutoLinkEditListener, LocaterTextView
                 setToolActionBtnEnabled(currentHistoryPosition, historySize);
             }
         });
+
+
     }
 
     public Editable getContent() {
@@ -184,11 +186,11 @@ public class NoteEditController implements AutoLinkEditListener, LocaterTextView
         paragraphBtn.setOnClickListener(new AddParagraphListener(noteEditView));
         dateBtn.setOnClickListener(new AddDateListener(context, noteEditView));
         timeBtn.setOnClickListener(new AddTimeListener(timeFormat, noteEditView));
-        if (AudioUtils.checkRecAvailable(context)) {
-            //recognizBtn.setOnClickListener(new SoundRecogniz(iNoteEditController));
+        /*if (AudioUtils.checkRecAvailable(context)) {
+            recognizBtn.setOnClickListener(new SoundRecogniz(iNoteEditController));
         } else {
-            //recognizBtn.setVisibility(View.GONE);
-        }
+            recognizBtn.setVisibility(View.GONE);
+        }*/
         undoBtn.setOnClickListener(new OnClickListener() {
 
             @Override
