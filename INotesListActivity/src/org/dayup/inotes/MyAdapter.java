@@ -55,6 +55,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         this.onRvItemClickListener = onRvItemClickListener;
     }
 
+
     @Override public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         MyViewHolder myViewHolder = new MyViewHolder(
@@ -97,6 +98,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.itemView.setBackgroundResource(
                 selectedItemIds.get(position) != null ? R.drawable.item_press_in_actionmode :
                         R.drawable.item_press);
+
     }
 
     @Override public int getItemCount() {
@@ -131,7 +133,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         }
         notifyDataSetChanged();
     }
-
 
     //移除选中项记录，简单的说就是退出选中状态
     public void removeSelection() {

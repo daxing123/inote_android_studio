@@ -28,7 +28,6 @@
 
     <TextView
         android:id="@+id/list_empty_view"
-        android:text="@string/list_empty_text"
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
         android:gravity="center"

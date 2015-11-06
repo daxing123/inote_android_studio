@@ -75,7 +75,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
     private ViewGroup mActionBarCustomView;
     private TextView mAccountSpinnerLine1View;
     //private AccountDropdownPopup mAccountDropdown;
-
+    private TextView emptyView;
     private SharedPreferences sp;
     private SyncManager notesSyncManager;
 
@@ -241,6 +241,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         recyclerView.setAdapter(adapter = new MyAdapter(this, R.layout.rv_item_linear, noteslist));
         recyclerView.addItemDecoration(new RvItemDecoration(15));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        emptyView = (TextView) findViewById(R.id.list_empty_view);
         adapter.SetOnRvItemClickListener(new RvItemClickListener());
         /*ItemTouchHelper itemTouchHelper = new ItemTouchHelper(itemtouchCallback);
         itemTouchHelper.attachToRecyclerView(recyclerView);*/
@@ -592,6 +593,10 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         noteslist = (ArrayList<Note>) Note.getNotesByFolder(currentFolder, orderBy,
                 iNotesApplication.getDBHelper());
         adapter.setData(noteslist, sortByType);
+        if (adapter.getItemCount() == 0)
+            emptyView.setText(R.string.list_empty_text);
+        else
+            emptyView.setText("");
     }
 
     private MenuItem syncItem;
