@@ -28,15 +28,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     private String timeFormat = DateUtils.DatePattern.HM_COLON_12;
     private int sortBy;
     private boolean flingState = false;
-    private INotesApplication application = new INotesApplication();
-    private ThemeUtils themeUtils = new ThemeUtils(application);
+    private INotesApplication application;
+    private ThemeUtils themeUtils;
 
     //private SparseBooleanArray selectedItemIds;
     private TreeMap<Integer, Note> selectedItemIds;
 
     private LayoutInflater inflater;
 
-    public MyAdapter(Context context, int layout, ArrayList<Note> notes) {
+    public MyAdapter(Context context, int layout, ArrayList<Note> notes,
+            INotesApplication application) {
         this.context = context;
         this.layout = layout;
         this.notes = notes;
@@ -44,6 +45,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         //this.selectedItemIds = new SparseBooleanArray();
         this.selectedItemIds = new TreeMap<>();
         initDateAndTimeFormat(context);
+        this.application = application;
+        themeUtils = new ThemeUtils(this.application);
     }
 
     public interface OnRvItemClickListener {

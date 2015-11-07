@@ -83,6 +83,14 @@ public class ThemeUtils {
             Log.d("x","--------------------white click--------------------");
             return R.drawable.item_press_white;
         }
+
+        /*if (application.isLightTheme()) {
+            return R.drawable.item_press_dark;
+
+        }else {
+            return R.drawable.item_press_dark;
+
+        }*/
     }
 
     public int getItemSelectorPressed() {
@@ -95,6 +103,13 @@ public class ThemeUtils {
             Log.d("x","--------------------white acclick--------------------");
             return R.drawable.item_press_in_actionmode_white;
         }
+
+        /*if (application.isLightTheme()) {
+            return R.drawable.item_press_in_actionmode_white;
+        }else {
+            return R.drawable.item_press_in_actionmode_dark;
+
+        }*/
     }
 
 }

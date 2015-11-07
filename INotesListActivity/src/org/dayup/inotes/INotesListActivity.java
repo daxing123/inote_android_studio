@@ -228,7 +228,8 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
     private void initRecycleView() {
         recyclerView = (RecyclerView) findViewById(R.id.recycleview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter = new MyAdapter(this, R.layout.rv_item_linear, noteslist));
+        recyclerView.setAdapter(adapter = new MyAdapter(this, R.layout.rv_item_linear, noteslist,
+                (INotesApplication) getApplication()));
         recyclerView.addItemDecoration(new RvItemDecoration(15));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         emptyView = (TextView) findViewById(R.id.list_empty_view);
@@ -332,12 +333,14 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
             recyclerView.setLayoutManager(
                     new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
             recyclerView
-                    .setAdapter(adapter = new MyAdapter(this, R.layout.rv_item_grid, noteslist));
+                    .setAdapter(adapter = new MyAdapter(this, R.layout.rv_item_grid, noteslist,
+                            (INotesApplication) getApplication()));
             click = 1;
         } else {
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             recyclerView
-                    .setAdapter(adapter = new MyAdapter(this, R.layout.rv_item_linear, noteslist));
+                    .setAdapter(adapter = new MyAdapter(this, R.layout.rv_item_linear, noteslist,
+                            (INotesApplication) getApplication()));
             click = 0;
         }
         adapter.SetOnRvItemClickListener(new RvItemClickListener());

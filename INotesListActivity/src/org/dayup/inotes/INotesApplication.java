@@ -38,7 +38,6 @@ import android.widget.Toast;
 
 /**
  * @author Nicky
- * 
  */
 public class INotesApplication extends CommonApplication implements
         OnSharedPreferenceChangeListener {
@@ -52,7 +51,7 @@ public class INotesApplication extends CommonApplication implements
     private INotesAccountManager accountManager;
     private SyncManager notesSyncManager = null;
 
-    private int themeType = Themes.THEME_LIGHT;
+    private int themeType;
     private int themeTmp;
 
     private static int TARGET_HEIGHT = 800;
@@ -98,7 +97,7 @@ public class INotesApplication extends CommonApplication implements
         try {
             cursor = context.getContentResolver().query(Uri.parse(CONTENT_KEY), null, null,
                     new String[] {
-                        key1
+                            key1
                     }, null);
             if (cursor != null && cursor.moveToFirst()) {
                 int cols = cursor.getColumnCount();
@@ -114,7 +113,7 @@ public class INotesApplication extends CommonApplication implements
                     try {
                         mi.setIrk(key1.equals(mi.getK1())
                                 && org.dayup.decription.Utils.getDigest2("" + mi.getLc()).equals(
-                                        mi.getK2()) && mi.getLc() % 2 == 0);
+                                mi.getK2()) && mi.getLc() % 2 == 0);
                     } catch (NoSuchAlgorithmException e) {
                         mi.setIrk(false);
                         Log.e(TAG, e.getMessage());
@@ -223,7 +222,7 @@ public class INotesApplication extends CommonApplication implements
 
     /**
      * Get SyncManager instance, if Local_mode is on,return null;
-     * 
+     *
      * @return
      */
     private SyncManager getSyncMangerInstance() {
@@ -350,6 +349,7 @@ public class INotesApplication extends CommonApplication implements
     }
 
     public int getThemeType() {
+        Log.d("xx", "theme--------------------is" + themeType);
         return themeType;
     }
 

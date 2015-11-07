@@ -27,13 +27,15 @@
 
     <style name="Theme.INotes.Light.CustomActionBar" parent="Theme.INotes.Light.Default">
         <!--ToolBar颜色-->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/toolbar_yellow</item>
         <!--状态栏颜色-->
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/statubar_yellow</item>
         <!--输入框焦点、checkbox选中等颜色-->
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/gray_button</item>
 
-        <item name="actionModeBackground">@color/colorAccent</item>
+        <item name="actionModeBackground">@color/toolbar_yellow</item>
+
+        <item name="android:textColorSecondary">@color/text_black</item>
 
         <item name="android:windowBackground">@color/white</item>
 
@@ -45,12 +47,13 @@
         <!--状态栏颜色-->
         <item name="colorPrimaryDark">@color/text_black</item>
         <!--输入框焦点、checkbox选中等颜色-->
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/toolbar_yellow</item>
         <!--ActionMode背景色-->
         <item name="actionModeBackground">@color/text_black</item>
-        <!--Toolbar图标颜色\系统菜单键列表项字体颜色-->
+        <!--Toolbar图标颜色\系统菜单键列表项字体颜色\pref列表项summary字体颜色-->
         <item name="android:textColorSecondary">@color/accent</item>
-        <item name="android:windowBackground">@color/text_black</item>
+
+        <item name="android:windowBackground">@color/dark_background</item>
 
     </style>
 
@@ -104,6 +107,7 @@
 
         <item name="item_click">@drawable/item_press_white</item>
         <item name="item_actionmode">@drawable/item_press_in_actionmode_white</item>
+        <item name="android:textColor">@color/item_normal_dark</item>
 
         <item name="theme_detail_toolbar_bg">@android:color/transparent</item>
         <item name="theme_ic_tool_back">@drawable/detail_tool_back_btn</item>
@@ -164,6 +168,7 @@
 
         <item name="item_click">@drawable/item_press_dark</item>
         <item name="item_actionmode">@drawable/item_press_in_actionmode_dark</item>
+        <item name="android:textColor">@color/item_pressed_white</item>
 
         <item name="theme_detail_toolbar_bg">@color/background_holo_dark</item>
         <item name="theme_ic_tool_back">@drawable/detail_tool_back_btn_dark</item>

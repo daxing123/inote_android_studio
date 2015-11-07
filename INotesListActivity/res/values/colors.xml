@@ -75,10 +75,16 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="item_normal_white">#e0e0e0</color>
-    <color name="item_pressed_white">#c0c0c0</color>
+    <color name="item_normal_white">#f0f0f0</color>
+    <color name="item_pressed_white">#d0d0d0</color>
 
-    <color name="item_normal_dark">#303030</color>
+    <color name="item_normal_dark">#505050</color>
     <color name="item_pressed_dark">#a0a0a0</color>
+
+    <color name="toolbar_yellow">#ffc107</color>
+    <color name="statubar_yellow">#ffa000</color>
+    <color name="gray_button">#607d8b</color>
+
+    <color name="dark_background">#303030</color>
 
 </resources>
