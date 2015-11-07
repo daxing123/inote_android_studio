@@ -597,7 +597,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
 
     private MenuItem syncItem;
 
-    class onQueryTextListener implements SearchView.OnQueryTextListener {
+    /*class onQueryTextListener implements SearchView.OnQueryTextListener {
 
         @Override
         public boolean onQueryTextSubmit(String query) {
@@ -607,25 +607,30 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
 
         @Override
         public boolean onQueryTextChange(String newText) {
-            /*if (et_sv.getText().toString().equals("")) {
+            *//*if (et_sv.getText().toString().equals("")) {
                 note_array.clear();
                 note_adapter.reflesh(note_array);
             } else {
                 search(et_sv.getText().toString());
-            }*/
+            }*//*
+            startSearch(et_sv.getText().toString(), false, null, false);
 
             return true;
         }
 
-    }
+    }*/
+
+    //private EditText et_sv;
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.inotes_list_activity, menu);
         syncItem = menu.findItem(R.id.menu_sync);
-        MenuItem searchItem = menu.findItem(R.id.menu_search);//在菜单中找到对应控件的item
+        /*MenuItem searchItem = menu.findItem(R.id.menu_search);//在菜单中找到对应控件的item
         SearchView sv = (SearchView) MenuItemCompat.getActionView(searchItem);
-        //        sv.setOnQueryTextListener(new onQueryTextListener());
+        et_sv = (SearchView.SearchAutoComplete) sv.findViewById(R.id.search_src_text);
+        sv.setOnQueryTextListener(new onQueryTextListener());
 
         //监听该item的展开、合拢动作
         MenuItemCompat
@@ -643,7 +648,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
 
                         return true;
                     }
-                });
+                });*/
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -675,6 +680,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
             return true;
         case R.id.menu_search:
             //onSearchRequested();
+
             startINotesSearchResultActivity();
 
             return true;

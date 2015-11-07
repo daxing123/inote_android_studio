@@ -17,6 +17,14 @@
         android:icon="?ic_menu_layout"
         app:showAsAction="ifRoom"
         android:title="@string/toggle_view"/>
+    <!--<item
+        android:id="@+id/menu_search"
+        android:icon="@android:drawable/ic_menu_search"
+        app:showAsAction="withText|collapseActionView"
+        android:imeOptions="actionSearch"
+        android:inputType="textCapWords"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        android:title="@string/menu_search"/>-->
     <item
         android:id="@+id/menu_search"
         android:icon="@android:drawable/ic_menu_search"
