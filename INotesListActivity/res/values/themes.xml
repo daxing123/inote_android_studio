@@ -35,6 +35,8 @@
 
         <item name="actionModeBackground">@color/toolbar_yellow</item>
 
+        <item name="android:textColor">@color/item_normal_dark</item>
+
         <item name="android:textColorSecondary">@color/text_black</item>
 
         <item name="android:windowBackground">@color/white</item>
@@ -50,7 +52,9 @@
         <item name="colorAccent">@color/toolbar_yellow</item>
         <!--ActionMode背景色-->
         <item name="actionModeBackground">@color/text_black</item>
-        <!--Toolbar图标颜色\系统菜单键列表项字体颜色\pref列表项summary字体颜色-->
+        <!--List item项\toolbar菜单项字体颜色\pref列表项title字体颜色\对话框title字体颜色-->
+        <item name="android:textColor">@color/item_pressed_white</item>
+        <!--Toolbar图标颜色\系统菜单键列表项字体颜色\pref列表项summary字体颜色\对话框message字体颜色-->
         <item name="android:textColorSecondary">@color/accent</item>
 
         <item name="android:windowBackground">@color/dark_background</item>
@@ -107,7 +111,6 @@
 
         <item name="item_click">@drawable/item_press_white</item>
         <item name="item_actionmode">@drawable/item_press_in_actionmode_white</item>
-        <item name="android:textColor">@color/item_normal_dark</item>
 
         <item name="theme_detail_toolbar_bg">@android:color/transparent</item>
         <item name="theme_ic_tool_back">@drawable/detail_tool_back_btn</item>
@@ -168,7 +171,6 @@
 
         <item name="item_click">@drawable/item_press_dark</item>
         <item name="item_actionmode">@drawable/item_press_in_actionmode_dark</item>
-        <item name="android:textColor">@color/item_pressed_white</item>
 
         <item name="theme_detail_toolbar_bg">@color/background_holo_dark</item>
         <item name="theme_ic_tool_back">@drawable/detail_tool_back_btn_dark</item>

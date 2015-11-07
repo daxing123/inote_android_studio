@@ -37,7 +37,8 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
-public class INotesSearchResultActivity extends BaseActivity {
+public class INotesSearchResultActivity extends BaseActivity implements
+        SearchLayoutView.InputListener {
     private static final String TAG = INotesSearchResultActivity.class.getSimpleName();
     private static final int REQUEST_CODE_VOICE_RECOGNITION_SEARCH = 30;
 
@@ -74,7 +75,8 @@ public class INotesSearchResultActivity extends BaseActivity {
                     Toast.makeText(INotesSearchResultActivity.this, R.string.toast_note_not_exist,
                             Toast.LENGTH_SHORT).show();
                 } else {
-                    startDetailActivityForResult(note);
+                    //startDetailActivityForResult(note);
+                    startDetailActivity(note);
                 }
             }
         });
@@ -89,11 +91,7 @@ public class INotesSearchResultActivity extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //ToolBar显示返回按钮
 
         mSearchLayoutView = (SearchLayoutView) findViewById(R.id.g_search_view);
-        mSearchLayoutView.SetInputListener(new SearchLayoutView.InputListener() {
-            @Override public void inputChange(String text) {
-                //doSearch(text);
-            }
-        });
+
         /*mSearchLayoutView.setRecognizClick(new OnClickListener() {
 
             @Override
@@ -247,4 +245,7 @@ public class INotesSearchResultActivity extends BaseActivity {
         Analytics.endFlurry(this);
     }
 
+    @Override public void inputChange(String text) {
+        requery(text);
+    }
 }

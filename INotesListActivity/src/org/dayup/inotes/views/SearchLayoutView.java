@@ -27,11 +27,11 @@ public class SearchLayoutView extends LinearLayout {
         void inputChange(String text);
     }
 
-    public InputListener inputListener;
+    /*public InputListener inputListener;
 
     public void SetInputListener(InputListener inputListener) {
         this.inputListener = inputListener;
-    }
+    }*/
 
     public SearchLayoutView(Context context) {
         this(context, null);
@@ -64,7 +64,7 @@ public class SearchLayoutView extends LinearLayout {
                 searchTitleEt.setText("");
             }
         });
-        showInputSoft();//弹起键盘？
+        //showInputSoft();//弹起键盘？
         searchTitleEt.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -72,8 +72,11 @@ public class SearchLayoutView extends LinearLayout {
                 if (s.length() != 0) {
                     searchClear.setVisibility(View.VISIBLE);
                     //searchArea.setVisibility(View.GONE);
+                    //inputListener.inputChange(getTitleText());
+                    /*if (s.length() > 1 && s.charAt(0) == '0') {
+                        ((InputListener)mContext).inputChange("d");
+                    }*/
 
-                    inputListener.inputChange(getTitleText());
 
                 } else {
                     searchClear.setVisibility(View.GONE);
@@ -94,9 +97,6 @@ public class SearchLayoutView extends LinearLayout {
         });
     }
 
-    /*public void setRecognizClick(OnClickListener l) {
-        searchRecogniz.setOnClickListener(l);
-    }*/
 
     public void setTitleOnEditorActionListener(OnEditorActionListener l) {
         searchTitleEt.setOnEditorActionListener(l);
