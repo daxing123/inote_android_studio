@@ -1,5 +1,6 @@
 package org.dayup.inotes.views;
 
+import org.dayup.common.Log;
 import org.dayup.inotes.R;
 
 import android.content.Context;
@@ -17,10 +18,20 @@ import android.widget.TextView.OnEditorActionListener;
 public class SearchLayoutView extends LinearLayout {
     private EditText searchTitleEt = null;
     private ImageView searchClear = null;
-    private ImageView searchRecogniz;
-    private View searchArea;
+    //private ImageView searchRecogniz;
+    //private View searchArea;
     private View searchPlate;
     private Context mContext;
+
+    public interface InputListener {
+        void inputChange(String text);
+    }
+
+    public InputListener inputListener;
+
+    public void SetInputListener(InputListener inputListener) {
+        this.inputListener = inputListener;
+    }
 
     public SearchLayoutView(Context context) {
         this(context, null);
@@ -43,9 +54,9 @@ public class SearchLayoutView extends LinearLayout {
         searchClear = (ImageView) findViewById(R.id.edit_clear_btn);
         searchClear.setVisibility(View.GONE);
 
-        searchRecogniz = (ImageView) findViewById(R.id.search_recogniz);
+        //searchRecogniz = (ImageView) findViewById(R.id.search_recogniz);
         searchPlate = findViewById(R.id.search_plate);
-        searchArea = findViewById(R.id.recogniz_area);
+        //searchArea = findViewById(R.id.recogniz_area);
         searchClear.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -53,16 +64,20 @@ public class SearchLayoutView extends LinearLayout {
                 searchTitleEt.setText("");
             }
         });
+        showInputSoft();//弹起键盘？
         searchTitleEt.addTextChangedListener(new TextWatcher() {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.length() != 0) {
                     searchClear.setVisibility(View.VISIBLE);
-                    searchArea.setVisibility(View.GONE);
+                    //searchArea.setVisibility(View.GONE);
+
+                    inputListener.inputChange(getTitleText());
+
                 } else {
                     searchClear.setVisibility(View.GONE);
-                    searchArea.setVisibility(View.VISIBLE);
+                    //searchArea.setVisibility(View.VISIBLE);
 
                 }
             }
@@ -79,9 +94,9 @@ public class SearchLayoutView extends LinearLayout {
         });
     }
 
-    public void setRecognizClick(OnClickListener l) {
+    /*public void setRecognizClick(OnClickListener l) {
         searchRecogniz.setOnClickListener(l);
-    }
+    }*/
 
     public void setTitleOnEditorActionListener(OnEditorActionListener l) {
         searchTitleEt.setOnEditorActionListener(l);
@@ -96,6 +111,7 @@ public class SearchLayoutView extends LinearLayout {
     }
 
     public void setTitleText(CharSequence text) {
+        Log.d("x", "---------------" + text + "----------------");
         searchTitleEt.setText(text);
         try {
             searchTitleEt.setSelection(searchTitleEt.getText().length());
@@ -103,9 +119,9 @@ public class SearchLayoutView extends LinearLayout {
         }
     }
 
-    public View getRecognizArea() {
+    /*public View getRecognizArea() {
         return searchArea;
-    }
+    }*/
 
     public void appendTitleText(String str) {
         int start = searchTitleEt.getSelectionStart();
@@ -154,8 +170,8 @@ public class SearchLayoutView extends LinearLayout {
 
     private void updateFocusedState() {
         boolean focused = searchTitleEt.hasFocus();
-        searchPlate.getBackground().setState(focused ? FOCUSED_STATE_SET : EMPTY_STATE_SET);
-        searchArea.getBackground().setState(focused ? FOCUSED_STATE_SET : EMPTY_STATE_SET);
+        //        searchPlate.getBackground().setState(focused ? FOCUSED_STATE_SET : EMPTY_STATE_SET);
+        //searchArea.getBackground().setState(focused ? FOCUSED_STATE_SET : EMPTY_STATE_SET);
         invalidate();
     }
 }

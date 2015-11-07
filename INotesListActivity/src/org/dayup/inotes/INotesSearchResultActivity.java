@@ -89,6 +89,11 @@ public class INotesSearchResultActivity extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //ToolBar显示返回按钮
 
         mSearchLayoutView = (SearchLayoutView) findViewById(R.id.g_search_view);
+        mSearchLayoutView.SetInputListener(new SearchLayoutView.InputListener() {
+            @Override public void inputChange(String text) {
+                //doSearch(text);
+            }
+        });
         /*mSearchLayoutView.setRecognizClick(new OnClickListener() {
 
             @Override
@@ -104,15 +109,15 @@ public class INotesSearchResultActivity extends BaseActivity {
 
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                Toast.makeText(INotesSearchResultActivity.this, "fdfdf", Toast.LENGTH_LONG).show();
+//                Toast.makeText(INotesSearchResultActivity.this, "fdfdf", Toast.LENGTH_LONG).show();
                 doSearch(mSearchLayoutView.getTitleText());
                 ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE))
-                        .hideSoftInputFromWindow(mSearchLayoutView.getTitleEdit().getWindowToken(), 0);
+                        .hideSoftInputFromWindow(mSearchLayoutView.getTitleEdit().getWindowToken(),
+                                0);
                 return true;
             }
         });
     }
-
 
     private void parseIntent() {
         String queryAction = getIntent().getAction();
@@ -241,4 +246,5 @@ public class INotesSearchResultActivity extends BaseActivity {
         super.onStop();
         Analytics.endFlurry(this);
     }
+
 }

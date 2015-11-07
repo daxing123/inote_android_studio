@@ -6,12 +6,12 @@
     android:layout_height="?attr/actionBarSize"
     android:background="?attr/colorPrimary"
     android:elevation="4dp"
-    android:fitsSystemWindows="true"
-    android:theme="@style/AppBaseTheme"
-    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+    android:fitsSystemWindows="true">
 
     <Spinner
         android:id="@+id/spinner"
+        android:minWidth="128dp"
+        android:gravity="bottom"
         android:layout_width="128dp"
         android:layout_height="wrap_content"/>
 

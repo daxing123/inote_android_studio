@@ -53,8 +53,8 @@ public class INotesPreferencesFragment extends PreferenceFragment {
 
     @Override public void onCreate(Bundle savedInstanceState) {
         application = (INotesApplication) getActivity().getApplicationContext();
-        //        ThemeUtils themeUtils = new ThemeUtils(application);
-        //        themeUtils.onActivityCreateSetTheme();
+                ThemeUtils themeUtils = new ThemeUtils(application);
+                themeUtils.onActivityCreateSetTheme(getActivity());
 
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.inotes_preference);

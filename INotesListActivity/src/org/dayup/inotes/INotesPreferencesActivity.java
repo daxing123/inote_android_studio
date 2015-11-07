@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import org.dayup.inotes.setup.AccountSelectActivity;
+import org.dayup.inotes.utils.ThemeUtils;
 
 /**
  * Created by myatejx on 15/10/29.
@@ -20,8 +21,15 @@ public class INotesPreferencesActivity extends AppCompatActivity implements
     private INotesPreferencesFragment iNotesPreferencesFragment;
     private INotesPreferencesSubSyncFragment iNotesPreferencesSubSyncFragment;
 
+    private INotesApplication application;
+
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        application = (INotesApplication) getApplicationContext();
+        ThemeUtils themeUtils = new ThemeUtils(application);
+        themeUtils.onActivityCreateSetTheme(this);
+
         setContentView(R.layout.inote_preference_activity);
 
         initToolbar();

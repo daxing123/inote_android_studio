@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
+
     <style name="taskSmallText">
         <item name="android:textSize">14sp</item>
         <item name="android:textStyle">normal</item>
@@ -14,7 +14,7 @@
     <style name="g_listitem_SmallText" parent="taskSmallText">
         <item name="android:textColor">@color/dim_foreground_holo_dark</item>
     </style>
-    
+
     <style name="g_listitem_SmallText_lt" parent="taskSmallText">
         <item name="android:textColor">@color/g_listitem_SmallText_lt</item>
     </style>
@@ -26,33 +26,33 @@
     <style name="g_listitem_LargeText_bl" parent="taskLargeText">
         <item name="android:textColor">@color/bright_foreground_holo_dark</item>
     </style>
-    
+
     <style name="g_listitem_LargeText_lt" parent="taskLargeText">
         <item name="android:textColor">@color/g_listitem_LargeText_lt</item>
     </style>
-    
+
     <style name="g_listitem_LargeTextDone_bl" parent="taskLargeText">
         <item name="android:textColor">@color/g_listitem_LargeTextDone_bl</item>
     </style>
-    
+
     <style name="g_listitem_LargeTextDone_lt" parent="taskLargeText">
         <item name="android:textColor">@color/g_listitem_LargeTextDone_lt</item>
     </style>
-    
+
     <declare-styleable name="NoteHeader">
-        <attr format="integer|reference" name="lineColor" />
+        <attr format="integer|reference" name="lineColor"/>
     </declare-styleable>
     <declare-styleable name="LinedTextView">
-        <attr format="integer|reference" name="lineColors" />
+        <attr format="integer|reference" name="lineColors"/>
     </declare-styleable>
-    
-    <attr format="reference" name="g_main_bg" />
-    <attr format="reference" name="g_edittext" />
-    <attr format="reference" name="g_hintTextColor" />
-    <attr format="reference" name="g_primaryTextColor" />
-    <attr format="reference" name="checkbox_holo" />
-    <attr format="reference" name="g_listitem_SmallText" />
-    <attr format="reference" name="g_listdivider" />
+
+    <attr format="reference" name="g_main_bg"/>
+    <attr format="reference" name="g_edittext"/>
+    <attr format="reference" name="g_hintTextColor"/>
+    <attr format="reference" name="g_primaryTextColor"/>
+    <attr format="reference" name="checkbox_holo"/>
+    <attr format="reference" name="g_listitem_SmallText"/>
+    <attr format="reference" name="g_listdivider"/>
     <attr fornat="reference" name="g_buttonBarButtonStyle"/>
     <attr fornat="reference" name="gtlea_all_text"/>
     <attr fornat="reference" name="inotes_detail_bg"/>
@@ -70,10 +70,21 @@
     <attr fornat="reference" name="title_btn_add"/>
     <attr fornat="reference" name="ic_menu_trash"/>
     <attr fornat="reference" name="ic_menu_share"/>
-    <attr fornat="reference" name="ic_voice_search"/>    
+    <attr fornat="reference" name="ic_menu_layout"/>
+    <attr fornat="reference" name="ic_voice_search"/>
     <attr fornat="reference" name="ic_clear_search"/>
-    
-    <attr format="reference" name="theme_detail_toolbar_bg" />
+
+    <attr fornat="reference" name="ic_create"/>
+    <attr fornat="reference" name="ic_create_up"/>
+    <attr fornat="reference" name="ic_create_down"/>
+    <attr fornat="reference" name="ic_modify"/>
+    <attr fornat="reference" name="ic_modify_up"/>
+    <attr fornat="reference" name="ic_modify_down"/>
+    <attr fornat="reference" name="ic_title"/>
+    <attr fornat="reference" name="ic_title_up"/>
+    <attr fornat="reference" name="ic_title_down"/>
+
+    <attr format="reference" name="theme_detail_toolbar_bg"/>
     <attr format="reference" name="theme_ic_tool_back"/>
     <attr format="reference" name="theme_ic_tool_forward"/>
     <attr format="reference" name="theme_ic_tool_paragraph"/>
@@ -81,15 +92,21 @@
     <attr format="reference" name="theme_ic_tool_time"/>
     <attr format="reference" name="theme_ic_tool_date"/>
     <attr format="reference" name="theme_ic_tool_contact"/>
-    <attr format="reference" name="theme_ic_tool_attachment_count" />
-    <attr format="reference" name="theme_ic_tool_keyboardhide" />
-    
-    <attr format="reference" name="theme_actionbar_hint" />
+    <attr format="reference" name="theme_ic_tool_attachment_count"/>
+    <attr format="reference" name="theme_ic_tool_keyboardhide"/>
+
+    <attr format="reference" name="theme_actionbar_hint"/>
     <attr format="reference" name="theme_bottombar_bg"/>
     <attr format="reference" name="theme_bottombar_top_divider"/>
     <attr format="reference" name="theme_bottombar_centre_divider"/>
     <attr format="reference" name="theme_dialog_divider"/>
-    <attr format="reference" name="theme_dialog_msg_color" />
+    <attr format="reference" name="theme_dialog_msg_color"/>
 
+    <attr format="reference" name="item_click"/>
+    <attr format="reference" name="item_actionmode"/>
+
+    <attr format="reference" name="perf_background"/>
+
+    <!--pref_background-->
 
 </resources>

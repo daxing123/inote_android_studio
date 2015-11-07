@@ -6,10 +6,7 @@
     android:layout_height="?attr/actionBarSize"
     android:background="?attr/colorPrimary"
     android:elevation="4dp"
-    android:fitsSystemWindows="true"
-    android:theme="@style/AppBaseTheme"
-    app:titleTextColor="@color/text_black"
-    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+    android:fitsSystemWindows="true">
 
     <include
         layout="@layout/search_layout"

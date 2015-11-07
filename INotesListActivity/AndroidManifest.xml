@@ -19,7 +19,7 @@
         android:icon="@drawable/inotes_icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.INotes.Light.CustomActionBar">
+        android:theme="@style/Theme.INotes.Light.Default">
         <activity
             android:name=".INotesListActivity"
             android:configChanges="keyboardHidden|orientation|screenSize">

@@ -1,5 +1,6 @@
 package org.dayup.inotes.utils;
 
+import org.dayup.common.Log;
 import org.dayup.inotes.INotesApplication;
 import org.dayup.inotes.R;
 import org.dayup.inotes.constants.Constants.Themes;
@@ -13,19 +14,23 @@ public class ThemeUtils {
         this.application = application;
     }
 
-    /** Set the theme of the activity, according to the configuration. */
+    /**
+     * Set the theme of the activity, according to the configuration.
+     */
     public void onActivityCreateSetTheme(Activity activity) {
         if (application.isLightTheme()) {
-            //activity.setTheme(R.style.Theme_INotes_Light_CustomActionBar);
-            activity.setTheme(R.style.AppBaseTheme);
+            activity.setTheme(R.style.Theme_INotes_Light_CustomActionBar);
+            //            activity.setTheme(R.style.AppBaseTheme);
         } else if (application.isBlackTheme()) {
-            //activity.setTheme(R.style.Theme_INotes_Dark_CustomActionBar);
-            activity.setTheme(R.style.AppBaseTheme);
+            activity.setTheme(R.style.Theme_INotes_Dark_CustomActionBar);
+            //            activity.setTheme(R.style.AppBaseTheme);
 
         }
     }
 
-    /** Set the theme of the activity, according to the configuration. */
+    /**
+     * Set the theme of the activity, according to the configuration.
+     */
     // public void onActivityCreateSetThemeNoBg4DefaultActionBar(Activity
     // activity) {
     // if (application.isLightTheme()) {
@@ -36,7 +41,6 @@ public class ThemeUtils {
     //
     // }
     // }
-
     public int getActionBarListSectionLabelText() {
         switch (application.getThemeType()) {
         case Themes.THEME_BLACK:
@@ -72,22 +76,24 @@ public class ThemeUtils {
     public int getItemSelector() {
         switch (application.getThemeType()) {
         case Themes.THEME_BLACK:
-            //return R.drawable.abs__list_selector_holo_dark;
-            return R.drawable.item_background_light;
+            Log.d("x","--------------------black click--------------------");
+            return R.drawable.item_press_dark;
         case Themes.THEME_LIGHT:
         default:
-            return R.drawable.item_background_light;
+            Log.d("x","--------------------white click--------------------");
+            return R.drawable.item_press_white;
         }
     }
 
     public int getItemSelectorPressed() {
         switch (application.getThemeType()) {
         case Themes.THEME_BLACK:
-            //return R.drawable.abs__list_pressed_holo_dark;
-            return R.drawable.list_pressed_light;
+            Log.d("x","--------------------black acclick--------------------");
+            return R.drawable.item_press_in_actionmode_dark;
         case Themes.THEME_LIGHT:
         default:
-            return R.drawable.list_pressed_light;
+            Log.d("x","--------------------white acclick--------------------");
+            return R.drawable.item_press_in_actionmode_white;
         }
     }
 

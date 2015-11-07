@@ -14,7 +14,7 @@
         android:title="@string/menu_insert"/>-->
     <item
         android:id="@+id/menu_toggle_view"
-        android:icon="@drawable/ic_menu_sort"
+        android:icon="?ic_menu_layout"
         app:showAsAction="ifRoom"
         android:title="@string/toggle_view"/>
     <item

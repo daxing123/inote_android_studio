@@ -6,9 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
-import android.content.res.TypedArray;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -21,21 +18,14 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.*;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.support.v7.widget.helper.ItemTouchHelper;
-import android.util.SparseBooleanArray;
 import android.view.*;
 import android.view.View.OnClickListener;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.*;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemLongClickListener;
 import org.dayup.activities.BaseActivity;
 import org.dayup.common.Analytics;
 import org.dayup.common.Log;
 import org.dayup.inotes.INotesPreferences.PK;
 import org.dayup.inotes.account.INotesAccountManager;
-import org.dayup.inotes.adapter.NoteListAdapter;
 import org.dayup.inotes.adapter.SpinnerSelectorAdapter;
 import org.dayup.inotes.adapter.SpinnerSelectorsHelper;
 import org.dayup.inotes.constants.Constants.RequestCode;
@@ -259,6 +249,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
                 startDetailActivity(note);
             } else {
                 adapter.toggleSelected(position);
+                adapter.notifyDataSetChanged();
             }
 
         }
@@ -281,6 +272,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         @Override public boolean onCreateActionMode(ActionMode mode, Menu menu) {
             getMenuInflater().inflate(R.menu.list_select_menu, menu);
             toolbar.setVisibility(View.GONE);
+            fab.setVisibility(View.GONE);
             isInActionMode = true;
 
             return true;
@@ -314,6 +306,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
 
         @Override public void onDestroyActionMode(ActionMode mode) {
             toolbar.setVisibility(View.VISIBLE);
+            fab.setVisibility(View.VISIBLE);
             adapter.removeSelection();
             isInActionMode = false;
 
@@ -952,8 +945,8 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
             for (Note note : selectItems.values()) {
                 Note.deleteNote(note, dbHelper);
             }
-            mode.finish();
         }
+        mode.finish();
         isInActionMode = false;
 
     }
@@ -986,7 +979,6 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
                                 break;
                             }
                         }
-                        mode.finish();
                     }
                 })
                 .setNegativeButton(android.R.string.cancel, null)

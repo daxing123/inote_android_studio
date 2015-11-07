@@ -1,16 +1,17 @@
 package org.dayup.inotes;
 
+import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import org.dayup.common.Log;
 import org.dayup.inotes.data.Note;
 import org.dayup.inotes.utils.DateUtils;
+import org.dayup.inotes.utils.ThemeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     private String timeFormat = DateUtils.DatePattern.HM_COLON_12;
     private int sortBy;
     private boolean flingState = false;
+    private INotesApplication application = new INotesApplication();
+    private ThemeUtils themeUtils = new ThemeUtils(application);
 
     //private SparseBooleanArray selectedItemIds;
     private TreeMap<Integer, Note> selectedItemIds;
@@ -54,7 +57,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void SetOnRvItemClickListener(OnRvItemClickListener onRvItemClickListener) {
         this.onRvItemClickListener = onRvItemClickListener;
     }
-
 
     @Override public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -96,9 +98,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         }
 
         holder.itemView.setBackgroundResource(
-                selectedItemIds.get(position) != null ? R.drawable.item_press_in_actionmode :
-                        R.drawable.item_press);
-
+                selectedItemIds.get(position) != null ?
+                        themeUtils.getItemSelectorPressed() :
+                        themeUtils.getItemSelector());
     }
 
     @Override public int getItemCount() {

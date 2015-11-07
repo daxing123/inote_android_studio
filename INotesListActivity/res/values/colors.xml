@@ -68,14 +68,17 @@
 
     <color name="primary">#ededed</color>
     <color name="primary_dark">#b2b2b2</color>
-    <color name="accent">#b2b2b2</color>
-    <color name="text_black">#000000</color>
+    <color name="accent">#a2a2a2</color>
+    <color name="text_black">#2c2c2c</color>
 
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="item_normal">#e0e0e0</color>
-    <color name="item_pressed">#c0c0c0</color>
+    <color name="item_normal_white">#e0e0e0</color>
+    <color name="item_pressed_white">#c0c0c0</color>
+
+    <color name="item_normal_dark">#303030</color>
+    <color name="item_pressed_dark">#a0a0a0</color>
 
 </resources>
