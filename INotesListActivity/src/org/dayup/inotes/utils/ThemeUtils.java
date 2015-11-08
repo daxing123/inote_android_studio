@@ -76,11 +76,11 @@ public class ThemeUtils {
     public int getItemSelector() {
         switch (application.getThemeType()) {
         case Themes.THEME_BLACK:
-            Log.d("x","--------------------black click--------------------");
+            //Log.d("x","--------------------black click--------------------");
             return R.drawable.item_press_dark;
         case Themes.THEME_LIGHT:
         default:
-            Log.d("x","--------------------white click--------------------");
+            //Log.d("x","--------------------white click--------------------");
             return R.drawable.item_press_white;
         }
 
@@ -96,11 +96,11 @@ public class ThemeUtils {
     public int getItemSelectorPressed() {
         switch (application.getThemeType()) {
         case Themes.THEME_BLACK:
-            Log.d("x","--------------------black acclick--------------------");
+            //Log.d("x","--------------------black acclick--------------------");
             return R.drawable.item_press_in_actionmode_dark;
         case Themes.THEME_LIGHT:
         default:
-            Log.d("x","--------------------white acclick--------------------");
+            //Log.d("x","--------------------white acclick--------------------");
             return R.drawable.item_press_in_actionmode_white;
         }
 

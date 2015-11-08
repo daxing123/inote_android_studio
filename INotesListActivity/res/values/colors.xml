@@ -87,4 +87,10 @@
 
     <color name="dark_background">#303030</color>
 
+    <color name="drawer_item_label">#b0b0b0</color>
+    <color name="drawer_item_folder">#202020</color>
+
+    <color name="item_drawer_normal">#00000000</color>
+    <color name="item_drawer_pressed">#e0e0e0</color>
+
 </resources>

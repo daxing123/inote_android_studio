@@ -3,6 +3,7 @@ package org.dayup.inotes.adapter;
 import java.util.ArrayList;
 
 import android.app.LauncherActivity;
+import org.dayup.common.Log;
 import org.dayup.inotes.INotesApplication;
 import org.dayup.inotes.R;
 import org.dayup.inotes.utils.ThemeUtils;
@@ -17,15 +18,18 @@ import android.widget.TextView;
 
 /**
  * @author Nicky
- *
  */
 public class SpinnerSelectorAdapter extends BaseAdapter {
 
     private ArrayList<SpinnerSelecter> mData = new ArrayList<SpinnerSelecter>();
-    /** View is of a separator row */
+    /**
+     * View is of a separator row
+     */
     private static final int ITEM_VIEW_TYPE_HEADER = AdapterView.ITEM_VIEW_TYPE_HEADER_OR_FOOTER;
 
-    /** View is of a "normal" row */
+    /**
+     * View is of a "normal" row
+     */
     private static final int ITEM_VIEW_TYPE_NORMAL = 0;
 
     private static final int FIRST_FOLDER_POSITION = 1;
@@ -105,7 +109,6 @@ public class SpinnerSelectorAdapter extends BaseAdapter {
         return createViewFromResource(position, convertView, parent);
     }
 
-
     private View createViewFromResource(int position, View convertView, ViewGroup parent) {
         if (position < 0 || position >= mData.size()) {
             return null;
@@ -142,6 +145,7 @@ public class SpinnerSelectorAdapter extends BaseAdapter {
         if (position < 0 || position >= getCount()) {
             return false;
         }
+
         return getItem(position).type == SpinnerSelecter.TYPE_ACCOUNT;
     }
 
@@ -149,6 +153,7 @@ public class SpinnerSelectorAdapter extends BaseAdapter {
         if (position < 0 || position >= getCount()) {
             return false;
         }
+
         return getItem(position).type == SpinnerSelecter.TYPE_FOLDER;
     }
 

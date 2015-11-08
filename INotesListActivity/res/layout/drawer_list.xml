@@ -4,4 +4,21 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
+    <FrameLayout
+        android:background="@drawable/drawer_pic"
+        android:layout_width="match_parent"
+        android:layout_height="96dp">
+
+        <!--<ImageButton
+            android:layout_gravity="center_vertical"
+            android:layout_width="72dp"
+            android:layout_height="72dp"/>-->
+
+    </FrameLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/drawer_list_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 </LinearLayout>

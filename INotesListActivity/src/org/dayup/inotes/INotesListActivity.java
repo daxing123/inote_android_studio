@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -122,9 +123,9 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         mHelper = new SpinnerSelectorsHelper(iNotesApplication);
 
         resetCurrentFolder();
-        Log.d("xxx",
+        /*Log.d("xxx",
                 "-----------------------" + currentFolder.displayName + "-----------------------");
-
+*/
         //        Toast.makeText(INotesListActivity.this, currentFolder.displayName, Toast.LENGTH_SHORT).show();
         //        Toast.makeText(INotesListActivity.this, String.valueOf(currentFolder.id), Toast.LENGTH_SHORT).show();
     }
@@ -214,6 +215,34 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         initToolbar();
         initRecycleView();
         initOtherView();
+        initDrawerList();
+    }
+
+    private MyDrawerAdapter myDrawerAdapter;
+
+    private void initDrawerList() {
+        RecyclerView drawerListRv = (RecyclerView) findViewById(R.id.drawer_list_rv);
+        drawerListRv.setLayoutManager(new LinearLayoutManager(this));
+        myDrawerAdapter = new MyDrawerAdapter();
+        myDrawerAdapter.setData(mHelper.getSelectors());
+        drawerListRv.setAdapter(myDrawerAdapter);
+        myDrawerAdapter.setDrawerRvListener(new MyDrawerAdapter.DrawerRvListener() {
+            @Override public void drawerItemClick(int position) {
+                if (actionBarAdapter.isFolder(position)) {
+                    long folderId = actionBarAdapter.getItemId(position);
+                    switchToFolder(folderId);
+                } else if (actionBarAdapter.isAccount(position)) {
+                    long accountId = actionBarAdapter.getItemId(position);
+                    switchToAccount(accountId);
+                }
+
+                if (dl != null && dl.isDrawerOpen(GravityCompat.START)) {
+                    dl.closeDrawer(GravityCompat.START);
+                }
+
+                toolbar.setTitle(currentFolder.displayName);
+            }
+        });
     }
 
     private void initOtherView() {
@@ -346,58 +375,13 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         adapter.SetOnRvItemClickListener(new RvItemClickListener());
     }
 
-    /*private void initListView() {
-        TextView emptyView = (TextView) findViewById(R.id.list_empty_view);
-        listView = (ListView) findViewById(android.R.id.list);
-        listView.setEmptyView(emptyView);
-        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        adapter = new NoteListAdapter(this, noteslist);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                Note note = adapter.getItem(arg2);
-                if (note == null) {
-                    return;
-                }
-
-                if (isInSelectionMode()) {
-                    adapter.resetSelectedItems(arg2);
-                    arg1.invalidate();
-                    updateSelectionModeView();
-
-                } else {
-                    startDetailActivity(note);
-                }
-
-            }
-        });
-
-        listView.setOnItemLongClickListener(new OnItemLongClickListener() {
-
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position,
-                    long id) {
-                Note note = adapter.getItem(position);
-                if (note == null) {
-                    return false;
-                }
-                adapter.resetSelectedItems(position);
-                view.invalidate();
-                updateSelectionMode();
-                return true;
-            }
-        });
-    }
-*/
     private void initToolbar() {
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar_with_spinner);
-        spinner = (Spinner) findViewById(R.id.spinner);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+       //spinner = (Spinner) findViewById(R.id.spinner);
 
         actionBarAdapter = new SpinnerSelectorAdapter(this);
-        spinner.setAdapter(actionBarAdapter);
+        /* spinner.setAdapter(actionBarAdapter);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override public void onItemSelected(AdapterView<?> parent, View view, int position,
@@ -415,15 +399,14 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
 
             }
         });
-
+*/
         requarySpinnerSelectors();
 
+        toolbar.setTitle(currentFolder.displayName);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
 
-
-
-        /*dl = (DrawerLayout) findViewById(R.id.drawer_layout);
+        dl = (DrawerLayout) findViewById(R.id.drawer_layout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,
                 dl, toolbar, R.string.app_name, R.string.app_name) {
             //监听抽屉关闭事件
@@ -443,7 +426,7 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
                 actionBarDrawerToggle.syncState();
             }
         });
-        dl.setDrawerListener(actionBarDrawerToggle);*/
+        dl.setDrawerListener(actionBarDrawerToggle);
     }
 
     /*private void initActionBar() {
@@ -621,7 +604,6 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
     }*/
 
     //private EditText et_sv;
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -1118,18 +1100,15 @@ public class INotesListActivity extends BaseActivity implements SyncingRefreshUI
         }
     }
 
-    /*@Override
+    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-            if (sortByLayout.getVisibility() == View.VISIBLE) {
-                mHandler.post(sortByHide);
-                return true;
-            } else {
-                return super.onKeyDown(keyCode, event);
+            if (dl != null && dl.isDrawerOpen(GravityCompat.START)) {
+                dl.closeDrawer(GravityCompat.START);
             }
         }
         return super.onKeyDown(keyCode, event);
-    }*/
+    }
 
     /*@Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
