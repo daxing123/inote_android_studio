@@ -349,7 +349,6 @@ public class INotesApplication extends CommonApplication implements
     }
 
     public int getThemeType() {
-        Log.d("xx", "theme--------------------is" + themeType);
         return themeType;
     }
 
